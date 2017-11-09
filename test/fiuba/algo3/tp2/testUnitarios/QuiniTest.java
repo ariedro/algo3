@@ -38,5 +38,13 @@ public class QuiniTest {
 		unQuini.getPremio(unJugador);
 		assertEquals(0,unQuini.getPremio(unJugador));
 	}
+	
+	@Test
+	public void test05JugadorFueGanadorSiGanoElPremioUnaVez() {
+		Quini unQuini = new Quini();
+		Jugador unJugador = new Jugador();
+		unQuini.getPremio(unJugador);
+		assertTrue(unQuini.fueGanador(unJugador));
+	}
 
 }
