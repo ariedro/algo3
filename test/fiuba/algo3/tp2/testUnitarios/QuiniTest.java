@@ -6,8 +6,10 @@ import org.junit.Test;
 
 public class QuiniTest {
 	
+	private static final int DINERO_INICIAL = 100000;
 	private static final int PRIMER_PREMIO = 50000;
 	private static final int SEGUNDO_PREMIO = 30000;
+	private static final int TERCER_PREMIO = 0;
 	
 	@Test
 	public void test01CrearQuiniNoEsNulo() {
@@ -36,7 +38,7 @@ public class QuiniTest {
 		Jugador unJugador = new Jugador();
 		unQuini.getPremio(unJugador);
 		unQuini.getPremio(unJugador);
-		assertEquals(0,unQuini.getPremio(unJugador));
+		assertEquals(TERCER_PREMIO,unQuini.getPremio(unJugador));
 	}
 	
 	@Test
@@ -52,7 +54,7 @@ public class QuiniTest {
 		Quini unQuini = new Quini();
 		Jugador unJugador = new Jugador();
 		unQuini.activar(unJugador);
-		assertEquals(PRIMER_PREMIO+100000, unJugador.getDinero());
+		assertEquals(DINERO_INICIAL+PRIMER_PREMIO, unJugador.getDinero());
 	}
 	
 }	
