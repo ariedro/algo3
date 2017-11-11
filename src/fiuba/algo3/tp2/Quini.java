@@ -2,7 +2,7 @@ package fiuba.algo3.tp2;
 
 import java.util.HashMap;
 
-public class Quini {
+public class Quini implements Tipo{
 
 	private static final int PRIMER_PREMIO = 50000;
 	private static final int SEGUNDO_PREMIO = 30000;
@@ -12,8 +12,12 @@ public class Quini {
 		this.cantidadDePasadas = new HashMap<Jugador, Integer>();
 	}
 	
+	public void activar(Jugador unJugador) {
+		unJugador.recibirDinero(this.getPremio(unJugador));
+	}
+	
 	public int getPremio(Jugador unJugador) {
-		if (!this.fueGanador(unJugador)) this.setGanador(unJugador);
+		if (!this.estaEntreLosGanadores(unJugador)) this.setGanador(unJugador);
 		int premioLocal = 0;
 		this.aumentarPasadas(unJugador);
 		if (this.getPasadas(unJugador) == 1) premioLocal = PRIMER_PREMIO;
@@ -21,7 +25,7 @@ public class Quini {
 		return premioLocal;
 	}
 	
-	public boolean fueGanador(Jugador unJugador) {
+	public boolean estaEntreLosGanadores(Jugador unJugador) {
 		return this.cantidadDePasadas.containsKey(unJugador);
 	}
 	

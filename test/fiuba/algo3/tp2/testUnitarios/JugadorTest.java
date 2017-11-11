@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 
-
 public class JugadorTest {
 
 	private static final int DINERO_INICIAL = 100000;
@@ -27,12 +26,6 @@ public class JugadorTest {
 		Jugador unJugador = new Jugador();
 		unJugador.recibirDinero(100);
 		assertEquals(DINERO_INICIAL+100,unJugador.getDinero());
-	}
-	
-	@Test
-	public void test04JugadorCreadoInicialmenteNoEstaEnLaCarcel() {
-		Jugador unJugador = new Jugador();
-		assertFalse(unJugador.estaEnLaCarcel());
 	}
 	
 }

@@ -44,7 +44,18 @@ public class QuiniTest {
 		Quini unQuini = new Quini();
 		Jugador unJugador = new Jugador();
 		unQuini.getPremio(unJugador);
-		assertTrue(unQuini.fueGanador(unJugador));
+		assertTrue(unQuini.estaEntreLosGanadores(unJugador));
 	}
-
-}
+	
+	@Test
+	public void test06JugadorFueGanadorRecibeDineroSiCorresponde() {
+		Quini unQuini = new Quini();
+		Jugador unJugador = new Jugador();
+		unQuini.activar(unJugador);
+		assertEquals(PRIMER_PREMIO+100000, unJugador.getDinero());
+	}
+	
+}	
+	
+	
+	
