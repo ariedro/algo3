@@ -2,6 +2,10 @@ package fiuba.algo3.tp2;
 
 import java.util.LinkedList;
 
+import fiuba.algo3.estados.EstadoJugador;
+import fiuba.algo3.estados.EstadoJugadorEnCana;
+import fiuba.algo3.estados.EstadoJugadorEnLibertad;
+
 public class Jugador {
 	
 	private static int DINERO_INICIAL = 100000;
@@ -10,12 +14,15 @@ public class Jugador {
 	
 	private LinkedList<Comprable> propiedades;
 	
+	private EstadoJugador estado;
 	
 	public Jugador(){
 	
 		this.dinero = DINERO_INICIAL;
 		
 		this.propiedades = new LinkedList<Comprable>();
+		
+		this.estado = new EstadoJugadorEnLibertad();
 	}
 	
 	public int getDinero() {
@@ -38,6 +45,18 @@ public class Jugador {
 		
 		this.propiedades.add(unaPropiedad);
 		
+	}
+
+	public boolean puedeMover() {
+		return estado.puedeMover();
+	}
+
+	public void irEnCana() {
+		this.estado = new EstadoJugadorEnCana();
+	}
+
+	public void salirEnLibertad() {
+		this.estado = new EstadoJugadorEnLibertad();
 	}
 
 
