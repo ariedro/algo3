@@ -1,8 +1,10 @@
-package fiuba.algo3.tp2;
+package fiuba.algo3.tp2.testIntegracion;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import fiuba.algo3.tp2.*;
 
 public class AlgoPolyPrimerEntregaTest {
 

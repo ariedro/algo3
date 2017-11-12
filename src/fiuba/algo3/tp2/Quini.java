@@ -8,7 +8,7 @@ public class Quini implements Tipo{
 	private static final int SEGUNDO_PREMIO = 30000;
 	private HashMap<Jugador, Integer> cantidadDePasadas;
 	
-	Quini(){
+	public Quini(){
 		this.cantidadDePasadas = new HashMap<Jugador, Integer>();
 	}
 	

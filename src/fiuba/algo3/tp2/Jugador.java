@@ -11,7 +11,7 @@ public class Jugador {
 	private LinkedList<Comprable> propiedades;
 	
 	
-	Jugador(){
+	public Jugador(){
 	
 		this.dinero = DINERO_INICIAL;
 		

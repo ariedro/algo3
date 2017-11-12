@@ -5,7 +5,7 @@ public class Casillero {
 	private Tipo unaPropiedad;
 	
 
-	Casillero (Tipo propiedad) {
+	public Casillero (Tipo propiedad) {
 		
 		this.unaPropiedad = propiedad;
 		
