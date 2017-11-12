@@ -28,4 +28,13 @@ public class JugadorTest {
 		assertEquals(DINERO_INICIAL+100,unJugador.getDinero());
 	}
 	
+	@Test 
+	public void test04JugadorCreadoNoPoseePropiedades() {
+			
+		Jugador unJugador = new Jugador();
+		
+		assertEquals(0,unJugador.getCantidadPropiedades());
+	
+	}
+
 }

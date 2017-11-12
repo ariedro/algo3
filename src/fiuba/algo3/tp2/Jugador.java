@@ -1,11 +1,21 @@
 package fiuba.algo3.tp2;
 
+import java.util.LinkedList;
+
 public class Jugador {
+	
+	private static int DINERO_INICIAL = 100000;
 	
 	private int dinero;
 	
+	private LinkedList<Comprable> propiedades;
+	
+	
 	Jugador(){
-		this.dinero = 100000;
+	
+		this.dinero = DINERO_INICIAL;
+		
+		this.propiedades = new LinkedList<Comprable>();
 	}
 	
 	public int getDinero() {
@@ -16,5 +26,14 @@ public class Jugador {
 		this.dinero += unDinero;
 	}
 	
-	
+	public int getCantidadPropiedades() {
+		
+		return this.propiedades.size();
+		
+	}
+
+
+
+
+
 }
