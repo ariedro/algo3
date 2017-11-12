@@ -13,4 +13,11 @@ public class Barrio implements Tipo, Comprable{
 	}
 
 	
+	/*implementacion solo para que compile*/
+	public int getPrecio() {
+		return 0; 
+	}
+
+
+	
 }

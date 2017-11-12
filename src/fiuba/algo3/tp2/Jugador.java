@@ -32,6 +32,14 @@ public class Jugador {
 		
 	}
 
+	public void comprarPropiedad(Comprable unaPropiedad) {
+		
+		this.dinero -= unaPropiedad.getPrecio();
+		
+		this.propiedades.add(unaPropiedad);
+		
+	}
+
 
 
 
