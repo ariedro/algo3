@@ -16,6 +16,7 @@ public class JugadorTest {
 	private static final int DINERO_INICIAL = 100000;
 	private static final int PRECIO_BARRIO = 10000;
 	private static final double PROPORCION_VALOR_VENTA = 0.85;
+	private static final int FIANZA = 45000;
 
 	@Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -175,7 +176,18 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test13JugadorNoPuedePagarFianzaSiNoLeAlcanzaLaPlata() {
+	public void test13JugadorQuePagaFianzaTieneLaPlataQueCorresponde() {
+		Jugador unJugador = new Jugador();
+		Carcel unaCarcel = new Carcel();
+		Casillero unCasillero = new Casillero(null);
+		unaCarcel.aprisionar(unJugador);
+		unJugador.finalizarTurno();
+		unJugador.pagarFianza();
+		assertEquals(DINERO_INICIAL - FIANZA, unJugador.getDinero());
+	}
+	
+	@Test
+	public void test14JugadorNoPuedePagarFianzaSiNoLeAlcanzaLaPlata() {
 		Jugador unJugador = new Jugador();
 		Carcel unaCarcel = new Carcel();
 		unJugador.sacarDinero(DINERO_INICIAL - 1); //Se queda con 1 peso
@@ -186,7 +198,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void test14JugadorNoPuedePagarFianzaSiEstaEnLibertad() {
+	public void test15JugadorNoPuedePagarFianzaSiEstaEnLibertad() {
 		Jugador unJugador = new Jugador();
 		thrown.expect(JugadorNoPuedePagarFianza.class);
 		unJugador.pagarFianza();
