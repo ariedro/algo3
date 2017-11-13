@@ -1,7 +1,5 @@
 package fiuba.algo3.clases;
 
-import java.util.Random;
-
 public class Dado {
 	
 	public int tirar() {

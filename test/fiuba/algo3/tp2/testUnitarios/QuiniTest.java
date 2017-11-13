@@ -55,7 +55,7 @@ public class QuiniTest {
 	public void test06JugadorFueGanadorRecibeDineroSiCorresponde() {
 		Quini unQuini = new Quini();
 		Jugador unJugador = new Jugador();
-		unQuini.activar(unJugador);
+		unQuini.accionarCon(unJugador);
 		assertEquals(DINERO_INICIAL+PRIMER_PREMIO, unJugador.getDinero());
 	}
 	

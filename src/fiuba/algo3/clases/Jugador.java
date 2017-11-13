@@ -44,15 +44,18 @@ public class Jugador {
 		return this.propiedades.size();
 		
 	}
-
-	public void comprarPropiedad(Comprable unaPropiedad) {
-		
-		this.dinero -= unaPropiedad.getPrecio();
-		
+	
+	private void incorporarPropiedad(Comprable unaPropiedad) {
 		this.propiedades.add(unaPropiedad);
-		
 	}
-
+	
+	public void comprarPropiedad(Comprable unaPropiedad) {
+		if (this.tomarDecisionDeComprarPropiedad()) {
+			this.sacarDinero(unaPropiedad.getPrecio());
+			this.incorporarPropiedad(unaPropiedad);
+		}
+	}
+	
 	public boolean puedeMover() {
 		return estado.puedeMover();
 	}
@@ -84,6 +87,16 @@ public class Jugador {
 		this.estado.pagarFianza(this);
 	}
 
+	public boolean tomarDecisionDeComprarPropiedad() {
+		return true;
+	}
+
+	public void venderPropiedad(Comprable unaPropiedad) {
+		
+		this.propiedades.remove(unaPropiedad);
+		
+		this.dinero += unaPropiedad.getValorVenta();
+	}
 
 
 
