@@ -1,4 +1,4 @@
-package fiuba.algo3.tp2;
+package fiuba.algo3.clases;
 
 import java.util.LinkedList;
 
@@ -16,6 +16,8 @@ public class Jugador {
 	
 	private EstadoJugador estado;
 	
+	private Casillero ubicacion;
+	
 	public Jugador(){
 	
 		this.dinero = DINERO_INICIAL;
@@ -31,6 +33,10 @@ public class Jugador {
 	
 	public void recibirDinero(int unDinero) {
 		this.dinero += unDinero;
+	}
+	
+	public void sacarDinero(int unDinero) {
+		this.dinero -= unDinero;
 	}
 	
 	public int getCantidadPropiedades() {
@@ -50,6 +56,10 @@ public class Jugador {
 	public boolean puedeMover() {
 		return estado.puedeMover();
 	}
+	
+	public void mover(Jugador unJugador, Casillero unCasillero) {
+		this.estado.mover(unJugador, unCasillero);
+	}
 
 	public void irEnCana() {
 		this.estado = new EstadoJugadorEnCana();
@@ -59,6 +69,20 @@ public class Jugador {
 		this.estado = new EstadoJugadorEnLibertad();
 	}
 
+	public void finalizarTurno() {
+		this.estado.finalizarTurno(this);
+	}
+
+	public void setUbicacion(Casillero unCasillero) {
+		ubicacion = unCasillero;
+	}
+	public Casillero getUbicacion() {
+		return this.ubicacion;
+	}
+
+	public void pagarFianza() {
+		this.estado.pagarFianza(this);
+	}
 
 
 

@@ -3,7 +3,8 @@ package fiuba.algo3.tp2.testUnitarios;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import fiuba.algo3.tp2.*;
+
+import fiuba.algo3.clases.*;
 
 
 public class CarcelTest {
@@ -30,4 +31,5 @@ public class CarcelTest {
 		unaCarcel.liberar(unJugador);
 		assertTrue(unJugador.puedeMover());
 	}
+	
 }

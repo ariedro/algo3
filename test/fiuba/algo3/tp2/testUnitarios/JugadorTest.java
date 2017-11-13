@@ -2,17 +2,23 @@ package fiuba.algo3.tp2.testUnitarios;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import org.junit.Test;
-import static org.mockito.Mockito.*;
 
-import fiuba.algo3.tp2.Barrio;
-import fiuba.algo3.tp2.Jugador;
+import org.junit.Rule;
+import org.junit.Test;
+//import static org.mockito.Mockito.*;
+import org.junit.rules.ExpectedException;
+
+import fiuba.algo3.clases.*;
+import fiuba.algo3.excepciones.*;
 
 public class JugadorTest {
 
 	private static final int DINERO_INICIAL = 100000;
 	private static final int PRECIO_BARRIO = 10000;
-	
+    
+	@Rule
+    public ExpectedException thrown = ExpectedException.none();
+
 	
 	
 	@Test
@@ -55,7 +61,7 @@ public class JugadorTest {
 	
 	}
 
-	@Test
+/*	@Test
 	public void test05JugadorCompraUnaPropiedadDisminuyeSuDinero() {
 		
 		Jugador unJugador = new Jugador ();
@@ -83,6 +89,60 @@ public class JugadorTest {
 		assertEquals(1 , unJugador.getCantidadPropiedades());
 		
 	}
+*/	
+
+	@Test
+	public void test07JugadorMoviendoseEstandoPresoLanzaExcepcion() {
+		Jugador unJugador = new Jugador();
+		Carcel unaCarcel = new Carcel();
+		Casillero unCasillero = new Casillero(null);
+		unaCarcel.aprisionar(unJugador);
+		thrown.expect(JugadorEstaEnCanaException.class);
+		unJugador.mover(unJugador, unCasillero);
+	}	
 	
+	@Test
+	public void test08JugadorEnCanaPuedeMoverseDespuesDe3Turnos() {
+		Jugador unJugador = new Jugador();
+		Carcel unaCarcel = new Carcel();
+		Casillero unCasillero = new Casillero(null);
+		unaCarcel.aprisionar(unJugador);
+		unJugador.finalizarTurno();
+		unJugador.finalizarTurno();
+		unJugador.finalizarTurno();
+		unJugador.mover(unJugador, unCasillero);		
+		assertEquals(unCasillero,unJugador.getUbicacion());
+	}
 	
+	@Test
+	public void test09JugadorNoPuedePagarFianzaEnPrimerTurno() {
+		Jugador unJugador = new Jugador();
+		Carcel unaCarcel = new Carcel();
+		unaCarcel.aprisionar(unJugador);
+		thrown.expect(JugadorNoPuedePagarFianza.class);
+		unJugador.pagarFianza();
+	}
+	
+	@Test
+	public void test10JugadorPuedePagarFianzaEnSegundoTurno() {
+		Jugador unJugador = new Jugador();
+		Carcel unaCarcel = new Carcel();
+		Casillero unCasillero = new Casillero(null);
+		unaCarcel.aprisionar(unJugador);
+		unJugador.finalizarTurno();
+		unJugador.pagarFianza();
+		unJugador.mover(unJugador, unCasillero);		
+		assertEquals(unCasillero,unJugador.getUbicacion());
+	}
+	
+	@Test
+	public void test11JugadorNoPuedePagarFianzaSiNoLeAlcanzaLaPlata() {
+		Jugador unJugador = new Jugador();
+		Carcel unaCarcel = new Carcel();
+		unJugador.sacarDinero(DINERO_INICIAL - 1); //Se queda con 1 peso
+		unaCarcel.aprisionar(unJugador);
+		unJugador.finalizarTurno();
+		thrown.expect(JugadorNoPuedePagarFianza.class);
+		unJugador.pagarFianza();
+	}
 }
