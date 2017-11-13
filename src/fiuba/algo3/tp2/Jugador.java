@@ -33,20 +33,27 @@ public class Jugador {
 		this.dinero += unDinero;
 	}
 	
+	public void darDinero(int unDinero) {
+		this.dinero -= unDinero;
+	}
+	
 	public int getCantidadPropiedades() {
 		
 		return this.propiedades.size();
 		
 	}
-
-	public void comprarPropiedad(Comprable unaPropiedad) {
-		
-		this.dinero -= unaPropiedad.getPrecio();
-		
+	
+	private void incorporarPropiedad(Comprable unaPropiedad) {
 		this.propiedades.add(unaPropiedad);
-		
 	}
-
+	
+	public void comprarPropiedad(Comprable unaPropiedad) {
+		if (this.tomarDecisionDeComprarPropiedad()) {
+			this.darDinero(unaPropiedad.getPrecio());
+			this.incorporarPropiedad(unaPropiedad);
+		}
+	}
+	
 	public boolean puedeMover() {
 		return estado.puedeMover();
 	}
@@ -59,7 +66,9 @@ public class Jugador {
 		this.estado = new EstadoJugadorEnLibertad();
 	}
 
-
+	public boolean tomarDecisionDeComprarPropiedad() {
+		return true;
+	}
 
 
 

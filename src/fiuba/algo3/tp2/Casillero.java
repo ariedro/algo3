@@ -2,10 +2,10 @@ package fiuba.algo3.tp2;
 
 public class Casillero {
 	
-	private Tipo unaPropiedad;
+	private Encasillable unaPropiedad;
 	
 
-	public Casillero (Tipo propiedad) {
+	public Casillero (Encasillable propiedad) {
 		
 		this.unaPropiedad = propiedad;
 		
@@ -13,7 +13,7 @@ public class Casillero {
 	
 	public void accionarPropiedad(Jugador unJugador) {
 		
-		this.unaPropiedad.activar(unJugador);	
+		this.unaPropiedad.accionarCon(unJugador);	
 	
 	}
 	
