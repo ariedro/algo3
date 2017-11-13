@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Rule;
 import org.junit.Test;
-//import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.*;
 import org.junit.rules.ExpectedException;
 
 import fiuba.algo3.clases.*;

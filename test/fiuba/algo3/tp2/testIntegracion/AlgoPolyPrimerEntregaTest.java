@@ -3,10 +3,8 @@ package fiuba.algo3.tp2.testIntegracion;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-<<<<<<< HEAD
 
 import fiuba.algo3.clases.*;
-=======
 import static org.mockito.Mockito.*;
 import fiuba.algo3.tp2.*;
 
