@@ -1,14 +1,15 @@
 package fiuba.algo3.clases;
 
-public class RetrocesoDinamico implements Encasillable{
+public class RetrocesoDinamico implements Encasillable, MovimientoDinamico{
 
 	@Override
 	public void accionarCon(Jugador unJugador) {
-		// TODO Auto-generated method stub
-		
+		int suma = unJugador.getResultadoDados();
+		int resultadoDinamico = this.getCantidadDeMovimiento(unJugador,suma);
+		unJugador.setResultadoDinamico(resultadoDinamico);
 	}
 
-	public int getRetroceso(Jugador unJugador, int suma) {
+	public int getCantidadDeMovimiento(Jugador unJugador, int suma) {
 		
 		if (suma <7 ) {
 			

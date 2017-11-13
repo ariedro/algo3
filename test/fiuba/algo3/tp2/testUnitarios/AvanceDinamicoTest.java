@@ -25,7 +25,7 @@ public class AvanceDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(0,unAvanceDinamico.getAvance(unJugador, 2));
+		assertEquals(0,unAvanceDinamico.getCantidadDeMovimiento(unJugador, 2));
 	}
 
 	@Test
@@ -35,7 +35,7 @@ public class AvanceDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(1,unAvanceDinamico.getAvance(unJugador, 3));
+		assertEquals(1,unAvanceDinamico.getCantidadDeMovimiento(unJugador, 3));
 	}
 
 	@Test
@@ -45,7 +45,7 @@ public class AvanceDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(2,unAvanceDinamico.getAvance(unJugador, 4));
+		assertEquals(2,unAvanceDinamico.getCantidadDeMovimiento(unJugador, 4));
 	}
 
 	@Test
@@ -55,7 +55,7 @@ public class AvanceDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(3,unAvanceDinamico.getAvance(unJugador, 5));
+		assertEquals(3,unAvanceDinamico.getCantidadDeMovimiento(unJugador, 5));
 	}
 	
 	
@@ -66,7 +66,7 @@ public class AvanceDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(4,unAvanceDinamico.getAvance(unJugador, 6));
+		assertEquals(4,unAvanceDinamico.getCantidadDeMovimiento(unJugador, 6));
 	
 	}	
 	
@@ -78,7 +78,7 @@ public class AvanceDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(unJugador.getDinero() % 7, unAvanceDinamico.getAvance(unJugador, 7) );
+		assertEquals(unJugador.getDinero() % 7, unAvanceDinamico.getCantidadDeMovimiento(unJugador, 7) );
 		
 		
 		
@@ -92,7 +92,7 @@ public class AvanceDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(unJugador.getDinero() % 8, unAvanceDinamico.getAvance(unJugador, 8) );
+		assertEquals(unJugador.getDinero() % 8, unAvanceDinamico.getCantidadDeMovimiento(unJugador, 8) );
 			
 	
 	}
@@ -105,7 +105,7 @@ public class AvanceDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(unJugador.getDinero() % 9, unAvanceDinamico.getAvance(unJugador, 9) );
+		assertEquals(unJugador.getDinero() % 9, unAvanceDinamico.getCantidadDeMovimiento(unJugador, 9) );
 		
 	
 	}
@@ -118,7 +118,7 @@ public class AvanceDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(unJugador.getDinero() % 10, unAvanceDinamico.getAvance(unJugador, 10) );
+		assertEquals(unJugador.getDinero() % 10, unAvanceDinamico.getCantidadDeMovimiento(unJugador, 10) );
 			
 	
 	 }
@@ -132,7 +132,7 @@ public class AvanceDinamicoTest {
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(0);
 		
-		assertEquals(11 - 0, unAvanceDinamico.getAvance(unJugador, 11));
+		assertEquals(11 - 0, unAvanceDinamico.getCantidadDeMovimiento(unJugador, 11));
 		
 		
 		
@@ -147,7 +147,7 @@ public class AvanceDinamicoTest {
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(3);
 		
-		assertEquals(11 - 3, unAvanceDinamico.getAvance(unJugador, 11));
+		assertEquals(11 - 3, unAvanceDinamico.getCantidadDeMovimiento(unJugador, 11));
 		
 		
 		
@@ -161,7 +161,7 @@ public class AvanceDinamicoTest {
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(0);
 		
-		assertEquals(12 - 0, unAvanceDinamico.getAvance(unJugador, 12));
+		assertEquals(12 - 0, unAvanceDinamico.getCantidadDeMovimiento(unJugador, 12));
 		
 		
 		
@@ -175,7 +175,7 @@ public class AvanceDinamicoTest {
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(6);
 		
-		assertEquals(12 - 6, unAvanceDinamico.getAvance(unJugador, 12));
+		assertEquals(12 - 6, unAvanceDinamico.getCantidadDeMovimiento(unJugador, 12));
 		
 		
 		

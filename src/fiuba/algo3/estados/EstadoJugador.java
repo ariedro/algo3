@@ -5,12 +5,12 @@ import fiuba.algo3.clases.Jugador;
 
 public interface EstadoJugador {
 	
-	public abstract boolean puedeMover();
+	public abstract boolean puedeAccionar();
 
-	public abstract void mover(Jugador unJugador, Casillero unCasillero);
+	public abstract void mover(Casillero unCasillero);
 
-	public abstract void finalizarTurno(Jugador unJugador);
+	public abstract void finalizarTurno();
 
-	public abstract void pagarFianza(Jugador unJugador);
+	public abstract void pagarFianza();
 	
 }

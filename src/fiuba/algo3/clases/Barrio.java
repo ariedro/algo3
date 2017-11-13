@@ -4,7 +4,15 @@ public class Barrio implements Encasillable, Comprable{
 	
 	private Jugador propietario;
 	private int precio;
+	/*private int precioUnaCasa;
+	private int precioDosCasas;
+	private int precioHotel;*/
 	private int alquilerBasico;
+	/*private int alquilerUnaCasa;
+	private int alquilerDosCasas;
+	private int alquilerHotel;*/
+	
+	
 	
 	public void accionarCon(Jugador unJugador) {
 		if (!this.tienePropietario() && this.tieneDineroSuficiente(unJugador)) {
@@ -25,6 +33,18 @@ public class Barrio implements Encasillable, Comprable{
 	public void setPrecio(int unPrecio) {
 		this.precio = unPrecio;
 	}
+	
+	/*public void setPrecioUnaCasa(int unPrecio) {
+		this.precioUnaCasa = unPrecio;
+	}
+	
+	public void setPrecioDosCasas(int unPrecio) {
+		this.precioDosCasas = unPrecio;
+	}
+	
+	public void setPrecioHotel(int unPrecio) {
+		this.precioHotel = unPrecio;
+	}*/
 	
 	public void setAlquilerBasico(int alquilerBasico) {
 		this.alquilerBasico = alquilerBasico;

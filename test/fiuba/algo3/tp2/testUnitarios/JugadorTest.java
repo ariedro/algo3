@@ -138,7 +138,7 @@ public class JugadorTest {
 		Casillero unCasillero = new Casillero(null);
 		unaCarcel.aprisionar(unJugador);
 		thrown.expect(JugadorEstaEnCanaException.class);
-		unJugador.mover(unJugador, unCasillero);
+		unJugador.mover(unCasillero);
 	}	
 	
 	@Test
@@ -150,7 +150,7 @@ public class JugadorTest {
 		unJugador.finalizarTurno();
 		unJugador.finalizarTurno();
 		unJugador.finalizarTurno();
-		unJugador.mover(unJugador, unCasillero);		
+		unJugador.mover(unCasillero);		
 		assertEquals(unCasillero,unJugador.getUbicacion());
 	}
 	
@@ -171,7 +171,7 @@ public class JugadorTest {
 		unaCarcel.aprisionar(unJugador);
 		unJugador.finalizarTurno();
 		unJugador.pagarFianza();
-		unJugador.mover(unJugador, unCasillero);		
+		unJugador.mover(unCasillero);		
 		assertEquals(unCasillero,unJugador.getUbicacion());
 	}
 	
@@ -203,4 +203,6 @@ public class JugadorTest {
 		thrown.expect(JugadorNoPuedePagarFianza.class);
 		unJugador.pagarFianza();
 	}
+	
+	
 }

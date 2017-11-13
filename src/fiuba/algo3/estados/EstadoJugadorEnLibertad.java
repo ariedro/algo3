@@ -6,25 +6,31 @@ import fiuba.algo3.excepciones.JugadorNoPuedePagarFianza;
 
 public class EstadoJugadorEnLibertad implements EstadoJugador {
 
+	private Jugador jugador;
+	
+	public EstadoJugadorEnLibertad(Jugador unJugador){
+		this.jugador = unJugador;
+	}
+	
 	@Override
-	public boolean puedeMover() {
+	public boolean puedeAccionar() {
 		return true;
 	}
 	
 
 	@Override
-	public void mover(Jugador unJugador, Casillero unCasillero) {
-		unJugador.setUbicacion(unCasillero);
+	public void mover(Casillero unCasillero) {
+		this.jugador.setUbicacion(unCasillero);
 	}
 
 
 	@Override
-	public void finalizarTurno(Jugador unJugador) {
+	public void finalizarTurno() {
 	}
 
 
 	@Override
-	public void pagarFianza(Jugador unJugador) {
+	public void pagarFianza() {
 		throw new JugadorNoPuedePagarFianza();
 	}
 

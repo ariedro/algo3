@@ -41,6 +41,8 @@ public class AlgoPoly {
 		return (this.jugadores.size());
 		
 	}
+	
+	
 
 
 

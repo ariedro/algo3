@@ -57,8 +57,128 @@ public class AlgoPolyPrimerEntregaTest {
 		assertTrue(unBarrio.esPropietario(unJugador));
 	}
 
-		
+	@Test
+	public void test05JugadorCaeEnAvanceDinamicoSumandoEntre2Y6SuNuevaPosicionEsLoQueLeCorresponde() {
+		AvanceDinamico unAvance = new AvanceDinamico();
+		Casillero unCasillero = new Casillero(unAvance);
+		Jugador unJugador = new Jugador();
+		Dado unDado = new Dado();
+		int numeroSumado = 12;
+		int resultadoPrimerDado = 0;
+		int resultadoSegundoDado = 0;
+		while (numeroSumado > 6) {
+			resultadoPrimerDado = unJugador.tirarDado(unDado);
+			resultadoSegundoDado = unJugador.tirarDado(unDado);
+			numeroSumado = resultadoPrimerDado + resultadoSegundoDado;
+		}
+		unJugador.setResultadoDados(resultadoPrimerDado,resultadoSegundoDado);
+		int numeroRandom = unJugador.getResultadoDados();
+		unCasillero.accionarPropiedad(unJugador);
+		assertEquals(numeroRandom - 2, unJugador.getResultadoDinamico());
+	}
 	
+	@Test
+	public void test06JugadorCaeEnAvanceDinamicoSumandoEntre7Y10SuNuevaPosicionEsLoQueLeCorresponde() {
+		AvanceDinamico unAvance = new AvanceDinamico();
+		Casillero unCasillero = new Casillero(unAvance);
+		Jugador unJugador = new Jugador();
+		Dado unDado = new Dado();
+		int numeroSumado = 12;
+		int resultadoPrimerDado = 0;
+		int resultadoSegundoDado = 0;
+		while (numeroSumado < 7 || numeroSumado > 10) {
+			resultadoPrimerDado = unJugador.tirarDado(unDado);
+			resultadoSegundoDado = unJugador.tirarDado(unDado);
+			numeroSumado = resultadoPrimerDado + resultadoSegundoDado;
+		}
+		unJugador.setResultadoDados(resultadoPrimerDado,resultadoSegundoDado);
+		int numeroRandom = unJugador.getResultadoDados();
+		unCasillero.accionarPropiedad(unJugador);
+		assertEquals(unJugador.getDinero() % numeroRandom, unJugador.getResultadoDinamico());
+	}
+	
+	@Test
+	public void test07JugadorCaeEnAvanceDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
+		AvanceDinamico unAvance = new AvanceDinamico();
+		Casillero unCasillero = new Casillero(unAvance);
+		Jugador unJugador = new Jugador();
+		Dado unDado = new Dado();
+		Barrio unBarrio = new Barrio();
+		int numeroSumado = 1;
+		int resultadoPrimerDado = 0;
+		int resultadoSegundoDado = 0;
+		unJugador.incorporarPropiedad(unBarrio);
+		while (numeroSumado < 11) {
+			resultadoPrimerDado = unJugador.tirarDado(unDado);
+			resultadoSegundoDado = unJugador.tirarDado(unDado);
+			numeroSumado = resultadoPrimerDado + resultadoSegundoDado;
+		}
+		unJugador.setResultadoDados(resultadoPrimerDado,resultadoSegundoDado);
+		int numeroRandom = unJugador.getResultadoDados();
+		unCasillero.accionarPropiedad(unJugador);
+		assertEquals(numeroRandom - unJugador.getCantidadPropiedades(), unJugador.getResultadoDinamico());
+	}
+	
+	@Test
+	public void test08JugadorCaeEnRetrocesoDinamicoSumandoEntre2Y6SuNuevaPosicionEsLoQueLeCorresponde() {
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		Casillero unCasillero = new Casillero(unRetroceso);
+		Jugador unJugador = new Jugador();
+		Dado unDado = new Dado();
+		Barrio unBarrio = new Barrio();
+		int numeroSumado = 12;
+		int resultadoPrimerDado = 0;
+		int resultadoSegundoDado = 0;
+		unJugador.incorporarPropiedad(unBarrio);
+		while (numeroSumado > 6) {
+			resultadoPrimerDado = unJugador.tirarDado(unDado);
+			resultadoSegundoDado = unJugador.tirarDado(unDado);
+			numeroSumado = resultadoPrimerDado + resultadoSegundoDado;
+		}
+		unJugador.setResultadoDados(resultadoPrimerDado,resultadoSegundoDado);
+		int numeroRandom = unJugador.getResultadoDados();
+		unCasillero.accionarPropiedad(unJugador);
+		assertEquals(numeroRandom - unJugador.getCantidadPropiedades(), unJugador.getResultadoDinamico());
+	}
+	
+	 void test09JugadorCaeEnRetrocesoDinamicoSumandoEntre7Y10SuNuevaPosicionEsLoQueLeCorresponde() {
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		Casillero unCasillero = new Casillero(unRetroceso);
+		Jugador unJugador = new Jugador();
+		Dado unDado = new Dado();
+		int numeroSumado = 12;
+		int resultadoPrimerDado = 0;
+		int resultadoSegundoDado = 0;
+		while (numeroSumado < 7 || numeroSumado > 10) {
+			resultadoPrimerDado = unJugador.tirarDado(unDado);
+			resultadoSegundoDado = unJugador.tirarDado(unDado);
+			numeroSumado = resultadoPrimerDado + resultadoSegundoDado;
+		}
+		unJugador.setResultadoDados(resultadoPrimerDado,resultadoSegundoDado);
+		int numeroRandom = unJugador.getResultadoDados();
+		unCasillero.accionarPropiedad(unJugador);
+		assertEquals(unJugador.getDinero() % numeroRandom, unJugador.getResultadoDinamico());
+	}
+	 
+	@Test
+	public void test10JugadorCaeEnRetrocesoDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		Casillero unCasillero = new Casillero(unRetroceso);
+			Jugador unJugador = new Jugador();
+		Dado unDado = new Dado();
+		int numeroSumado = 1;
+		int resultadoPrimerDado = 0;
+		int resultadoSegundoDado = 0;
+		while (numeroSumado < 11) {
+			resultadoPrimerDado = unJugador.tirarDado(unDado);
+			resultadoSegundoDado = unJugador.tirarDado(unDado);
+			numeroSumado = resultadoPrimerDado + resultadoSegundoDado;
+		}
+		unJugador.setResultadoDados(resultadoPrimerDado,resultadoSegundoDado);
+		int numeroRandom = unJugador.getResultadoDados();
+		unCasillero.accionarPropiedad(unJugador);
+		assertEquals(numeroRandom - 2, unJugador.getResultadoDinamico());
+	}
 	
 	
 	

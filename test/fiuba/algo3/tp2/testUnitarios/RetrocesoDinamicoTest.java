@@ -27,7 +27,7 @@ public class RetrocesoDinamicoTest {
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(0);
 		
-		assertEquals(2 - 0 , unRetroceso.getRetroceso(unJugador,2));
+		assertEquals(2 - 0 , unRetroceso.getCantidadDeMovimiento(unJugador,2));
 		
 		
 	}
@@ -40,7 +40,7 @@ public class RetrocesoDinamicoTest {
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(2);
 		
-		assertEquals(2 - 2 , unRetroceso.getRetroceso(unJugador,2));
+		assertEquals(2 - 2 , unRetroceso.getCantidadDeMovimiento(unJugador,2));
 		
 		
 	}
@@ -53,7 +53,7 @@ public class RetrocesoDinamicoTest {
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(0);
 		
-		assertEquals(3 - 0 , unRetroceso.getRetroceso(unJugador,3));
+		assertEquals(3 - 0 , unRetroceso.getCantidadDeMovimiento(unJugador,3));
 		
 	}
 	
@@ -66,7 +66,7 @@ public class RetrocesoDinamicoTest {
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(2);
 		
-		assertEquals(3 - 2 , unRetroceso.getRetroceso(unJugador,3));
+		assertEquals(3 - 2 , unRetroceso.getCantidadDeMovimiento(unJugador,3));
 		
 		
 	}
@@ -80,7 +80,7 @@ public class RetrocesoDinamicoTest {
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(0);
 		
-		assertEquals(6 - 0 , unRetroceso.getRetroceso(unJugador,6));
+		assertEquals(6 - 0 , unRetroceso.getCantidadDeMovimiento(unJugador,6));
 		
 	}
 
@@ -92,7 +92,7 @@ public class RetrocesoDinamicoTest {
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(3);
 		
-		assertEquals(6 - 3 , unRetroceso.getRetroceso(unJugador,6));
+		assertEquals(6 - 3 , unRetroceso.getCantidadDeMovimiento(unJugador,6));
 		
 		
 	}
@@ -105,7 +105,7 @@ public class RetrocesoDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(unJugador.getDinero() % 7 , unRetroceso.getRetroceso(unJugador, 7));
+		assertEquals(unJugador.getDinero() % 7 , unRetroceso.getCantidadDeMovimiento(unJugador, 7));
 	
 
 	}
@@ -118,7 +118,7 @@ public class RetrocesoDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(unJugador.getDinero() % 10, unRetroceso.getRetroceso(unJugador, 10));
+		assertEquals(unJugador.getDinero() % 10, unRetroceso.getCantidadDeMovimiento(unJugador, 10));
 	
 	}
 	
@@ -130,7 +130,7 @@ public class RetrocesoDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(11 - 2 , unRetroceso.getRetroceso(unJugador, 11));
+		assertEquals(11 - 2 , unRetroceso.getCantidadDeMovimiento(unJugador, 11));
 		
 	}
 	
@@ -141,7 +141,7 @@ public class RetrocesoDinamicoTest {
 		
 		Jugador unJugador = new Jugador();
 		
-		assertEquals(12 - 2 , unRetroceso.getRetroceso(unJugador, 12));
+		assertEquals(12 - 2 , unRetroceso.getCantidadDeMovimiento(unJugador, 12));
 		
 	}
 	

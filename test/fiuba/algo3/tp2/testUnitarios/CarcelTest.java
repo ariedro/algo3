@@ -20,7 +20,7 @@ public class CarcelTest {
 		Carcel unaCarcel = new Carcel();
 		Jugador unJugador = new Jugador();
 		unaCarcel.aprisionar(unJugador);
-		assertFalse(unJugador.puedeMover());
+		assertFalse(unJugador.puedeAccionar());
 	}
 	
 	@Test
@@ -29,7 +29,7 @@ public class CarcelTest {
 		Jugador unJugador = new Jugador();
 		unaCarcel.aprisionar(unJugador);
 		unaCarcel.liberar(unJugador);
-		assertTrue(unJugador.puedeMover());
+		assertTrue(unJugador.puedeAccionar());
 	}
 	
 }

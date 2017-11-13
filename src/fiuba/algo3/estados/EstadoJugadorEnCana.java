@@ -7,37 +7,39 @@ import fiuba.algo3.excepciones.JugadorNoPuedePagarFianza;
 
 public class EstadoJugadorEnCana implements EstadoJugador {
 
-	int turno;
 	private static final int FIANZA = 45000;
-
 	
-	public EstadoJugadorEnCana() {
-		turno = 3;
+	private int turno;
+	private Jugador jugador;
+	
+	public EstadoJugadorEnCana(Jugador unJugador){
+		this.turno = 3;
+		this.jugador = unJugador;
 	}
 	
 	@Override
-	public boolean puedeMover() {
+	public boolean puedeAccionar() {
 		return false;
 	}
 	
 	@Override
-	public void mover(Jugador unJugador, Casillero unCasillero) {
+	public void mover(Casillero unCasillero) {
 		throw new JugadorEstaEnCanaException();
 	}
 
 	@Override
-	public void finalizarTurno(Jugador unJugador) {
+	public void finalizarTurno() {
 		turno--;
 		if (turno <= 0)
-			unJugador.salirEnLibertad();
+			this.jugador.salirEnLibertad();
 	}
 
 	@Override
-	public void pagarFianza(Jugador unJugador) {
-		if ((turno == 3) || (unJugador.getDinero() < FIANZA)) 
+	public void pagarFianza() {
+		if ((turno == 3) || (this.jugador.getDinero() < FIANZA)) 
 			throw new JugadorNoPuedePagarFianza();
-		unJugador.sacarDinero(FIANZA);
-		unJugador.salirEnLibertad();
+		this.jugador.sacarDinero(FIANZA);
+		this.jugador.salirEnLibertad();
 	}
 	
 }
