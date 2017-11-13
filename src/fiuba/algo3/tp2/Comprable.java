@@ -4,4 +4,6 @@ public interface Comprable {
 
 	int getPrecio();
 
+	int getValorVenta();
+
 }

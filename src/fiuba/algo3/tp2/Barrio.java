@@ -47,5 +47,11 @@ public class Barrio implements Encasillable, Comprable{
 		return this.alquilerBasico;
 	}
 
+	public int getValorVenta() {
+		
+		// hay que implementar
+		return 0;
+	}
+
 	
 }

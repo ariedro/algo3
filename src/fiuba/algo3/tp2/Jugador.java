@@ -70,6 +70,13 @@ public class Jugador {
 		return true;
 	}
 
+	public void venderPropiedad(Comprable unaPropiedad) {
+		
+		this.propiedades.remove(unaPropiedad);
+		
+		this.dinero += unaPropiedad.getValorVenta();
+	}
+
 
 
 }

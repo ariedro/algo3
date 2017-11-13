@@ -12,6 +12,7 @@ public class JugadorTest {
 
 	private static final int DINERO_INICIAL = 100000;
 	private static final int PRECIO_BARRIO = 10000;
+	private static final double PROPORCION_VALOR_VENTA = 0.85;
 	
 	
 	
@@ -81,6 +82,45 @@ public class JugadorTest {
 		unJugador.comprarPropiedad(unBarrio);
 		
 		assertEquals(1 , unJugador.getCantidadPropiedades());
+		
+	}
+	
+	
+	@Test 
+	public void test07JugadorVendeUnaPropiedadJugadorRecupera85PorCientoDelDinero() {
+		
+		Jugador unJugador = new Jugador();
+		
+		Barrio unBarrio = mock(Barrio.class);
+		when(unBarrio.getPrecio()).thenReturn(PRECIO_BARRIO);
+		when(unBarrio.getValorVenta()).thenReturn((int)(PRECIO_BARRIO * PROPORCION_VALOR_VENTA));
+		
+		unJugador.comprarPropiedad(unBarrio);
+		
+		unJugador.venderPropiedad(unBarrio);
+		
+		assertEquals((int) (DINERO_INICIAL - PRECIO_BARRIO + (int) (PRECIO_BARRIO * PROPORCION_VALOR_VENTA)),
+						unJugador.getDinero() );
+	
+	
+	}
+
+	@Test
+	public void test08JugadorVendeUnaPropiedadSuCantidadDePropiedadesDisminuye() {
+		
+		Jugador unJugador = new Jugador();
+		
+		Barrio unBarrio = mock(Barrio.class);
+		when(unBarrio.getPrecio()).thenReturn(PRECIO_BARRIO);
+		when(unBarrio.getValorVenta()).thenReturn((int)(PRECIO_BARRIO * PROPORCION_VALOR_VENTA));
+		
+		unJugador.comprarPropiedad(unBarrio);
+		
+		unJugador.venderPropiedad(unBarrio);
+		
+		assertEquals(0, unJugador.getCantidadPropiedades());
+		
+		
 		
 	}
 	
