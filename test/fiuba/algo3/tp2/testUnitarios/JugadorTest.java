@@ -10,7 +10,6 @@ import org.junit.rules.ExpectedException;
 
 import fiuba.algo3.clases.*;
 import fiuba.algo3.excepciones.*;
-import jdk.internal.util.xml.PropertiesDefaultHandler;
 
 public class JugadorTest {
 

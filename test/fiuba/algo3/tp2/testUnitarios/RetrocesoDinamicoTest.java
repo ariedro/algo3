@@ -1,5 +1,6 @@
 package fiuba.algo3.tp2.testUnitarios;
 
+import fiuba.algo3.clases.Jugador;
 import fiuba.algo3.clases.RetrocesoDinamico;
 import fiuba.algo3.tp2.*;
 
