@@ -57,4 +57,9 @@ public class AlgoPolyPrimerEntregaTest {
 		assertTrue(unBarrio.esPropietario(unJugador));
 	}
 
+		
+	
+	
+	
+	
 }
