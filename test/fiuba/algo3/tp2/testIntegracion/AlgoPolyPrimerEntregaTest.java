@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import fiuba.algo3.clases.*;
 import static org.mockito.Mockito.*;
-import fiuba.algo3.tp2.*;
 
 public class AlgoPolyPrimerEntregaTest {
 
