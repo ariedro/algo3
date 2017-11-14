@@ -23,11 +23,8 @@ public class Jugador {
 	private int resultadoDinamico;
 	
 	public Jugador(){
-	
 		this.dinero = DINERO_INICIAL;
-		
 		this.propiedades = new LinkedList<Comprable>();
-		
 		this.estado = new EstadoJugadorEnLibertad(this);
 	}
 	
@@ -105,9 +102,7 @@ public class Jugador {
 	}
 
 	public void venderPropiedad(Comprable unaPropiedad) {
-		
-		this.darDeBajaPropiedad(unaPropiedad);
-		
+		this.darDeBajaPropiedad(unaPropiedad);	
 		this.recibirDinero(unaPropiedad.getValorVenta());
 	}
 	
@@ -122,8 +117,6 @@ public class Jugador {
 	public int getResultadoDados() {
 		return this.resultadoDados;
 	}
-	
-	// Hay que revisar resultadoDinamico.
 	
 	public void setResultadoDinamico(int resultadoDinamico) {
 		this.resultadoDinamico = resultadoDinamico;

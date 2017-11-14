@@ -58,7 +58,27 @@ public class AlgoPolyPrimerEntregaTest {
 	}
 
 	@Test
-	public void test05JugadorCaeEnAvanceDinamicoSumandoEntre2Y6SuNuevaPosicionEsLoQueLeCorresponde() {
+	public void test05JugadorCaeEnLaCarcelNoPuedeDesplazarse() {
+		Carcel unaCarcel = new Carcel();
+		Casillero unCasillero = new Casillero(unaCarcel);
+		Jugador unJugador = new Jugador();
+		unCasillero.accionarPropiedad(unJugador);
+		assertFalse(unJugador.puedeAccionar());
+		
+	}
+	
+	@Test
+	public void test06JugadorQueFueLiberadoPuedeMoverse() {
+		Carcel unaCarcel = new Carcel();
+		Casillero unCasillero = new Casillero(unaCarcel);
+		Jugador unJugador = new Jugador();
+		unCasillero.accionarPropiedad(unJugador);
+		unCasillero.accionarPropiedad(unJugador);
+		assertTrue(unJugador.puedeAccionar());
+	}
+	
+	@Test
+	public void test07JugadorCaeEnAvanceDinamicoSumandoEntre2Y6SuNuevaPosicionEsLoQueLeCorresponde() {
 		AvanceDinamico unAvance = new AvanceDinamico();
 		Casillero unCasillero = new Casillero(unAvance);
 		Jugador unJugador = new Jugador();
@@ -78,7 +98,7 @@ public class AlgoPolyPrimerEntregaTest {
 	}
 	
 	@Test
-	public void test06JugadorCaeEnAvanceDinamicoSumandoEntre7Y10SuNuevaPosicionEsLoQueLeCorresponde() {
+	public void test08JugadorCaeEnAvanceDinamicoSumandoEntre7Y10SuNuevaPosicionEsLoQueLeCorresponde() {
 		AvanceDinamico unAvance = new AvanceDinamico();
 		Casillero unCasillero = new Casillero(unAvance);
 		Jugador unJugador = new Jugador();
@@ -98,7 +118,7 @@ public class AlgoPolyPrimerEntregaTest {
 	}
 	
 	@Test
-	public void test07JugadorCaeEnAvanceDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
+	public void test09JugadorCaeEnAvanceDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
 		AvanceDinamico unAvance = new AvanceDinamico();
 		Casillero unCasillero = new Casillero(unAvance);
 		Jugador unJugador = new Jugador();
@@ -120,7 +140,7 @@ public class AlgoPolyPrimerEntregaTest {
 	}
 	
 	@Test
-	public void test08JugadorCaeEnRetrocesoDinamicoSumandoEntre2Y6SuNuevaPosicionEsLoQueLeCorresponde() {
+	public void test10JugadorCaeEnRetrocesoDinamicoSumandoEntre2Y6SuNuevaPosicionEsLoQueLeCorresponde() {
 		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
 		Casillero unCasillero = new Casillero(unRetroceso);
 		Jugador unJugador = new Jugador();
@@ -141,7 +161,7 @@ public class AlgoPolyPrimerEntregaTest {
 		assertEquals(numeroRandom - unJugador.getCantidadPropiedades(), unJugador.getResultadoDinamico());
 	}
 	
-	 void test09JugadorCaeEnRetrocesoDinamicoSumandoEntre7Y10SuNuevaPosicionEsLoQueLeCorresponde() {
+	 void test11JugadorCaeEnRetrocesoDinamicoSumandoEntre7Y10SuNuevaPosicionEsLoQueLeCorresponde() {
 		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
 		Casillero unCasillero = new Casillero(unRetroceso);
 		Jugador unJugador = new Jugador();
@@ -161,7 +181,7 @@ public class AlgoPolyPrimerEntregaTest {
 	}
 	 
 	@Test
-	public void test10JugadorCaeEnRetrocesoDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
+	public void test12JugadorCaeEnRetrocesoDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
 		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
 		Casillero unCasillero = new Casillero(unRetroceso);
 			Jugador unJugador = new Jugador();
@@ -180,6 +200,14 @@ public class AlgoPolyPrimerEntregaTest {
 		assertEquals(numeroRandom - 2, unJugador.getResultadoDinamico());
 	}
 	
-	
+	@Test
+	public void test13CuandoJugadorCaeEnPoliciaVaALaCarcelYNoPuedeAccionar() {
+		Jugador unJugador = new Jugador();
+		Carcel unaCarcel = new Carcel();
+		Policia unPolicia = new Policia(unaCarcel);
+		Casillero unCasillero = new Casillero(unPolicia);
+		unCasillero.accionarPropiedad(unJugador);
+		assertFalse(unJugador.puedeAccionar());
+	}	
 	
 }

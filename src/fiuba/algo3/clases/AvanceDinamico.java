@@ -10,19 +10,13 @@ public class AvanceDinamico implements Encasillable, MovimientoDinamico{
 	}
 
 	public int getCantidadDeMovimiento(Jugador unJugador, int suma) {
-		
 		if (suma < 7) {
-	
 			return (suma - 2);
-		
 		}
 		else if (suma < 11) {
-			
 			return (unJugador.getDinero() % suma);
 		}
-	
 		return (suma - unJugador.getCantidadPropiedades());
-	
 	}
 
 }

@@ -6,15 +6,11 @@ public class Casillero {
 	
 
 	public Casillero (Encasillable propiedad) {
-		
 		this.unaPropiedad = propiedad;
-		
 	}
 	
 	public void accionarPropiedad(Jugador unJugador) {
-		
-		this.unaPropiedad.accionarCon(unJugador);	
-	
+		this.unaPropiedad.accionarCon(unJugador);
 	}
 	
 }
