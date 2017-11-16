@@ -2,8 +2,11 @@ package fiuba.algo3.tp2.testIntegracion;
 
 import static org.junit.Assert.*;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
+import fiuba.algo3.excepciones.*;
 import fiuba.algo3.clases.*;
 import static org.mockito.Mockito.*;
 
@@ -68,17 +71,35 @@ public class AlgoPolyPrimerEntregaTest {
 	}
 	
 	@Test
-	public void test06JugadorQueFueLiberadoPuedeMoverse() {
+	public void test06JugadorPagaFianzaFueLiberadoPuedeMoverse() {
 		Carcel unaCarcel = new Carcel();
 		Casillero unCasillero = new Casillero(unaCarcel);
 		Jugador unJugador = new Jugador();
-		unCasillero.accionarPropiedad(unJugador);
-		unCasillero.accionarPropiedad(unJugador);
+		unCasillero.accionarPropiedad(unJugador); 
+		unJugador.finalizarTurno(); //Pasa el primer turno.
+		unJugador.finalizarTurno(); //Pasa el segundo turno.
+		unJugador.pagarFianza(); // Paga fianza en tercer turno.
 		assertTrue(unJugador.puedeAccionar());
 	}
 	
 	@Test
-	public void test07JugadorCaeEnAvanceDinamicoSumandoEntre2Y6SuNuevaPosicionEsLoQueLeCorresponde() {
+	public void test07JugadorNoPuedePagarFianzaNoPuedeMoverse() {
+		Carcel unaCarcel = new Carcel();
+		Casillero unCasillero = new Casillero(unaCarcel);
+		Jugador unJugador = new Jugador();
+		unCasillero.accionarPropiedad(unJugador); 
+		unJugador.finalizarTurno(); //Pasa el primer turno.
+		unJugador.finalizarTurno(); //Pasa el segundo turno.
+		unJugador.sacarDinero(DINERO_INICIAL);
+		try {
+			unJugador.pagarFianza(); // Paga fianza en tercer turno.
+		}
+		catch (JugadorNoPuedePagarFianza e) { }
+		assertFalse(unJugador.puedeAccionar());
+	}
+	
+	@Test
+	public void test08JugadorCaeEnAvanceDinamicoSumandoEntre2Y6SuNuevaPosicionEsLoQueLeCorresponde() {
 		AvanceDinamico unAvance = new AvanceDinamico();
 		Casillero unCasillero = new Casillero(unAvance);
 		Jugador unJugador = new Jugador();
@@ -98,7 +119,7 @@ public class AlgoPolyPrimerEntregaTest {
 	}
 	
 	@Test
-	public void test08JugadorCaeEnAvanceDinamicoSumandoEntre7Y10SuNuevaPosicionEsLoQueLeCorresponde() {
+	public void test09JugadorCaeEnAvanceDinamicoSumandoEntre7Y10SuNuevaPosicionEsLoQueLeCorresponde() {
 		AvanceDinamico unAvance = new AvanceDinamico();
 		Casillero unCasillero = new Casillero(unAvance);
 		Jugador unJugador = new Jugador();
@@ -118,7 +139,7 @@ public class AlgoPolyPrimerEntregaTest {
 	}
 	
 	@Test
-	public void test09JugadorCaeEnAvanceDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
+	public void test10JugadorCaeEnAvanceDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
 		AvanceDinamico unAvance = new AvanceDinamico();
 		Casillero unCasillero = new Casillero(unAvance);
 		Jugador unJugador = new Jugador();
@@ -140,7 +161,7 @@ public class AlgoPolyPrimerEntregaTest {
 	}
 	
 	@Test
-	public void test10JugadorCaeEnRetrocesoDinamicoSumandoEntre2Y6SuNuevaPosicionEsLoQueLeCorresponde() {
+	public void test11JugadorCaeEnRetrocesoDinamicoSumandoEntre2Y6SuNuevaPosicionEsLoQueLeCorresponde() {
 		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
 		Casillero unCasillero = new Casillero(unRetroceso);
 		Jugador unJugador = new Jugador();
@@ -161,7 +182,7 @@ public class AlgoPolyPrimerEntregaTest {
 		assertEquals(numeroRandom - unJugador.getCantidadPropiedades(), unJugador.getResultadoDinamico());
 	}
 	
-	 void test11JugadorCaeEnRetrocesoDinamicoSumandoEntre7Y10SuNuevaPosicionEsLoQueLeCorresponde() {
+	 void test12JugadorCaeEnRetrocesoDinamicoSumandoEntre7Y10SuNuevaPosicionEsLoQueLeCorresponde() {
 		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
 		Casillero unCasillero = new Casillero(unRetroceso);
 		Jugador unJugador = new Jugador();
@@ -181,7 +202,7 @@ public class AlgoPolyPrimerEntregaTest {
 	}
 	 
 	@Test
-	public void test12JugadorCaeEnRetrocesoDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
+	public void test13JugadorCaeEnRetrocesoDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
 		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
 		Casillero unCasillero = new Casillero(unRetroceso);
 			Jugador unJugador = new Jugador();
@@ -201,13 +222,25 @@ public class AlgoPolyPrimerEntregaTest {
 	}
 	
 	@Test
-	public void test13CuandoJugadorCaeEnPoliciaVaALaCarcelYNoPuedeAccionar() {
+	public void test14CuandoJugadorCaeEnPoliciaVaALaCarcelYNoPuedeAccionar() {
 		Jugador unJugador = new Jugador();
 		Carcel unaCarcel = new Carcel();
-		Policia unPolicia = new Policia(unaCarcel);
+		Casillero casilleroCarcel = new Casillero(unaCarcel);
+		Policia unPolicia = new Policia(casilleroCarcel);
 		Casillero unCasillero = new Casillero(unPolicia);
 		unCasillero.accionarPropiedad(unJugador);
 		assertFalse(unJugador.puedeAccionar());
+	}
+	
+	@Test
+	public void test15CuandoJugadorCaeEnPoliciaSuUbicacionEsLaCarcel() {
+		Jugador unJugador = new Jugador();
+		Carcel unaCarcel = new Carcel();
+		Casillero casilleroCarcel = new Casillero(unaCarcel);
+		Policia unPolicia = new Policia(casilleroCarcel);
+		Casillero unCasillero = new Casillero(unPolicia);
+		unCasillero.accionarPropiedad(unJugador);
+		assertEquals(casilleroCarcel, unJugador.getUbicacion());
 	}	
 	
 }

@@ -1,18 +1,19 @@
 package fiuba.algo3.clases;
 
 public class Policia implements Encasillable {
-	private Carcel carcel;
+	private Casillero casilleroCarcel;
 	
-	public Policia(Carcel unaCarcel) {
-		this.carcel = unaCarcel;
+	public Policia(Casillero casillero) {
+		this.casilleroCarcel = casillero;
 	}
 	
 	public void accionarCon(Jugador unJugador) {
+		unJugador.mover(casilleroCarcel);
 		this.mandarALaCarcel(unJugador);
 	}
 	
 	public void mandarALaCarcel(Jugador unJugador) {
-		this.carcel.aprisionar(unJugador);
+		casilleroCarcel.accionarPropiedad(unJugador);
 	}
 	
 }

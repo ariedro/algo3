@@ -19,7 +19,8 @@ public class PoliciaTest {
 	public void test02CuandoJugadorCaeEnPoliciaVaALaCarcelYNoPuedeAccionar() {
 		Jugador unJugador = new Jugador();
 		Carcel unaCarcel = new Carcel();
-		Policia unPolicia = new Policia(unaCarcel);
+		Casillero carcel = new Casillero(unaCarcel);
+		Policia unPolicia = new Policia(carcel);
 		unPolicia.mandarALaCarcel(unJugador);
 		assertFalse(unJugador.puedeAccionar());
 	}
