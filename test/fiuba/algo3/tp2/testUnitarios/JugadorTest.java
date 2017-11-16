@@ -179,7 +179,6 @@ public class JugadorTest {
 	public void test13JugadorQuePagaFianzaTieneLaPlataQueCorresponde() {
 		Jugador unJugador = new Jugador();
 		Carcel unaCarcel = new Carcel();
-		Casillero unCasillero = new Casillero(null);
 		unaCarcel.aprisionar(unJugador);
 		unJugador.finalizarTurno();
 		unJugador.pagarFianza();
