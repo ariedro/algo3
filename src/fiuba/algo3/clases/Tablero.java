@@ -5,12 +5,12 @@ import java.util.LinkedList;
 public class Tablero {
 	private LinkedList<Casillero> listaCasilleros = new LinkedList<Casillero>();
 	
-	Tablero(){
+	public Tablero(){
 		Inicializador unInicializador = new Inicializador();
 		unInicializador.inicializarTablero(this);
 	}
 	
-	public void setCasillero(Casillero unCasillero) {
+	public void agregarCasillero(Casillero unCasillero) {
 		listaCasilleros.add(unCasillero);
 	}
 	

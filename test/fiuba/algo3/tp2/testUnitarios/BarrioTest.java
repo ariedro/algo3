@@ -9,39 +9,37 @@ import fiuba.algo3.clases.*;
 public class BarrioTest {
 
 	private static final int DINERO_INICIAL = 100000;
-	private static final int PRECIO_BARRIO = 10000;
-	private static final int ALQUILER_BASICO = 10000;
+	
+	//Los datos corresponden al barrio BUENOS_AIRES_SUR
+	private static String NOMBRE = "Buenos Aires Sur";
+	private static String VECINO = "Buenos Aires Norte";
+	private static int PRECIO = 20000;
+	private static int PRECIO_CASA = 5000;
+	private static int PRECIO_HOTEL = 8000;
+	private static int MAXIMO_CASAS = 2;
+	private static int ALQUILER_SIMPLE = 2000;
+	private static int ALQUILER_UNA_CASA = 3000;
+	private static int ALQUILER_DOS_CASAS = 3500;
+	private static int ALQUILER_HOTEL = 5000;
+	
+	
 	
 	@Test
 	public void test01CrearBarrioNoEsNulo() {
-		Barrio unBarrio = new Barrio();
+		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
 		assertNotNull(unBarrio);
 	}
 	
 	@Test
-	public void test02JugadorEsPropietarioSiCaeEnUnBarrio() {
-		Barrio unBarrio = new Barrio();
-		Jugador unJugador = new Jugador();
-		unBarrio.setPrecio(PRECIO_BARRIO);
-		unBarrio.accionarCon(unJugador);
-		assertTrue(unBarrio.esPropietario(unJugador));
+	public void test02BarrioCreadoNoTieneDuenio() {
+		
+		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		
+		assertNull(unBarrio.getPropietario());
+		
 	}
 	
-	@Test
-	public void test03BarrioNoTienePropietarioCuandoFueCreado() {
-		Barrio unBarrio = new Barrio();
-		assertTrue(!unBarrio.tienePropietario());
-	}
-	
-	@Test
-	public void test04BarrioCobraAlquilerCuandoTienePropietario() {
-		Barrio unBarrio = new Barrio();
-		Jugador primerJugador = new Jugador();
-		Jugador segundoJugador = new Jugador();
-		unBarrio.setAlquilerBasico(ALQUILER_BASICO);
-		unBarrio.accionarCon(primerJugador);
-		unBarrio.accionarCon(segundoJugador);
-		assertEquals(DINERO_INICIAL - ALQUILER_BASICO,segundoJugador.getDinero());
-	}
 
+	
 }
+

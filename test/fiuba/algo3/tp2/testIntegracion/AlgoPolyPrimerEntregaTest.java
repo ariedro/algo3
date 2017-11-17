@@ -12,6 +12,20 @@ import static org.mockito.Mockito.*;
 
 public class AlgoPolyPrimerEntregaTest {
 
+	//Los datos corresponden al barrio BUENOS_AIRES_SUR
+	private static String NOMBRE = "Buenos Aires Sur";
+	private static String VECINO = "Buenos Aires Norte";
+	private static int PRECIO = 20000;
+	private static int PRECIO_CASA = 5000;
+	private static int PRECIO_HOTEL = 8000;
+	private static int MAXIMO_CASAS = 2;
+	private static int ALQUILER_SIMPLE = 2000;
+	private static int ALQUILER_UNA_CASA = 3000;
+	private static int ALQUILER_DOS_CASAS = 3500;
+	private static int ALQUILER_HOTEL = 5000;
+	
+	
+	
 	private static final int DINERO_INICIAL = 100000;
 	private static final int PRIMER_PREMIO = 50000;
 	private static final int SEGUNDO_PREMIO = 30000;
@@ -51,7 +65,7 @@ public class AlgoPolyPrimerEntregaTest {
 	
 	@Test
 	public void test04JugadorCaeEnUnBarrioYSeAdueniaDeEsteVerificandoQueEsPropietario() {
-		Barrio unBarrio = new Barrio();
+		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
 		Casillero unCasillero = new Casillero(unBarrio);
 		Jugador unJugador = mock(Jugador.class);
 		when (unJugador.getDinero()).thenReturn(DINERO_INICIAL);
@@ -144,7 +158,7 @@ public class AlgoPolyPrimerEntregaTest {
 		Casillero unCasillero = new Casillero(unAvance);
 		Jugador unJugador = new Jugador();
 		Dado unDado = new Dado();
-		Barrio unBarrio = new Barrio();
+		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
 		int numeroSumado = 1;
 		int resultadoPrimerDado = 0;
 		int resultadoSegundoDado = 0;
@@ -166,7 +180,7 @@ public class AlgoPolyPrimerEntregaTest {
 		Casillero unCasillero = new Casillero(unRetroceso);
 		Jugador unJugador = new Jugador();
 		Dado unDado = new Dado();
-		Barrio unBarrio = new Barrio();
+		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
 		int numeroSumado = 12;
 		int resultadoPrimerDado = 0;
 		int resultadoSegundoDado = 0;

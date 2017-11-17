@@ -2,16 +2,19 @@ package fiuba.algo3.clases;
 
 public class Barrio implements Encasillable, Comprable{
 	
-	private Jugador propietario;
-	private int precio;
-	/*private int precioUnaCasa;
-	private int precioDosCasas;
-	private int precioHotel;*/
-	private int alquilerBasico;
-	/*private int alquilerUnaCasa;
-	private int alquilerDosCasas;
-	private int alquilerHotel;*/
+	private Jugador propietario = null;
+	private DatosDeBarrio datosDeBarrio;
+
 	
+	
+	public Barrio() {
+		/*solo para pruebas unitarias*/
+	}
+	
+	public Barrio(DatosDeBarrio unosDatosDeBarrio) {
+		
+		this.datosDeBarrio = unosDatosDeBarrio;
+	}
 	
 	
 	public void accionarCon(Jugador unJugador) {
@@ -30,28 +33,15 @@ public class Barrio implements Encasillable, Comprable{
 		return (this.propietario == unJugador);
 	}
 
-	public void setPrecio(int unPrecio) {
-		this.precio = unPrecio;
-	}
 	
-	/*public void setPrecioUnaCasa(int unPrecio) {
-		this.precioUnaCasa = unPrecio;
-	}
-	
-	public void setPrecioDosCasas(int unPrecio) {
-		this.precioDosCasas = unPrecio;
-	}
-	
-	public void setPrecioHotel(int unPrecio) {
-		this.precioHotel = unPrecio;
-	}*/
-	
-	public void setAlquilerBasico(int alquilerBasico) {
-		this.alquilerBasico = alquilerBasico;
-	}
 
+	public Jugador getPropietario() {
+		
+		return this.propietario;
+	}
+	
 	public int getPrecio() {
-		return this.precio; 
+		return this.datosDeBarrio.getPrecio(); 
 	}
 	
 	private boolean tieneDineroSuficiente(Jugador unJugador) {
@@ -59,13 +49,9 @@ public class Barrio implements Encasillable, Comprable{
 	}
 
 	private void cobrarAlquiler(Jugador unJugador) {
-		unJugador.sacarDinero(this.getAlquiler());
+		unJugador.sacarDinero(this.datosDeBarrio.getAlquilerSimple());
 	}
 
-	private int getAlquiler() {
-		// Hay que modificar este codigo en caso de que tenga casas y hotel.
-		return this.alquilerBasico;
-	}
 
 	public int getValorVenta() {
 		
