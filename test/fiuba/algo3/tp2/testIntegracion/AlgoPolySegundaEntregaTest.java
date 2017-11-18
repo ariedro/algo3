@@ -94,7 +94,6 @@ public class AlgoPolySegundaEntregaTest {
 		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Norte"));
 		unCasilleroSur.accionarPropiedad(unJugador);
 		unCasilleroNorte.accionarPropiedad(unJugador);
-		unJugador.construirHotel("Buenos Aires Sur");
 		unJugador.construirCasa("Buenos Aires Sur");
 		unJugador.construirCasa("Buenos Aires Sur");
 		unJugador.construirCasa("Buenos Aires Norte");
@@ -114,7 +113,6 @@ public class AlgoPolySegundaEntregaTest {
 		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Norte"));
 		unCasilleroSur.accionarPropiedad(unJugador);
 		unCasilleroNorte.accionarPropiedad(unJugador);
-		unJugador.construirHotel("Buenos Aires Sur");
 		unJugador.construirCasa("Buenos Aires Sur");
 		unJugador.construirCasa("Buenos Aires Sur");
 		unJugador.construirCasa("Buenos Aires Norte");
