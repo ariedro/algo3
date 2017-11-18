@@ -61,6 +61,42 @@ public class Jugador {
 		}
 	}
 	
+	public boolean estaEntreLasPropiedades(String unNombre) {
+		boolean estaEntreLasPropiedades = false;
+		for (Comprable unaPropiedad: this.propiedades) {
+			if (unaPropiedad.getNombre().equals(unNombre)) 
+				estaEntreLasPropiedades = true;
+		}
+		return estaEntreLasPropiedades;
+	}
+	
+	public Comprable getPropiedad(String unNombre) {
+		Comprable propiedadBuscada = null;
+		for (Comprable unaPropiedad: this.propiedades) {
+			if (unaPropiedad.getNombre().equals(unNombre)) 
+				propiedadBuscada = unaPropiedad;
+		}
+		return propiedadBuscada;	
+	}
+	
+	public void construirCasa(String unNombre) {
+		//Si se le pasa el nombre de un Comprable que no es del tipo Barrio puede saltar un error.
+		//Hay que hablarlo.
+		if(this.estaEntreLasPropiedades(unNombre)) {
+			Barrio unBarrio = (Barrio) this.getPropiedad(unNombre);
+			unBarrio.construirCasa();
+		}
+	}
+	
+	public void construirHotel(String unNombre) {
+		//Si se le pasa el nombre de un Comprable que no es del tipo Barrio puede saltar un error.
+		//Hay que hablarlo.
+		if(this.estaEntreLasPropiedades(unNombre)) {
+			Barrio unBarrio = (Barrio) this.getPropiedad(unNombre);
+			unBarrio.construirHotel();
+		}
+	}
+	
 	public boolean puedeAccionar() {
 		return estado.puedeAccionar();
 	}

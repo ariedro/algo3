@@ -4,6 +4,8 @@ public class Barrio implements Encasillable, Comprable{
 	
 	private Jugador propietario = null;
 	private DatosDeBarrio datosDeBarrio;
+	private int numeroDeCasasConstruidas;
+	private boolean hotelConstruido;
 
 	
 	
@@ -14,6 +16,8 @@ public class Barrio implements Encasillable, Comprable{
 	public Barrio(DatosDeBarrio unosDatosDeBarrio) {
 		
 		this.datosDeBarrio = unosDatosDeBarrio;
+		this.numeroDeCasasConstruidas = 0;
+		this.hotelConstruido = false;
 	}
 	
 	
@@ -22,7 +26,8 @@ public class Barrio implements Encasillable, Comprable{
 			unJugador.comprarPropiedad(this);
 			this.propietario = unJugador;
 		}
-		else this.cobrarAlquiler(unJugador);
+		else if (this.tienePropietario()) this.cobrarAlquiler(unJugador);
+		
 	}
 
 	public boolean tienePropietario() {
@@ -33,7 +38,9 @@ public class Barrio implements Encasillable, Comprable{
 		return (this.propietario == unJugador);
 	}
 
-	
+	public String getNombre() {
+		return this.datosDeBarrio.getNombre();
+	}
 
 	public Jugador getPropietario() {
 		
@@ -48,9 +55,66 @@ public class Barrio implements Encasillable, Comprable{
 		return (unJugador.getDinero() > this.getPrecio());
 	}
 
-	private void cobrarAlquiler(Jugador unJugador) {
-		unJugador.sacarDinero(this.datosDeBarrio.getAlquilerSimple());
+	public int getAlquiler() {
+		int valor = 0;
+		if(this.numeroDeCasasConstruidas == 0) valor = this.datosDeBarrio.getAlquilerSimple();
+		if(this.numeroDeCasasConstruidas == 1) valor = this.datosDeBarrio.getAlquilerUnaCasa();
+		if(this.numeroDeCasasConstruidas == 2) valor = this.datosDeBarrio.getAlquilerDosCasas();
+		if(this.numeroDeCasasConstruidas == 2 && this.hotelConstruido) valor = this.datosDeBarrio.getAlquilerHotel();
+		return valor;
 	}
+	
+	private void cobrarAlquiler(Jugador unJugador) {
+		unJugador.sacarDinero(this.getAlquiler());
+	}
+	
+	public String getVecino() {
+		return this.datosDeBarrio.getVecino();	
+	}
+	
+	public int getNumeroDeCasasConstruidas() {
+		return this.numeroDeCasasConstruidas;
+	}
+	
+	public boolean fueConstruidoHotel() {
+		return this.hotelConstruido;
+	}
+	
+	public int getMaximoCasas() {
+		return this.datosDeBarrio.getMaximoCasas();
+	}
+	
+	public void construirCasa() {
+		if (this.tienePropietario()) {
+			if (this.getMaximoCasas() > 1 && (this.hotelConstruido == false)) this.construirConVecino();
+			else this.construirConSoloUnaCasa();
+		}
+	}
+	
+	private void construirConSoloUnaCasa() {
+		if(this.getMaximoCasas() > this.numeroDeCasasConstruidas) {
+			this.propietario.sacarDinero(this.datosDeBarrio.getPrecioCasa());
+			this.numeroDeCasasConstruidas++;
+		}
+	}
+	
+	public void construirHotel() {
+		if (this.tienePropietario() && (this.getMaximoCasas() > 1 && (this.hotelConstruido == false))) {
+			if (this.propietario.estaEntreLasPropiedades(this.getVecino()) && 
+				(this.getMaximoCasas() <= this.numeroDeCasasConstruidas)) {
+					Barrio unVecino = (Barrio) this.propietario.getPropiedad(this.getVecino());
+					this.propietario.sacarDinero(this.datosDeBarrio.getPrecioHotel());
+					this.hotelConstruido = (unVecino.getNumeroDeCasasConstruidas() == this.numeroDeCasasConstruidas);
+			}
+		}
+	}
+	
+	private void construirConVecino() {
+		if (this.propietario.estaEntreLasPropiedades(this.getVecino())) {
+			 construirConSoloUnaCasa();
+		}
+	}
+	
 
 
 	public int getValorVenta() {

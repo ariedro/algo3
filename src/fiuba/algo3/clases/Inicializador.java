@@ -6,8 +6,8 @@ public class Inicializador {
 		unTablero.agregarCasillero(inicializarCasillero(new Salida()));
 		unTablero.agregarCasillero(inicializarCasillero(new Quini()));
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR))));
-		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE))));
 		unTablero.agregarCasillero(inicializarCasillero(new Servicio(DatosDeServicio.getDatosServicio(Servicios.EDESUR))));
+		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE))));
 		
 		
 		Casillero casilleroCarcel = new Casillero (new Carcel());
@@ -19,7 +19,7 @@ public class Inicializador {
 		
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.CORDOBA_NORTE))));
 
-		unTablero.agregarCasillero(inicializarCasillero(new ImpuestoDeLujo()));
+		unTablero.agregarCasillero(inicializarCasillero(new ImpuestoAlLujo()));
 		
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.SANTA_FE))));
 		unTablero.agregarCasillero(inicializarCasillero(new Servicio(DatosDeServicio.getDatosServicio(Servicios.AYSA))));

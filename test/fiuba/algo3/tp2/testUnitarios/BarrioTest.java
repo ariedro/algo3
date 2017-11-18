@@ -10,6 +10,7 @@ public class BarrioTest {
 
 	private static final int DINERO_INICIAL = 100000;
 	
+	
 	//Los datos corresponden al barrio BUENOS_AIRES_SUR
 	private static String NOMBRE = "Buenos Aires Sur";
 	private static String VECINO = "Buenos Aires Norte";
@@ -39,7 +40,135 @@ public class BarrioTest {
 		
 	}
 	
-
+	public void test03NoSePuedeConstruirEnBarrioSinPropietario() {
+		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		unBarrio.construirCasa();
+		assertEquals(0, unBarrio.getNumeroDeCasasConstruidas());
+	}
 	
+	@Test
+	public void test04NoSePuedeConstruirEnBarrioSinPropiedadVecina() {
+		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		Jugador unJugador = new Jugador();
+		unBarrio.accionarCon(unJugador);
+		unBarrio.construirCasa();
+		assertEquals(0, unBarrio.getNumeroDeCasasConstruidas());
+	}
+	
+	@Test
+	public void test05SiPropietarioTieneBarrioVecinoSePuedeConstruirUnaCasa() {
+		Barrio unBarrioSur = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		Barrio unBarrioNorte = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE));
+		Jugador unJugador = new Jugador();
+		unBarrioSur.accionarCon(unJugador);
+		unBarrioNorte.accionarCon(unJugador);
+		unBarrioSur.construirCasa();
+		assertEquals(1, unBarrioSur.getNumeroDeCasasConstruidas());
+	}
+	
+	@Test
+	public void test06SiPropietarioTieneBarrioVecinoSePuedeConstruirDosCasas() {
+		Barrio unBarrioSur = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		Barrio unBarrioNorte = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE));
+		Jugador unJugador = new Jugador();
+		unBarrioSur.accionarCon(unJugador);
+		unBarrioNorte.accionarCon(unJugador);
+		unBarrioSur.construirCasa();
+		unBarrioSur.construirCasa();
+		assertEquals(2, unBarrioSur.getNumeroDeCasasConstruidas());
+	}
+	
+	@Test
+	public void test07SiBarrioVecinoNoTieneConstruidasDosCasasNoSePuedeConstruirHotel() {
+		Barrio unBarrioSur = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		Barrio unBarrioNorte = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE));
+		Jugador unJugador = new Jugador();
+		unBarrioSur.accionarCon(unJugador);
+		unBarrioNorte.accionarCon(unJugador);
+		unBarrioSur.construirCasa();
+		unBarrioSur.construirCasa();
+		unBarrioSur.construirHotel();
+		assertFalse(unBarrioSur.fueConstruidoHotel());
+	}
+	
+	@Test
+	public void test08SiBarrioVecinoTieneConstruidasDosCasasSePuedeConstruirHotel() {
+		Barrio unBarrioSur = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		Barrio unBarrioNorte = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE));
+		Jugador unJugador = new Jugador();
+		unBarrioSur.accionarCon(unJugador);
+		unBarrioNorte.accionarCon(unJugador);
+		unBarrioSur.construirCasa();
+		unBarrioSur.construirCasa();
+		unBarrioNorte.construirCasa();
+		unBarrioNorte.construirCasa();
+		unBarrioSur.construirHotel();
+		assertTrue(unBarrioSur.fueConstruidoHotel());
+	}
+	
+	@Test
+	public void test09SiBarrioNoPuedeTenerVecinoSePuedeConstruirUnaCasa() {
+		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.TUCUMAN));
+		Jugador unJugador = new Jugador();
+		unBarrio.accionarCon(unJugador);
+		unBarrio.construirCasa();
+		assertEquals(1, unBarrio.getNumeroDeCasasConstruidas());
+	}
+	
+	@Test
+	public void test10SiBarrioNoPuedeTenerVecinoNoSePuedenConstruirDosCasas() {
+		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.TUCUMAN));
+		Jugador unJugador = new Jugador();
+		unBarrio.accionarCon(unJugador);
+		unBarrio.construirCasa();
+		unBarrio.construirCasa();
+		assertEquals(1, unBarrio.getNumeroDeCasasConstruidas());
+	}
+	
+	@Test
+	public void test11BarrioSinCasasNiHotelCobraAlquilerSimple() {
+		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		Jugador unJugador = new Jugador();
+		unBarrio.accionarCon(unJugador);
+		assertEquals(ALQUILER_SIMPLE, unBarrio.getAlquiler());
+	}
+	
+	@Test
+	public void test12BarrioConUnaCasaCobraAlquilerConUnaCasa() {
+		Barrio unBarrioSur = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		Barrio unBarrioNorte = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE));
+		Jugador unJugador = new Jugador();
+		unBarrioSur.accionarCon(unJugador);
+		unBarrioNorte.accionarCon(unJugador);
+		unBarrioSur.construirCasa();
+		assertEquals(ALQUILER_UNA_CASA, unBarrioSur.getAlquiler());
+	}
+	
+	@Test
+	public void test13BarrioConDosCasasCobraAlquilerConDosCasas() {
+		Barrio unBarrioSur = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		Barrio unBarrioNorte = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE));
+		Jugador unJugador = new Jugador();
+		unBarrioSur.accionarCon(unJugador);
+		unBarrioNorte.accionarCon(unJugador);
+		unBarrioSur.construirCasa();
+		unBarrioSur.construirCasa();
+		assertEquals(ALQUILER_DOS_CASAS, unBarrioSur.getAlquiler());
+	}
+	
+	@Test
+	public void test14BarrioConHotelCobraAlquilerConHotel() {
+		Barrio unBarrioSur = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		Barrio unBarrioNorte = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE));
+		Jugador unJugador = new Jugador();
+		unBarrioSur.accionarCon(unJugador);
+		unBarrioNorte.accionarCon(unJugador);
+		unBarrioSur.construirCasa();
+		unBarrioSur.construirCasa();
+		unBarrioNorte.construirCasa();
+		unBarrioNorte.construirCasa();
+		unBarrioSur.construirHotel();
+		assertEquals(ALQUILER_HOTEL, unBarrioSur.getAlquiler());
+	}
 }
 
