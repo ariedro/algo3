@@ -1,4 +1,4 @@
-package fiuba.algo3.clases.testUnitarios;
+package fiuba.algo3.tp2.testUnitarios;
 
 import static org.junit.Assert.*;
 
