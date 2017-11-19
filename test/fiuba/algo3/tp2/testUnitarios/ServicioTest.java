@@ -17,7 +17,7 @@ public class ServicioTest {
 	@Test
 	public void test02ServicioCreadoNoTieneDuenio() {
 		Servicio unServicio = new Servicio(DatosDeServicio.getDatosServicio(Servicios.AYSA));
-		assertNull(unServicioa.getPropietario());
+		assertNull(unServicio.getPropietario());
 	}
 
 }
