@@ -46,4 +46,25 @@ public class DatosDeServicio {
 				
 	}
 	
+	public String getNombre() {
+		
+		return this.nombre;
+	}
+	
+	public int getPrecio() {
+		
+		return this.precio;
+	}
+	
+	public String getServicioAsociado() {
+		return this.servicioAsociado;
+	}
+	
+	public int getTarifaSimple() {
+		return this.tarifaSimple;
+	}
+	
+	public int getTarifaDoble() {
+		return this.tarifaDoble;
+	}
 }
