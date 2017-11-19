@@ -106,11 +106,11 @@ public class AlgoPolyTest {
 		assertEquals(primerJugador, unAlgoPoly.getJugadorActual());
 		
 		
-		
-		
 	}
+		
 	
-
+	
+	
 
 }
 

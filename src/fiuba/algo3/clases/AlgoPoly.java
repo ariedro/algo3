@@ -9,7 +9,7 @@ public class AlgoPoly {
 	private LinkedList<Jugador> jugadores = new LinkedList<Jugador>();
 	private Tablero tablero = new Tablero();
 	private ListIterator<Jugador> jugadorActual;
-	
+	private Dados dados;
 	
 	
 	public AlgoPoly() {
@@ -47,6 +47,8 @@ public class AlgoPoly {
 
 	public void acabarTurno() {
 	
+		this.getJugadorActual().finalizarTurno();
+		
 		this.jugadorActual.next();		
 		
 		if (!this.jugadorActual.hasNext()) {
@@ -54,6 +56,9 @@ public class AlgoPoly {
 			this.jugadorActual = jugadores.listIterator();
 		
 		}
+		
+		
+	
 		
 	
 	
