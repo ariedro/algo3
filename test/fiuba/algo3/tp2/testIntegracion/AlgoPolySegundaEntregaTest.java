@@ -139,16 +139,48 @@ public class AlgoPolySegundaEntregaTest {
 	//PRUEBA NUMERO 15 en la entrega.
 	
 	@Test
-	public void test09JugadorCaeEnImpuestoAlLujoYSuDineroSeReduceEn10Porciento() {
+	public void test09JugadorCaeEnTrenAdquiridaPorOtroQueNoTieneSubtesSuDineroSeReduce450VecesSusDados() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		int unDado = 4; int otroDado = 2;
+		otroJugador.setResultadoDados(unDado, otroDado);
+		Tablero unTablero = new Tablero();
+		Casillero tren = unTablero.getCasillero(unTablero.getIndiceConNombre("Tren"));
+		tren.accionarPropiedad(unJugador);
+		tren.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - (unDado + otroDado) * 450 , otroJugador.getDinero());
+
+	}
+	
+	@Test
+	public void test10JugadorCaeEnTrenAdquiridaPorOtroQueTieneSubtesSuDineroSeReduce800VecesSusDados() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		int unDado = 4; int otroDado = 2;
+		otroJugador.setResultadoDados(unDado, otroDado);
+		Tablero unTablero = new Tablero();
+		Casillero tren = unTablero.getCasillero(unTablero.getIndiceConNombre("Tren"));
+		Casillero subte = unTablero.getCasillero(unTablero.getIndiceConNombre("Subte"));
+		tren.accionarPropiedad(unJugador);
+		subte.accionarPropiedad(unJugador);
+		tren.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - (unDado + otroDado) * 800 , otroJugador.getDinero());
+
+	}
+	
+	
+	@Test
+	public void test11JugadorCaeEnImpuestoAlLujoYSuDineroSeReduceEn10Porciento() {
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
 		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Impuesto Al Lujo"));
 		unCasillero.accionarPropiedad(unJugador);
 		assertEquals(DINERO_INICIAL - ((int) (DINERO_INICIAL * 0.1)), unJugador.getDinero());
 	}
+
 	
 	@Test
-	public void test10JugadorCaeEnEdesurAdquiridaPorOtroQueNoTieneAysaSuDineroSeReduce500VecesSusDados() {
+	public void test12JugadorCaeEnEdesurAdquiridaPorOtroQueNoTieneAysaSuDineroSeReduce500VecesSusDados() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		int unDado = 4; int otroDado = 2;
@@ -161,7 +193,7 @@ public class AlgoPolySegundaEntregaTest {
 	}
 	
 	@Test
-	public void test11JugadorCaeEnEdesurAdquiridaPorOtroQueSiTieneAysaSuDineroSeReduce1000VecesSusDados() {
+	public void test13JugadorCaeEnEdesurAdquiridaPorOtroQueTieneAysaSuDineroSeReduce1000VecesSusDados() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		int unDado = 4; int otroDado = 2;
