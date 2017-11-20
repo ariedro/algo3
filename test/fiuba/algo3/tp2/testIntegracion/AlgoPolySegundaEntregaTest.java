@@ -24,7 +24,7 @@ public class AlgoPolySegundaEntregaTest {
 	public void test01CuandoJugadorCaeEnBarrioYLoCompraSeVerificaQueSuDineroSeRedujoElPrecioDelBarrio(){
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
-		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Sur"));
+		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Sur"));
 		unCasillero.accionarPropiedad(unJugador);
 		assertEquals(DINERO_INICIAL - BUENOS_AIRES_SUR.getPrecio(), unJugador.getDinero());
 	}
@@ -33,8 +33,8 @@ public class AlgoPolySegundaEntregaTest {
 	public void test02JugadorCuentaConBuenosAiresSuryNorteConstruyeCasaYSeDecrementaSuDineroCorrectamente() {
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
-		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Sur"));
-		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Norte"));
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Norte"));
 		unCasilleroSur.accionarPropiedad(unJugador);
 		unCasilleroNorte.accionarPropiedad(unJugador);
 		unJugador.construirCasa("Buenos Aires Sur");
@@ -47,8 +47,8 @@ public class AlgoPolySegundaEntregaTest {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		Tablero unTablero = new Tablero();
-		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Sur"));
-		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Norte"));
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Norte"));
 		unCasilleroSur.accionarPropiedad(unJugador);
 		unCasilleroNorte.accionarPropiedad(unJugador);
 		unJugador.construirCasa("Buenos Aires Sur");
@@ -62,8 +62,8 @@ public class AlgoPolySegundaEntregaTest {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		Tablero unTablero = new Tablero();
-		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Sur"));
-		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Norte"));
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Norte"));
 		unCasilleroSur.accionarPropiedad(unJugador);
 		unCasilleroNorte.accionarPropiedad(unJugador);
 		unJugador.construirCasa("Buenos Aires Sur");
@@ -77,8 +77,8 @@ public class AlgoPolySegundaEntregaTest {
 	public void test05CuandoJugadorCuentaConAmbasBsAsPeroNoTieneCubiertaSuMaximaCapacidadDeCasasYConstruyeHotelSuDineroNoCambia() {
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
-		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Sur"));
-		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Norte"));
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Norte"));
 		unCasilleroSur.accionarPropiedad(unJugador);
 		unCasilleroNorte.accionarPropiedad(unJugador);
 		unJugador.construirHotel("Buenos Aires Sur");
@@ -90,8 +90,8 @@ public class AlgoPolySegundaEntregaTest {
 	public void test06CuandoJugadorCuentaConAmbasBsAsConDosCasasYConstruyeUnHotelSuDineroSeDecrementaCorrectamente() {
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
-		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Sur"));
-		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Norte"));
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Norte"));
 		unCasilleroSur.accionarPropiedad(unJugador);
 		unCasilleroNorte.accionarPropiedad(unJugador);
 		unJugador.construirCasa("Buenos Aires Sur");
@@ -109,8 +109,8 @@ public class AlgoPolySegundaEntregaTest {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		Tablero unTablero = new Tablero();
-		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Sur"));
-		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Norte"));
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Norte"));
 		unCasilleroSur.accionarPropiedad(unJugador);
 		unCasilleroNorte.accionarPropiedad(unJugador);
 		unJugador.construirCasa("Buenos Aires Sur");
@@ -129,7 +129,7 @@ public class AlgoPolySegundaEntregaTest {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		Tablero unTablero = new Tablero();
-		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Sur"));
+		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Sur"));
 		unCasillero.accionarPropiedad(unJugador);
 		unJugador.venderPropiedad("Buenos Aires Sur");
 		unCasillero.accionarPropiedad(otroJugador);
@@ -142,7 +142,7 @@ public class AlgoPolySegundaEntregaTest {
 	public void test09JugadorCaeEnImpuestoAlLujoYSuDineroSeReduceEn10Porciento() {
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
-		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndice("Impuesto Al Lujo"));
+		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Impuesto Al Lujo"));
 		unCasillero.accionarPropiedad(unJugador);
 		assertEquals(DINERO_INICIAL - ((int) (DINERO_INICIAL * 0.1)), unJugador.getDinero());
 	}

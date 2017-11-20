@@ -15,4 +15,8 @@ public class IndiceDeTablero {
 		return -1;
 	}
 	
+	public String getNombre(int indice) {
+		return NOMBRES[indice];
+	}
+	
 }

@@ -12,7 +12,7 @@ public class RetrocesoDinamicoTest {
 	@Test
 	public void test01RetrocesoDinamicoCreadoNoEsNull(){
 		
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico(null);
 		
 		assertNotNull(unRetroceso);
 
@@ -22,7 +22,7 @@ public class RetrocesoDinamicoTest {
 	@Test 
 	public void test02RetrocesoRecibeUnDosYJugadorSinPropiedadesRetrocesoCorrecto() {
 		
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico(null);
 		
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(0);
@@ -35,7 +35,7 @@ public class RetrocesoDinamicoTest {
 	@Test 
 	public void test03RetrocesoRecibeUnDosYJugadorConDosPropiedadesRetrocesoCorrecto() {
 		
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico(null);
 		
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(2);
@@ -48,7 +48,7 @@ public class RetrocesoDinamicoTest {
 	@Test
 	public void test04RetrocesoRecibeUnTresYJugadorSinPropiedadesRetrocesoCorrecto() {
 		
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico(null);
 		
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(0);
@@ -61,7 +61,7 @@ public class RetrocesoDinamicoTest {
 	@Test 
 	public void test05RetrocesoRecibeUnTresYJugadorConDosPropiedadesRetrocesoCorrecto() {
 		
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico(null);
 		
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(2);
@@ -75,7 +75,7 @@ public class RetrocesoDinamicoTest {
 	@Test
 	public void test06RetrocesoRecibeUnSeisYJugadorSinPropiedadesRetrocesoCorrecto() {
 		
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico(null);
 		
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(0);
@@ -87,7 +87,7 @@ public class RetrocesoDinamicoTest {
 	@Test
 	public void test07RetrocesoRecibeUnSeisYJugadorConTresPropiedadesRetrocesoCorrecto() {
 		
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico(null);
 		
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(3);
@@ -101,7 +101,7 @@ public class RetrocesoDinamicoTest {
 	@Test
 	public void test08RetrocesoRecibeUnSieteRetrocesoEsCorrecto() {
 	
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		
@@ -114,7 +114,7 @@ public class RetrocesoDinamicoTest {
 	@Test 
 	public void test09RetrocesoRecibeUnDiezYRetrocesoEsCorrecto() {
 		
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		
@@ -126,7 +126,7 @@ public class RetrocesoDinamicoTest {
 	@Test
 	public void test10RetrocesoRecibeUnOnceRetrocesoEsNueve() {
 		
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		
@@ -137,7 +137,7 @@ public class RetrocesoDinamicoTest {
 	@Test
 	public void test11RetrocesoRecibeUnDoceRetrocesoEsDiez() {
 		
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
+		RetrocesoDinamico unRetroceso = new RetrocesoDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		

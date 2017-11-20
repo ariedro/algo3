@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import fiuba.algo3.clases.Casillero;
 import fiuba.algo3.clases.Tablero;
 
 public class TableroTest {

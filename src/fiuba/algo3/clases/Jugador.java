@@ -19,9 +19,7 @@ public class Jugador {
 	private Casillero ubicacion;
 	
 	private int resultadoDados;
-	
-	private int resultadoDinamico;
-	
+		
 	public Jugador(){
 		this.dinero = DINERO_INICIAL;
 		this.propiedades = new LinkedList<Comprable>();
@@ -158,16 +156,4 @@ public class Jugador {
 		return this.resultadoDados;
 	}
 	
-	public void setResultadoDinamico(int resultadoDinamico) {
-		this.resultadoDinamico = resultadoDinamico;
-	}
-	
-	public int getResultadoDinamico() {
-		return this.resultadoDinamico;
-	}
-	
-	
-
-
-
 }

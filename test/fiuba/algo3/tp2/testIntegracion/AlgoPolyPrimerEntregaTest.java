@@ -24,6 +24,8 @@ public class AlgoPolyPrimerEntregaTest {
 	private static int ALQUILER_DOS_CASAS = 3500;
 	private static int ALQUILER_HOTEL = 5000;
 	
+	private static int INDICE_AVANCE_DINAMICO = 7;
+	private static int INDICE_RETROCESO_DINAMICO = 18;
 	
 	
 	private static final int DINERO_INICIAL = 100000;
@@ -114,9 +116,9 @@ public class AlgoPolyPrimerEntregaTest {
 	
 	@Test
 	public void test08JugadorCaeEnAvanceDinamicoSumandoEntre2Y6SuNuevaPosicionEsLoQueLeCorresponde() {
-		AvanceDinamico unAvance = new AvanceDinamico();
-		Casillero unCasillero = new Casillero(unAvance);
+		Tablero unTablero = new Tablero();
 		Jugador unJugador = new Jugador();
+		unJugador.setUbicacion(unTablero.getCasillero(0));
 		Dado unDado = new Dado();
 		int numeroSumado = 12;
 		int resultadoPrimerDado = 0;
@@ -128,15 +130,15 @@ public class AlgoPolyPrimerEntregaTest {
 		}
 		unJugador.setResultadoDados(resultadoPrimerDado,resultadoSegundoDado);
 		int numeroRandom = unJugador.getResultadoDados();
-		unCasillero.accionarPropiedad(unJugador);
-		assertEquals(numeroRandom - 2, unJugador.getResultadoDinamico());
+		unTablero.getCasillero(INDICE_AVANCE_DINAMICO).accionarPropiedad(unJugador);
+		assertEquals(unTablero.getCasillero(numeroRandom - 2), unJugador.getUbicacion());
 	}
 	
 	@Test
 	public void test09JugadorCaeEnAvanceDinamicoSumandoEntre7Y10SuNuevaPosicionEsLoQueLeCorresponde() {
-		AvanceDinamico unAvance = new AvanceDinamico();
-		Casillero unCasillero = new Casillero(unAvance);
+		Tablero unTablero = new Tablero();
 		Jugador unJugador = new Jugador();
+		unJugador.setUbicacion(unTablero.getCasillero(0));
 		Dado unDado = new Dado();
 		int numeroSumado = 12;
 		int resultadoPrimerDado = 0;
@@ -148,15 +150,15 @@ public class AlgoPolyPrimerEntregaTest {
 		}
 		unJugador.setResultadoDados(resultadoPrimerDado,resultadoSegundoDado);
 		int numeroRandom = unJugador.getResultadoDados();
-		unCasillero.accionarPropiedad(unJugador);
-		assertEquals(unJugador.getDinero() % numeroRandom, unJugador.getResultadoDinamico());
+		unTablero.getCasillero(INDICE_AVANCE_DINAMICO).accionarPropiedad(unJugador);
+		assertEquals(unTablero.getCasillero(unJugador.getDinero() % numeroRandom), unJugador.getUbicacion());
 	}
 	
 	@Test
 	public void test10JugadorCaeEnAvanceDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
-		AvanceDinamico unAvance = new AvanceDinamico();
-		Casillero unCasillero = new Casillero(unAvance);
+		Tablero unTablero = new Tablero();
 		Jugador unJugador = new Jugador();
+		unJugador.setUbicacion(unTablero.getCasillero(0));
 		Dado unDado = new Dado();
 		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
 		int numeroSumado = 1;
@@ -170,15 +172,15 @@ public class AlgoPolyPrimerEntregaTest {
 		}
 		unJugador.setResultadoDados(resultadoPrimerDado,resultadoSegundoDado);
 		int numeroRandom = unJugador.getResultadoDados();
-		unCasillero.accionarPropiedad(unJugador);
-		assertEquals(numeroRandom - unJugador.getCantidadPropiedades(), unJugador.getResultadoDinamico());
+		unTablero.getCasillero(INDICE_AVANCE_DINAMICO).accionarPropiedad(unJugador);
+		assertEquals(unTablero.getCasillero(numeroRandom - unJugador.getCantidadPropiedades()), unJugador.getUbicacion());
 	}
 	
 	@Test
 	public void test11JugadorCaeEnRetrocesoDinamicoSumandoEntre2Y6SuNuevaPosicionEsLoQueLeCorresponde() {
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
-		Casillero unCasillero = new Casillero(unRetroceso);
+		Tablero unTablero = new Tablero();
 		Jugador unJugador = new Jugador();
+		unJugador.setUbicacion(unTablero.getCasillero(0));
 		Dado unDado = new Dado();
 		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
 		int numeroSumado = 12;
@@ -192,14 +194,14 @@ public class AlgoPolyPrimerEntregaTest {
 		}
 		unJugador.setResultadoDados(resultadoPrimerDado,resultadoSegundoDado);
 		int numeroRandom = unJugador.getResultadoDados();
-		unCasillero.accionarPropiedad(unJugador);
-		assertEquals(numeroRandom - unJugador.getCantidadPropiedades(), unJugador.getResultadoDinamico());
+		unTablero.getCasillero(INDICE_RETROCESO_DINAMICO).accionarPropiedad(unJugador);
+		assertEquals(unTablero.getCasillero(numeroRandom - unJugador.getCantidadPropiedades()), unJugador.getUbicacion());
 	}
 	
 	 void test12JugadorCaeEnRetrocesoDinamicoSumandoEntre7Y10SuNuevaPosicionEsLoQueLeCorresponde() {
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
-		Casillero unCasillero = new Casillero(unRetroceso);
+		Tablero unTablero = new Tablero();
 		Jugador unJugador = new Jugador();
+		unJugador.setUbicacion(unTablero.getCasillero(0));
 		Dado unDado = new Dado();
 		int numeroSumado = 12;
 		int resultadoPrimerDado = 0;
@@ -211,15 +213,15 @@ public class AlgoPolyPrimerEntregaTest {
 		}
 		unJugador.setResultadoDados(resultadoPrimerDado,resultadoSegundoDado);
 		int numeroRandom = unJugador.getResultadoDados();
-		unCasillero.accionarPropiedad(unJugador);
-		assertEquals(unJugador.getDinero() % numeroRandom, unJugador.getResultadoDinamico());
+		unTablero.getCasillero(INDICE_RETROCESO_DINAMICO).accionarPropiedad(unJugador);
+		assertEquals(unTablero.getCasillero(unJugador.getDinero() % numeroRandom), unJugador.getUbicacion());
 	}
 	 
 	@Test
 	public void test13JugadorCaeEnRetrocesoDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
-		RetrocesoDinamico unRetroceso = new RetrocesoDinamico();
-		Casillero unCasillero = new Casillero(unRetroceso);
-			Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Jugador unJugador = new Jugador();
+		unJugador.setUbicacion(unTablero.getCasillero(0));
 		Dado unDado = new Dado();
 		int numeroSumado = 1;
 		int resultadoPrimerDado = 0;
@@ -231,8 +233,8 @@ public class AlgoPolyPrimerEntregaTest {
 		}
 		unJugador.setResultadoDados(resultadoPrimerDado,resultadoSegundoDado);
 		int numeroRandom = unJugador.getResultadoDados();
-		unCasillero.accionarPropiedad(unJugador);
-		assertEquals(numeroRandom - 2, unJugador.getResultadoDinamico());
+		unTablero.getCasillero(INDICE_RETROCESO_DINAMICO).accionarPropiedad(unJugador);
+		assertEquals(unTablero.getCasillero(numeroRandom - 2), unJugador.getUbicacion());
 	}
 	
 	@Test

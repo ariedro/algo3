@@ -13,7 +13,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test01CrearUnAvanceDinamicoNoEsNull() {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		assertNotNull(unAvanceDinamico);
 	}
@@ -21,7 +21,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test02AvanceDinamicoRecibeUnDosReubicacionEsCero() {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		
@@ -31,7 +31,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test03AvanceDinamicoRecibeUnTresReubicacionEsUno() {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		
@@ -41,7 +41,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test04AvanceDinamicoRecibeUnCuatroReubicacionEsDos() {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		
@@ -51,7 +51,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test05AvanceDinamicoRecibeUnCincoReubicacionEsTres() {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		
@@ -62,7 +62,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test06AvanceDinamicoRecibeUnSeisReubicacionEsCuatro() {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		
@@ -74,7 +74,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test07AvanceDinamicoRecibeSieteReubicacionCorrecta () {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		
@@ -88,7 +88,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test08AvanceDinamicoRecibeOchoReubicacionCorrecta () {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		
@@ -101,7 +101,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test09AvanceDinamicoRecibeNueveReubicacionCorrecta () {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		
@@ -114,7 +114,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test10AvanceDinamicoRecibeDiezReubicacionCorrecta () {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = new Jugador();
 		
@@ -127,7 +127,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test11AvanceDinamicoRecibeUnOnceYJugadorSinPropiedadesReubicacionCorrecta() {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(0);
@@ -142,7 +142,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test12AvanceDinamicoRecibeUnOnceYJugadorCon3PropiedadesReubicacionCorrecta() {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(3);
@@ -156,7 +156,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test13AvanceDinamicoRecibeUnDoceYJugadorSinPropiedadesReubicacionCorrecta() {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(0);
@@ -170,7 +170,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void test14AvanceDinamicoRecibeUnDoceYJugadorConSeisPropiedadesReubicacionCorrecta() {
 		
-		AvanceDinamico unAvanceDinamico = new AvanceDinamico();
+		AvanceDinamico unAvanceDinamico = new AvanceDinamico(null);
 		
 		Jugador unJugador = mock(Jugador.class);
 		when(unJugador.getCantidadPropiedades()).thenReturn(6);

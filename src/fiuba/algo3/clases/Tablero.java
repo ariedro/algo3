@@ -20,7 +20,11 @@ public class Tablero {
 		return this.listaCasilleros.get(unIndice);
 	}
 	
-	public int getIndice(String unNombre) {
+	public int getIndiceConCasillero(Casillero casillero) {
+		return listaCasilleros.indexOf(casillero);
+	}
+	
+	public int getIndiceConNombre(String unNombre) {
 		return this.unIndice.getIndice(unNombre);
 	}
 

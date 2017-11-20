@@ -14,7 +14,7 @@ public class Inicializador {
 		unTablero.agregarCasillero(casilleroCarcel);
 		
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.CORDOBA_SUR))));
-		unTablero.agregarCasillero(inicializarCasillero(new AvanceDinamico()));
+		unTablero.agregarCasillero(inicializarCasillero(new AvanceDinamico(unTablero)));
 		unTablero.agregarCasillero(inicializarCasillero(new Servicio(DatosDeServicio.getDatosServicio(Servicios.SUBTE))));
 		
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.CORDOBA_NORTE))));
@@ -30,7 +30,7 @@ public class Inicializador {
 		unTablero.agregarCasillero(inicializarCasillero(new Servicio(DatosDeServicio.getDatosServicio(Servicios.TREN))));
 		
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.NEUQUEN))));
-		unTablero.agregarCasillero(inicializarCasillero(new RetrocesoDinamico()));
+		unTablero.agregarCasillero(inicializarCasillero(new RetrocesoDinamico(unTablero)));
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.TUCUMAN))));
 		
 		
