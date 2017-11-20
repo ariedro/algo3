@@ -147,4 +147,32 @@ public class AlgoPolySegundaEntregaTest {
 		assertEquals(DINERO_INICIAL - ((int) (DINERO_INICIAL * 0.1)), unJugador.getDinero());
 	}
 	
+	@Test
+	public void test10JugadorCaeEnEdesurAdquiridaPorOtroQueNoTieneAysaSuDineroSeReduce500VecesSusDados() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		int unDado = 4; int otroDado = 2;
+		otroJugador.setResultadoDados(unDado, otroDado);
+		Tablero unTablero = new Tablero();
+		Casillero edesur = unTablero.getCasillero(unTablero.getIndiceConNombre("Edesur"));
+		edesur.accionarPropiedad(unJugador);
+		edesur.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - (unDado + otroDado) * 500 , otroJugador.getDinero());
+	}
+	
+	@Test
+	public void test11JugadorCaeEnEdesurAdquiridaPorOtroQueSiTieneAysaSuDineroSeReduce1000VecesSusDados() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		int unDado = 4; int otroDado = 2;
+		otroJugador.setResultadoDados(unDado, otroDado);
+		Tablero unTablero = new Tablero();
+		Casillero edesur = unTablero.getCasillero(unTablero.getIndiceConNombre("Edesur"));
+		Casillero aysa = unTablero.getCasillero(unTablero.getIndiceConNombre("Aysa"));
+		edesur.accionarPropiedad(unJugador);
+		aysa.accionarPropiedad(unJugador);
+		edesur.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - (unDado + otroDado) * 1000 , otroJugador.getDinero());
+	}
+	
 }
