@@ -2,9 +2,9 @@ package fiuba.algo3.clases;
 
 public class DatosDeServicio {
 
-	private static String[] NOMBRES = {"EDESUR", "AYSA", "SUBTE", "TREN"};
+	private static String[] NOMBRES = {"Edesur", "Aysa", "Subte", "Tren"};
 	
-	private static String[] SERVICIO_ASOCIADO = {"AYSA", "EDESUR" , "TREN" , "SUBTE"};
+	private static String[] SERVICIO_ASOCIADO = {"Aysa", "Edesur" , "Tren" , "Subte"};
 
 	private static int[] PRECIO = {35000, 40000, 30000, 38000};
 	

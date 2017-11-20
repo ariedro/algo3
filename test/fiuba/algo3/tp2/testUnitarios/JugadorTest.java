@@ -14,6 +14,7 @@ import fiuba.algo3.excepciones.*;
 public class JugadorTest {
 
 	private static final int DINERO_INICIAL = 100000;
+	private static final String NOMBRE_BARRIO = "Buenos Aires Sur";
 	private static final int PRECIO_BARRIO = 10000;
 	private static final double PROPORCION_VALOR_VENTA = 0.85;
 	private static final int FIANZA = 45000;
@@ -101,10 +102,11 @@ public class JugadorTest {
 		Barrio unBarrio = mock(Barrio.class);
 		when(unBarrio.getPrecio()).thenReturn(PRECIO_BARRIO);
 		when(unBarrio.getValorVenta()).thenReturn((int)(PRECIO_BARRIO * PROPORCION_VALOR_VENTA));
+		when(unBarrio.getNombre()).thenReturn(NOMBRE_BARRIO);
 		
 		unJugador.comprarPropiedad(unBarrio);
 		
-		unJugador.venderPropiedad(unBarrio);
+		unJugador.venderPropiedad(unBarrio.getNombre());
 		
 		assertEquals((int) (DINERO_INICIAL - PRECIO_BARRIO + (int) (PRECIO_BARRIO * PROPORCION_VALOR_VENTA)),
 						unJugador.getDinero() );
@@ -120,10 +122,11 @@ public class JugadorTest {
 		Barrio unBarrio = mock(Barrio.class);
 		when(unBarrio.getPrecio()).thenReturn(PRECIO_BARRIO);
 		when(unBarrio.getValorVenta()).thenReturn((int)(PRECIO_BARRIO * PROPORCION_VALOR_VENTA));
+		when(unBarrio.getNombre()).thenReturn(NOMBRE_BARRIO);
 		
 		unJugador.comprarPropiedad(unBarrio);
 		
-		unJugador.venderPropiedad(unBarrio);
+		unJugador.venderPropiedad(unBarrio.getNombre());
 		
 		assertEquals(0, unJugador.getCantidadPropiedades());
 		

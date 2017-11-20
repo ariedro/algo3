@@ -12,7 +12,7 @@ import static org.mockito.Mockito.*;
 
 public class AlgoPolySegundaEntregaTest {
 
-	//Los datos corresponden a los Barrios utilizados
+	//Los datos corresponden a los Barrios y Servicios utilizados
 	private static DatosDeBarrio BUENOS_AIRES_SUR = DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR);
 	private static DatosDeBarrio BUENOS_AIRES_NORTE = DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE);
 	
@@ -120,6 +120,31 @@ public class AlgoPolySegundaEntregaTest {
 		unJugador.construirHotel("Buenos Aires Sur");
 		unCasilleroSur.accionarPropiedad(otroJugador);
 		assertEquals(DINERO_INICIAL - BUENOS_AIRES_SUR.getAlquilerHotel(), otroJugador.getDinero());
+	}
+	
+	//PRUEBAS NUMERO 13 y 14 en la entrega, segun lo sugerido por Fede.
+	
+	@Test
+	public void test08JugadorVendeUnaPropiedadYCuandoOtroJugadorCaeEnEsaPropiedadPuedeComprarla() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndice("Buenos Aires Sur"));
+		unCasillero.accionarPropiedad(unJugador);
+		unJugador.venderPropiedad("Buenos Aires Sur");
+		unCasillero.accionarPropiedad(otroJugador);
+		assertTrue(otroJugador.estaEntreLasPropiedades("Buenos Aires Sur"));
+	}
+	
+	//PRUEBA NUMERO 15 en la entrega.
+	
+	@Test
+	public void test09JugadorCaeEnImpuestoAlLujoYSuDineroSeReduceEn10Porciento() {
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndice("Impuesto Al Lujo"));
+		unCasillero.accionarPropiedad(unJugador);
+		assertEquals(DINERO_INICIAL - ((int) (DINERO_INICIAL * 0.1)), unJugador.getDinero());
 	}
 	
 }

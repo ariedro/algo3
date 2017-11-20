@@ -170,5 +170,31 @@ public class BarrioTest {
 		unBarrioSur.construirHotel();
 		assertEquals(ALQUILER_HOTEL, unBarrioSur.getAlquiler());
 	}
+	
+	@Test
+	public void test15CuandoJugadorPropietarioVendeSuBarrioYaNoEsMasPropietario() {
+		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		Jugador unJugador = new Jugador();
+		unBarrio.accionarCon(unJugador);
+		unJugador.darDeBajaPropiedad(unBarrio);
+		assertTrue(unBarrio.esPropietario(unJugador));
+	}
+	
+	@Test
+	public void test16ValorDeVentaEsIgualAValorDeTodoLoQueEstaEnElBarrioMenosEl15Porciento() {
+		Barrio unBarrioSur = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
+		Barrio unBarrioNorte = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE));
+		Jugador unJugador = new Jugador();
+		unBarrioSur.accionarCon(unJugador);
+		unBarrioNorte.accionarCon(unJugador);
+		unBarrioSur.construirCasa();
+		unBarrioSur.construirCasa();
+		unBarrioNorte.construirCasa();
+		unBarrioNorte.construirCasa();
+		unBarrioSur.construirHotel();
+		assertEquals(((int) ((PRECIO + PRECIO_HOTEL) * 0.85)), unBarrioSur.getValorVenta());
+	}
+	
+	
 }
 

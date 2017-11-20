@@ -137,9 +137,13 @@ public class Jugador {
 		return true;
 	}
 
-	public void venderPropiedad(Comprable unaPropiedad) {
-		this.darDeBajaPropiedad(unaPropiedad);	
-		this.recibirDinero(unaPropiedad.getValorVenta());
+	public void venderPropiedad(String unNombre) {
+		if(this.estaEntreLasPropiedades(unNombre)) {
+			Comprable unaPropiedad = this.getPropiedad(unNombre);
+			this.darDeBajaPropiedad(unaPropiedad);	
+			unaPropiedad.darDeBajaPropietario();
+			this.recibirDinero(unaPropiedad.getValorVenta());
+		}
 	}
 	
 	public int tirarDado(Dado unDado) {

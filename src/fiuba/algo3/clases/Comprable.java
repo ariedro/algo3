@@ -10,6 +10,10 @@ public interface Comprable {
 
 	int getValorVenta();
 	
+	public void setPropietario(Jugador unJugador);
+	
+	public void darDeBajaPropietario();
+	
 	public boolean tienePropietario();
 	
 	public boolean esPropietario(Jugador unJugador);

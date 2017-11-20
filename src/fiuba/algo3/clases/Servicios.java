@@ -3,8 +3,8 @@ package fiuba.algo3.clases;
 public enum Servicios {
 	
 	EDESUR(0),
-	SUBTE(1),
-	AYSA(2),
+	AYSA(1),
+	SUBTE(2),
 	TREN(3);
 	
 	private final int numServicio;

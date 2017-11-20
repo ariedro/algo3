@@ -24,9 +24,9 @@ public class Barrio implements Encasillable, Comprable{
 	public void accionarCon(Jugador unJugador) {
 		if (!this.tienePropietario() && this.tieneDineroSuficiente(unJugador)) {
 			unJugador.comprarPropiedad(this);
-			this.propietario = unJugador;
+			this.setPropietario(unJugador);
 		}
-		else if (this.tienePropietario()) this.cobrarAlquiler(unJugador);
+		else if (this.tienePropietario() && !this.esPropietario(unJugador)) this.cobrarAlquiler(unJugador);
 		
 	}
 
@@ -118,9 +118,21 @@ public class Barrio implements Encasillable, Comprable{
 
 
 	public int getValorVenta() {
-		
-		// hay que implementar
-		return 0;
+		int valorVenta = this.getPrecio();
+		if (this.getNumeroDeCasasConstruidas() > 0) {
+			if (this.fueConstruidoHotel()) valorVenta += this.datosDeBarrio.getPrecioHotel();
+			else valorVenta += this.getNumeroDeCasasConstruidas() * this.datosDeBarrio.getPrecioCasa();
+		}
+		valorVenta -= ((int) (valorVenta * 0.15));
+		return valorVenta;
+	}
+	
+	public void setPropietario(Jugador unJugador) {
+		this.propietario = unJugador;
+	}
+	
+	public void darDeBajaPropietario() {
+		this.propietario = null;
 	}
 
 	

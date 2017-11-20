@@ -15,9 +15,9 @@ public class Servicio implements Encasillable,Comprable {
 	public void accionarCon(Jugador unJugador) {
 		if (!this.tienePropietario() && this.tieneDineroSuficiente(unJugador)) {
 			unJugador.comprarPropiedad(this);
-			this.propietario = unJugador;
+			this.setPropietario(unJugador);
 		}
-		else if (this.tienePropietario()) this.cobrarTarifa(unJugador);
+		else if (this.tienePropietario() && !this.esPropietario(unJugador)) this.cobrarTarifa(unJugador);
 	}
 
 	private boolean tieneDineroSuficiente(Jugador unJugador) {
@@ -25,8 +25,13 @@ public class Servicio implements Encasillable,Comprable {
 	}
 
 	private void cobrarTarifa(Jugador unJugador) {
-		//Hay que implementar a fondo.
-		unJugador.sacarDinero(this.getTarifaSimple());
+		int numeroDados = unJugador.getResultadoDados();
+		if(!this.propietario.estaEntreLasPropiedades(this.getServicioAsociado())) {
+			unJugador.sacarDinero(numeroDados * this.getTarifaSimple());
+		}
+		else {
+			unJugador.sacarDinero(numeroDados * this.getTarifaDoble());
+		}
 	}
 
 	@Override
@@ -46,8 +51,9 @@ public class Servicio implements Encasillable,Comprable {
 
 	@Override
 	public int getValorVenta() {
-		// Resta implementar.
-		return 0;
+		int valorVenta = this.getPrecio();
+		valorVenta -= ((int) (valorVenta * 0.15));
+		return valorVenta;
 	}
 	
 	public int getTarifaSimple() {
@@ -63,11 +69,19 @@ public class Servicio implements Encasillable,Comprable {
 	}
 	
 	public boolean tienePropietario() {
-		return (this.propietario == null);
+		return (this.propietario != null);
 	}
 	
 	public boolean esPropietario(Jugador unJugador) {
 		return (this.propietario == unJugador);
+	}
+	
+	public void setPropietario(Jugador unJugador) {
+		this.propietario = unJugador;
+	}
+	
+	public void darDeBajaPropietario() {
+		this.propietario = null;
 	}
 	
 
