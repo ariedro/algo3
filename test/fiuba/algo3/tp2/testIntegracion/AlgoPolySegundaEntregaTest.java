@@ -15,6 +15,10 @@ public class AlgoPolySegundaEntregaTest {
 	//Los datos corresponden a los Barrios y Servicios utilizados
 	private static DatosDeBarrio BUENOS_AIRES_SUR = DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR);
 	private static DatosDeBarrio BUENOS_AIRES_NORTE = DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE);
+	private static DatosDeBarrio CORDOBA_SUR = DatosDeBarrio.getDatosBarrio(Barrios.CORDOBA_SUR);
+	private static DatosDeBarrio CORDOBA_NORTE = DatosDeBarrio.getDatosBarrio(Barrios.CORDOBA_NORTE);
+	private static DatosDeBarrio SALTA_SUR = DatosDeBarrio.getDatosBarrio(Barrios.SALTA_SUR);
+	private static DatosDeBarrio SALTA_NORTE = DatosDeBarrio.getDatosBarrio(Barrios.SALTA_NORTE);
 	
 	private static final int DINERO_INICIAL = 100000;
 	private static final boolean COMPRAR = true;
@@ -122,10 +126,196 @@ public class AlgoPolySegundaEntregaTest {
 		assertEquals(DINERO_INICIAL - BUENOS_AIRES_SUR.getAlquilerHotel(), otroJugador.getDinero());
 	}
 	
+	@Test
+	public void test08JugadorCuentaConCordobaSuryNorteConstruyeCasaYSeDecrementaSuDineroCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Norte"));
+		unCasilleroSur.accionarPropiedad(unJugador);
+		unCasilleroNorte.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Cordoba Sur");
+		int dineroRestante = DINERO_INICIAL - CORDOBA_SUR.getPrecio() - CORDOBA_NORTE.getPrecio();
+		assertEquals(dineroRestante - CORDOBA_SUR.getPrecioCasa(), unJugador.getDinero());
+	}
+	
+	@Test
+	public void test09CuandoJugadorCuentaConCbaSuryNorteConUnaCasaEnCadaUnaYContricanteCaeEnUnaSeDecrementaSuDineroCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Norte"));
+		unCasilleroSur.accionarPropiedad(unJugador);
+		unCasilleroNorte.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Cordoba Sur");
+		unJugador.construirCasa("Cordoba Norte");
+		unCasilleroSur.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - CORDOBA_SUR.getAlquilerUnaCasa(), otroJugador.getDinero());
+	}
+	
+	@Test
+	public void test10CuandoJugadorCuentaConAmbasCbaConDosCasasEnSurYUnaEnNorteYContricanteCaeEnUnaSeDecrementaSuDineroCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Norte"));
+		unCasilleroSur.accionarPropiedad(unJugador);
+		unCasilleroNorte.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Cordoba Sur");
+		unJugador.construirCasa("Cordoba Sur");
+		unJugador.construirCasa("Cordoba Norte");
+		unCasilleroSur.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - CORDOBA_SUR.getAlquilerDosCasas(), otroJugador.getDinero());
+	}
+	
+	@Test
+	public void test11CuandoJugadorCuentaConAmbasCbaPeroNoTieneCubiertaSuMaximaCapacidadDeCasasYConstruyeHotelSuDineroNoCambia() {
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Norte"));
+		unCasilleroSur.accionarPropiedad(unJugador);
+		unCasilleroNorte.accionarPropiedad(unJugador);
+		unJugador.construirHotel("Cordoba Sur");
+		int dineroRestante = DINERO_INICIAL - CORDOBA_SUR.getPrecio() - CORDOBA_NORTE.getPrecio();
+		assertEquals(dineroRestante, unJugador.getDinero());
+	}
+	
+	@Test
+	public void test12CuandoJugadorCuentaConAmbasCbaConDosCasasYConstruyeUnHotelSuDineroSeDecrementaCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Norte"));
+		unCasilleroSur.accionarPropiedad(unJugador);
+		unCasilleroNorte.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Cordoba Sur");
+		unJugador.construirCasa("Cordoba Sur");
+		unJugador.construirCasa("Cordoba Norte");
+		unJugador.construirCasa("Cordoba Norte");
+		unJugador.construirHotel("Cordoba Sur");
+		int dineroRestante = DINERO_INICIAL - CORDOBA_SUR.getPrecio() - CORDOBA_NORTE.getPrecio()
+				- (CORDOBA_SUR.getPrecioCasa() * 2) - (CORDOBA_NORTE.getPrecioCasa() * 2);
+		assertEquals(dineroRestante - CORDOBA_SUR.getPrecioHotel(), unJugador.getDinero());
+	}
+	
+	@Test
+	public void test13CuandoJugadorCuentaConAmbasCbaConDosCasasYConstruyeUnHotelAlCaerContrincantePierdeDineroCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Norte"));
+		unCasilleroSur.accionarPropiedad(unJugador);
+		unCasilleroNorte.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Cordoba Sur");
+		unJugador.construirCasa("Cordoba Sur");
+		unJugador.construirCasa("Cordoba Norte");
+		unJugador.construirCasa("Cordoba Norte");
+		unJugador.construirHotel("Cordoba Sur");
+		unCasilleroSur.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - CORDOBA_SUR.getAlquilerHotel(), otroJugador.getDinero());
+	}
+	
+	@Test
+	public void test14JugadorCuentaConSaltaSuryNorteConstruyeCasaYSeDecrementaSuDineroCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Norte"));
+		unCasilleroSur.accionarPropiedad(unJugador);
+		unCasilleroNorte.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Salta Sur");
+		int dineroRestante = DINERO_INICIAL - SALTA_SUR.getPrecio() - SALTA_NORTE.getPrecio();
+		assertEquals(dineroRestante - SALTA_SUR.getPrecioCasa(), unJugador.getDinero());
+	}
+	
+	@Test
+	public void test15CuandoJugadorCuentaConSaltaSuryNorteConUnaCasaEnCadaUnaYContricanteCaeEnUnaSeDecrementaSuDineroCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Norte"));
+		unCasilleroSur.accionarPropiedad(unJugador);
+		unCasilleroNorte.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Salta Sur");
+		unJugador.construirCasa("Salta Norte");
+		unCasilleroSur.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - SALTA_SUR.getAlquilerUnaCasa(), otroJugador.getDinero());
+	}
+	
+	@Test
+	public void test16CuandoJugadorCuentaConAmbasSaltaConDosCasasEnSurYUnaEnNorteYContricanteCaeEnUnaSeDecrementaSuDineroCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Norte"));
+		unCasilleroSur.accionarPropiedad(unJugador);
+		unCasilleroNorte.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Salta Sur");
+		unJugador.construirCasa("Salta Sur");
+		unJugador.construirCasa("Salta Norte");
+		unCasilleroSur.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - SALTA_SUR.getAlquilerDosCasas(), otroJugador.getDinero());
+	}
+	
+	@Test
+	public void test17CuandoJugadorCuentaConAmbasSaltaPeroNoTieneCubiertaSuMaximaCapacidadDeCasasYConstruyeHotelSuDineroNoCambia() {
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Norte"));
+		unCasilleroSur.accionarPropiedad(unJugador);
+		unCasilleroNorte.accionarPropiedad(unJugador);
+		unJugador.construirHotel("Salta Sur");
+		int dineroRestante = DINERO_INICIAL - SALTA_SUR.getPrecio() - SALTA_NORTE.getPrecio();
+		assertEquals(dineroRestante, unJugador.getDinero());
+	}
+	
+	@Test
+	public void test18CuandoJugadorCuentaConAmbasSaltaConDosCasasYConstruyeUnHotelSuDineroSeDecrementaCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Norte"));
+		unCasilleroSur.accionarPropiedad(unJugador);
+		unCasilleroNorte.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Salta Sur");
+		unJugador.construirCasa("Salta Sur");
+		unJugador.construirCasa("Salta Norte");
+		unJugador.construirCasa("Salta Norte");
+		unJugador.construirHotel("Salta Sur");
+		int dineroRestante = DINERO_INICIAL - SALTA_SUR.getPrecio() - SALTA_NORTE.getPrecio()
+				- (SALTA_SUR.getPrecioCasa() * 2) - (SALTA_NORTE.getPrecioCasa() * 2);
+		assertEquals(dineroRestante - SALTA_SUR.getPrecioHotel(), unJugador.getDinero());
+	}
+	
+	@Test
+	public void test19CuandoJugadorCuentaConAmbasSaltaConDosCasasYConstruyeUnHotelAlCaerContrincantePierdeDineroCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasilleroSur = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Sur"));
+		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Norte"));
+		unCasilleroSur.accionarPropiedad(unJugador);
+		unCasilleroNorte.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Salta Sur");
+		unJugador.construirCasa("Salta Sur");
+		unJugador.construirCasa("Salta Norte");
+		unJugador.construirCasa("Salta Norte");
+		unJugador.construirHotel("Salta Sur");
+		unCasilleroSur.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - SALTA_SUR.getAlquilerHotel(), otroJugador.getDinero());
+	}
+	
 	//PRUEBAS NUMERO 13 y 14 en la entrega, segun lo sugerido por Fede.
 	
 	@Test
-	public void test08JugadorVendeUnaPropiedadYCuandoOtroJugadorCaeEnEsaPropiedadPuedeComprarla() {
+	public void test20JugadorVendeUnaPropiedadYCuandoOtroJugadorCaeEnEsaPropiedadPuedeComprarla() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		Tablero unTablero = new Tablero();
@@ -139,7 +329,7 @@ public class AlgoPolySegundaEntregaTest {
 	//PRUEBA NUMERO 15 en la entrega.
 	
 	@Test
-	public void test09JugadorCaeEnTrenAdquiridaPorOtroQueNoTieneSubtesSuDineroSeReduce450VecesSusDados() {
+	public void test21JugadorCaeEnTrenAdquiridaPorOtroQueNoTieneSubtesSuDineroSeReduce450VecesSusDados() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		int unDado = 4; int otroDado = 2;
@@ -153,7 +343,7 @@ public class AlgoPolySegundaEntregaTest {
 	}
 	
 	@Test
-	public void test10JugadorCaeEnTrenAdquiridaPorOtroQueTieneSubtesSuDineroSeReduce800VecesSusDados() {
+	public void test22JugadorCaeEnTrenAdquiridaPorOtroQueTieneSubtesSuDineroSeReduce800VecesSusDados() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		int unDado = 4; int otroDado = 2;
@@ -170,7 +360,7 @@ public class AlgoPolySegundaEntregaTest {
 	
 	
 	@Test
-	public void test11JugadorCaeEnImpuestoAlLujoYSuDineroSeReduceEn10Porciento() {
+	public void test23JugadorCaeEnImpuestoAlLujoYSuDineroSeReduceEn10Porciento() {
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
 		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Impuesto Al Lujo"));
@@ -180,7 +370,7 @@ public class AlgoPolySegundaEntregaTest {
 
 	
 	@Test
-	public void test12JugadorCaeEnEdesurAdquiridaPorOtroQueNoTieneAysaSuDineroSeReduce500VecesSusDados() {
+	public void test24JugadorCaeEnEdesurAdquiridaPorOtroQueNoTieneAysaSuDineroSeReduce500VecesSusDados() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		int unDado = 4; int otroDado = 2;
@@ -193,7 +383,7 @@ public class AlgoPolySegundaEntregaTest {
 	}
 	
 	@Test
-	public void test13JugadorCaeEnEdesurAdquiridaPorOtroQueTieneAysaSuDineroSeReduce1000VecesSusDados() {
+	public void test25JugadorCaeEnEdesurAdquiridaPorOtroQueTieneAysaSuDineroSeReduce1000VecesSusDados() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		int unDado = 4; int otroDado = 2;
