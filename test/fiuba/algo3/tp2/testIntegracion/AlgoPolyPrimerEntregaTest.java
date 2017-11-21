@@ -110,7 +110,7 @@ public class AlgoPolyPrimerEntregaTest {
 		try {
 			unJugador.pagarFianza(); // Paga fianza en tercer turno.
 		}
-		catch (JugadorNoPuedePagarFianza e) { }
+		catch (JugadorNoPuedePagarFianzaException e) { }
 		assertFalse(unJugador.puedeAccionar());
 	}
 	

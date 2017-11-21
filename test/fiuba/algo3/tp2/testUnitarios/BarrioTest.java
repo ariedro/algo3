@@ -2,9 +2,12 @@ package fiuba.algo3.tp2.testUnitarios;
 
 import static org.junit.Assert.*;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import fiuba.algo3.clases.*;
+import fiuba.algo3.excepciones.BarrioNoPuedeConstruirHotelException;
 
 public class BarrioTest {
 
@@ -23,7 +26,9 @@ public class BarrioTest {
 	private static int ALQUILER_DOS_CASAS = 3500;
 	private static int ALQUILER_HOTEL = 5000;
 	
-	
+	@Rule
+    public ExpectedException thrown = ExpectedException.none();
+
 	
 	@Test
 	public void test01CrearBarrioNoEsNulo() {
@@ -195,6 +200,12 @@ public class BarrioTest {
 		assertEquals(((int) ((PRECIO + PRECIO_HOTEL) * 0.85)), unBarrioSur.getValorVenta());
 	}
 	
-	
+	@Test
+	public void test17JugadorTrataDeConstruirHotelSinCumplirConLosRequisitosLanzaException() {
+		Barrio unBarrio= new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE));
+		Jugador unJugador = new Jugador();
+		unBarrio.accionarCon(unJugador);
+		thrown.expect(BarrioNoPuedeConstruirHotelException.class);
+		unBarrio.construirHotel();	
+	}
 }
-

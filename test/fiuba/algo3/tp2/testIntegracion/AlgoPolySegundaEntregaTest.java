@@ -20,6 +20,11 @@ public class AlgoPolySegundaEntregaTest {
 	private static DatosDeBarrio SALTA_SUR = DatosDeBarrio.getDatosBarrio(Barrios.SALTA_SUR);
 	private static DatosDeBarrio SALTA_NORTE = DatosDeBarrio.getDatosBarrio(Barrios.SALTA_NORTE);
 	
+	private static DatosDeServicio AYSA = DatosDeServicio.getDatosServicio(Servicios.AYSA);
+	private static DatosDeServicio EDESUR = DatosDeServicio.getDatosServicio(Servicios.EDESUR);
+	private static DatosDeServicio SUBTE = DatosDeServicio.getDatosServicio(Servicios.SUBTE);
+	private static DatosDeServicio TREN = DatosDeServicio.getDatosServicio(Servicios.TREN);
+	
 	private static final int DINERO_INICIAL = 100000;
 	private static final boolean COMPRAR = true;
 	private static final boolean NO_COMPRAR = false;
@@ -85,7 +90,9 @@ public class AlgoPolySegundaEntregaTest {
 		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Buenos Aires Norte"));
 		unCasilleroSur.accionarPropiedad(unJugador);
 		unCasilleroNorte.accionarPropiedad(unJugador);
-		unJugador.construirHotel("Buenos Aires Sur");
+		try {
+			unJugador.construirHotel("Buenos Aires Sur");
+		} catch (BarrioNoPuedeConstruirHotelException e) {};
 		int dineroRestante = DINERO_INICIAL - BUENOS_AIRES_SUR.getPrecio() - BUENOS_AIRES_NORTE.getPrecio();
 		assertEquals(dineroRestante, unJugador.getDinero());
 	}
@@ -178,7 +185,9 @@ public class AlgoPolySegundaEntregaTest {
 		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Cordoba Norte"));
 		unCasilleroSur.accionarPropiedad(unJugador);
 		unCasilleroNorte.accionarPropiedad(unJugador);
-		unJugador.construirHotel("Cordoba Sur");
+		try {
+			unJugador.construirHotel("Cordoba Sur");
+		} catch (BarrioNoPuedeConstruirHotelException e) {};
 		int dineroRestante = DINERO_INICIAL - CORDOBA_SUR.getPrecio() - CORDOBA_NORTE.getPrecio();
 		assertEquals(dineroRestante, unJugador.getDinero());
 	}
@@ -271,7 +280,9 @@ public class AlgoPolySegundaEntregaTest {
 		Casillero unCasilleroNorte = unTablero.getCasillero(unTablero.getIndiceConNombre("Salta Norte"));
 		unCasilleroSur.accionarPropiedad(unJugador);
 		unCasilleroNorte.accionarPropiedad(unJugador);
-		unJugador.construirHotel("Salta Sur");
+		try {
+			unJugador.construirHotel("Salta Sur");
+		} catch (BarrioNoPuedeConstruirHotelException e) {};
 		int dineroRestante = DINERO_INICIAL - SALTA_SUR.getPrecio() - SALTA_NORTE.getPrecio();
 		assertEquals(dineroRestante, unJugador.getDinero());
 	}
@@ -329,7 +340,7 @@ public class AlgoPolySegundaEntregaTest {
 	//PRUEBA NUMERO 15 en la entrega.
 	
 	@Test
-	public void test21JugadorCaeEnTrenAdquiridaPorOtroQueNoTieneSubtesSuDineroSeReduce450VecesSusDados() {
+	public void test21JugadorCaeEnTrenAdquiridaPorOtroQueNoTieneSubtesSuDineroSeReduceCorrectamente() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		int unDado = 4; int otroDado = 2;
@@ -338,12 +349,12 @@ public class AlgoPolySegundaEntregaTest {
 		Casillero tren = unTablero.getCasillero(unTablero.getIndiceConNombre("Tren"));
 		tren.accionarPropiedad(unJugador);
 		tren.accionarPropiedad(otroJugador);
-		assertEquals(DINERO_INICIAL - (unDado + otroDado) * 450 , otroJugador.getDinero());
+		assertEquals(DINERO_INICIAL - (unDado + otroDado) * TREN.getTarifaSimple() , otroJugador.getDinero());
 
 	}
 	
 	@Test
-	public void test22JugadorCaeEnTrenAdquiridaPorOtroQueTieneSubtesSuDineroSeReduce800VecesSusDados() {
+	public void test22JugadorCaeEnTrenAdquiridaPorOtroQueTieneSubtesSuDineroSeReduceCorrectamente() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		int unDado = 4; int otroDado = 2;
@@ -354,7 +365,7 @@ public class AlgoPolySegundaEntregaTest {
 		tren.accionarPropiedad(unJugador);
 		subte.accionarPropiedad(unJugador);
 		tren.accionarPropiedad(otroJugador);
-		assertEquals(DINERO_INICIAL - (unDado + otroDado) * 800 , otroJugador.getDinero());
+		assertEquals(DINERO_INICIAL - (unDado + otroDado) * TREN.getTarifaDoble() , otroJugador.getDinero());
 
 	}
 	
@@ -379,11 +390,11 @@ public class AlgoPolySegundaEntregaTest {
 		Casillero edesur = unTablero.getCasillero(unTablero.getIndiceConNombre("Edesur"));
 		edesur.accionarPropiedad(unJugador);
 		edesur.accionarPropiedad(otroJugador);
-		assertEquals(DINERO_INICIAL - (unDado + otroDado) * 500 , otroJugador.getDinero());
+		assertEquals(DINERO_INICIAL - (unDado + otroDado) * EDESUR.getTarifaSimple() , otroJugador.getDinero());
 	}
 	
 	@Test
-	public void test25JugadorCaeEnEdesurAdquiridaPorOtroQueTieneAysaSuDineroSeReduce1000VecesSusDados() {
+	public void test25JugadorCaeEnEdesurAdquiridaPorOtroQueTieneAysaSuDineroSeReduceCorrectamente() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		int unDado = 4; int otroDado = 2;
@@ -394,7 +405,7 @@ public class AlgoPolySegundaEntregaTest {
 		edesur.accionarPropiedad(unJugador);
 		aysa.accionarPropiedad(unJugador);
 		edesur.accionarPropiedad(otroJugador);
-		assertEquals(DINERO_INICIAL - (unDado + otroDado) * 1000 , otroJugador.getDinero());
+		assertEquals(DINERO_INICIAL - (unDado + otroDado) * EDESUR.getTarifaDoble() , otroJugador.getDinero());
 	}
 	
 }

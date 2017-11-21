@@ -162,7 +162,7 @@ public class JugadorTest {
 		Jugador unJugador = new Jugador();
 		Carcel unaCarcel = new Carcel();
 		unaCarcel.aprisionar(unJugador);
-		thrown.expect(JugadorNoPuedePagarFianza.class);
+		thrown.expect(JugadorNoPuedePagarFianzaException.class);
 		unJugador.pagarFianza();
 	}
 	
@@ -195,16 +195,22 @@ public class JugadorTest {
 		unJugador.sacarDinero(DINERO_INICIAL - 1); //Se queda con 1 peso
 		unaCarcel.aprisionar(unJugador);
 		unJugador.finalizarTurno();
-		thrown.expect(JugadorNoPuedePagarFianza.class);
+		thrown.expect(JugadorNoPuedePagarFianzaException.class);
 		unJugador.pagarFianza();
 	}
 	
 	@Test
 	public void test15JugadorNoPuedePagarFianzaSiEstaEnLibertad() {
 		Jugador unJugador = new Jugador();
-		thrown.expect(JugadorNoPuedePagarFianza.class);
+		thrown.expect(JugadorNoPuedePagarFianzaException.class);
 		unJugador.pagarFianza();
 	}
 	
+	@Test
+	public void test16JugadorQuierePagarAlgoYNoTieneDineroLanzaException() {
+		Jugador unJugador = new Jugador();
+		thrown.expect(JugadorNoTieneDineroException.class);
+		unJugador.sacarDinero(DINERO_INICIAL + 1);
+	}
 	
 }

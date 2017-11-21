@@ -1,5 +1,7 @@
 package fiuba.algo3.clases;
 
+import fiuba.algo3.excepciones.BarrioNoPuedeConstruirHotelException;
+
 public class Barrio implements Encasillable, Comprable{
 	
 	private Jugador propietario = null;
@@ -105,6 +107,9 @@ public class Barrio implements Encasillable, Comprable{
 					Barrio unVecino = (Barrio) this.propietario.getPropiedad(this.getVecino());
 					this.propietario.sacarDinero(this.datosDeBarrio.getPrecioHotel());
 					this.hotelConstruido = (unVecino.getNumeroDeCasasConstruidas() == this.numeroDeCasasConstruidas);
+			}
+			else{
+				throw new BarrioNoPuedeConstruirHotelException();
 			}
 		}
 	}

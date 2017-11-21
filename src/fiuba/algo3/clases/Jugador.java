@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import fiuba.algo3.estados.EstadoJugador;
 import fiuba.algo3.estados.EstadoJugadorEnCana;
 import fiuba.algo3.estados.EstadoJugadorEnLibertad;
+import fiuba.algo3.excepciones.JugadorNoTieneDineroException;
 
 public class Jugador {
 	
@@ -35,6 +36,8 @@ public class Jugador {
 	}
 	
 	public void sacarDinero(int unDinero) {
+		if (this.dinero < unDinero)
+			throw new JugadorNoTieneDineroException();
 		this.dinero -= unDinero;
 	}
 	

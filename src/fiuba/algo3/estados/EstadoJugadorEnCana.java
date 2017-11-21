@@ -3,7 +3,7 @@ package fiuba.algo3.estados;
 import fiuba.algo3.clases.Casillero;
 import fiuba.algo3.clases.Jugador;
 import fiuba.algo3.excepciones.JugadorEstaEnCanaException;
-import fiuba.algo3.excepciones.JugadorNoPuedePagarFianza;
+import fiuba.algo3.excepciones.JugadorNoPuedePagarFianzaException;
 
 public class EstadoJugadorEnCana implements EstadoJugador {
 
@@ -37,7 +37,7 @@ public class EstadoJugadorEnCana implements EstadoJugador {
 	@Override
 	public void pagarFianza() {
 		if ((turno == 3) || (this.jugador.getDinero() < FIANZA)) 
-			throw new JugadorNoPuedePagarFianza();
+			throw new JugadorNoPuedePagarFianzaException();
 		this.jugador.sacarDinero(FIANZA);
 		this.jugador.salirEnLibertad();
 	}

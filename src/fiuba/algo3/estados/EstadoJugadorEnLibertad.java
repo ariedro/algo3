@@ -2,7 +2,7 @@ package fiuba.algo3.estados;
 
 import fiuba.algo3.clases.Casillero;
 import fiuba.algo3.clases.Jugador;
-import fiuba.algo3.excepciones.JugadorNoPuedePagarFianza;
+import fiuba.algo3.excepciones.JugadorNoPuedePagarFianzaException;
 
 public class EstadoJugadorEnLibertad implements EstadoJugador {
 
@@ -31,7 +31,7 @@ public class EstadoJugadorEnLibertad implements EstadoJugador {
 
 	@Override
 	public void pagarFianza() {
-		throw new JugadorNoPuedePagarFianza();
+		throw new JugadorNoPuedePagarFianzaException();
 	}
 
 	
