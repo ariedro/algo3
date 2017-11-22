@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import fiuba.algo3.clases.*;
+import fiuba.algo3.encasillables.Barrio;
 import fiuba.algo3.excepciones.BarrioNoPuedeConstruirHotelException;
 
 public class BarrioTest {

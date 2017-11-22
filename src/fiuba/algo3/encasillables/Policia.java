@@ -1,4 +1,8 @@
-package fiuba.algo3.clases;
+package fiuba.algo3.encasillables;
+
+import fiuba.algo3.clases.Casillero;
+import fiuba.algo3.clases.Encasillable;
+import fiuba.algo3.clases.Jugador;
 
 public class Policia implements Encasillable {
 	private Casillero casilleroCarcel;

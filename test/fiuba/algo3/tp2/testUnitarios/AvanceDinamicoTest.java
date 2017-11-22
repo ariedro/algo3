@@ -1,7 +1,7 @@
 package fiuba.algo3.tp2.testUnitarios;
 
-import fiuba.algo3.clases.AvanceDinamico;
 import fiuba.algo3.clases.Jugador;
+import fiuba.algo3.encasillables.AvanceDinamico;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;

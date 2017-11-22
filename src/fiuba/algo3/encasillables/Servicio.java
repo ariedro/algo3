@@ -1,4 +1,9 @@
-package fiuba.algo3.clases;
+package fiuba.algo3.encasillables;
+
+import fiuba.algo3.clases.Comprable;
+import fiuba.algo3.clases.DatosDeServicio;
+import fiuba.algo3.clases.Encasillable;
+import fiuba.algo3.clases.Jugador;
 
 public class Servicio implements Encasillable,Comprable {
 

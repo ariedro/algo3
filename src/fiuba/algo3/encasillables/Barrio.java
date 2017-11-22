@@ -1,5 +1,9 @@
-package fiuba.algo3.clases;
+package fiuba.algo3.encasillables;
 
+import fiuba.algo3.clases.Comprable;
+import fiuba.algo3.clases.DatosDeBarrio;
+import fiuba.algo3.clases.Encasillable;
+import fiuba.algo3.clases.Jugador;
 import fiuba.algo3.excepciones.BarrioNoPuedeConstruirHotelException;
 
 public class Barrio implements Encasillable, Comprable{

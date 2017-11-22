@@ -9,6 +9,8 @@ import static org.mockito.Mockito.*;
 import org.junit.rules.ExpectedException;
 
 import fiuba.algo3.clases.*;
+import fiuba.algo3.encasillables.Barrio;
+import fiuba.algo3.encasillables.Carcel;
 import fiuba.algo3.excepciones.*;
 
 public class JugadorTest {

@@ -1,5 +1,15 @@
 package fiuba.algo3.clases;
 
+import fiuba.algo3.encasillables.AvanceDinamico;
+import fiuba.algo3.encasillables.Barrio;
+import fiuba.algo3.encasillables.Carcel;
+import fiuba.algo3.encasillables.ImpuestoAlLujo;
+import fiuba.algo3.encasillables.Policia;
+import fiuba.algo3.encasillables.Quini;
+import fiuba.algo3.encasillables.RetrocesoDinamico;
+import fiuba.algo3.encasillables.Salida;
+import fiuba.algo3.encasillables.Servicio;
+
 public class Inicializador {
 	public void inicializarTablero(Tablero unTablero) {
 		

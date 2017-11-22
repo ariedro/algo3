@@ -2,6 +2,7 @@ package fiuba.algo3.clases;
 
 import java.util.LinkedList;
 
+import fiuba.algo3.encasillables.Barrio;
 import fiuba.algo3.estados.EstadoJugador;
 import fiuba.algo3.estados.EstadoJugadorEnCana;
 import fiuba.algo3.estados.EstadoJugadorEnLibertad;

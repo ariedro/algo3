@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import fiuba.algo3.clases.*;
+import fiuba.algo3.encasillables.Barrio;
+import fiuba.algo3.encasillables.Servicio;
 
 public class ServicioTest {
 

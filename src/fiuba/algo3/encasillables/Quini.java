@@ -1,6 +1,9 @@
-package fiuba.algo3.clases;
+package fiuba.algo3.encasillables;
 
 import java.util.HashMap;
+
+import fiuba.algo3.clases.Encasillable;
+import fiuba.algo3.clases.Jugador;
 
 public class Quini implements Encasillable{
 
