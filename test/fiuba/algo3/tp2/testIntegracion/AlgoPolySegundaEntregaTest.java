@@ -17,8 +17,11 @@ public class AlgoPolySegundaEntregaTest {
 	private static DatosDeBarrio BUENOS_AIRES_NORTE = DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_NORTE);
 	private static DatosDeBarrio CORDOBA_SUR = DatosDeBarrio.getDatosBarrio(Barrios.CORDOBA_SUR);
 	private static DatosDeBarrio CORDOBA_NORTE = DatosDeBarrio.getDatosBarrio(Barrios.CORDOBA_NORTE);
+	private static DatosDeBarrio SANTA_FE = DatosDeBarrio.getDatosBarrio(Barrios.SANTA_FE);
 	private static DatosDeBarrio SALTA_SUR = DatosDeBarrio.getDatosBarrio(Barrios.SALTA_SUR);
 	private static DatosDeBarrio SALTA_NORTE = DatosDeBarrio.getDatosBarrio(Barrios.SALTA_NORTE);
+	private static DatosDeBarrio NEUQUEN = DatosDeBarrio.getDatosBarrio(Barrios.NEUQUEN);
+	private static DatosDeBarrio TUCUMAN = DatosDeBarrio.getDatosBarrio(Barrios.TUCUMAN);
 	
 	private static DatosDeServicio AYSA = DatosDeServicio.getDatosServicio(Servicios.AYSA);
 	private static DatosDeServicio EDESUR = DatosDeServicio.getDatosServicio(Servicios.EDESUR);
@@ -29,6 +32,8 @@ public class AlgoPolySegundaEntregaTest {
 	private static final boolean COMPRAR = true;
 	private static final boolean NO_COMPRAR = false;
 	
+	// Punto 1 de la entrega.
+	
 	@Test
 	public void test01CuandoJugadorCaeEnBarrioYLoCompraSeVerificaQueSuDineroSeRedujoElPrecioDelBarrio(){
 		Jugador unJugador = new Jugador();
@@ -37,6 +42,8 @@ public class AlgoPolySegundaEntregaTest {
 		unCasillero.accionarPropiedad(unJugador);
 		assertEquals(DINERO_INICIAL - BUENOS_AIRES_SUR.getPrecio(), unJugador.getDinero());
 	}
+	
+	// Punto 2 de la entrega.
 	
 	@Test
 	public void test02JugadorCuentaConBuenosAiresSuryNorteConstruyeCasaYSeDecrementaSuDineroCorrectamente() {
@@ -50,6 +57,8 @@ public class AlgoPolySegundaEntregaTest {
 		int dineroRestante = DINERO_INICIAL - BUENOS_AIRES_SUR.getPrecio() - BUENOS_AIRES_NORTE.getPrecio();
 		assertEquals(dineroRestante - BUENOS_AIRES_SUR.getPrecioCasa(), unJugador.getDinero());
 	}
+	
+	// Punto 3 de la entrega.
 	
 	@Test
 	public void test03CuandoJugadorCuentaConBsAsSuryNorteConUnaCasaEnCadaUnaYContricanteCaeEnUnaSeDecrementaSuDineroCorrectamente() {
@@ -65,6 +74,8 @@ public class AlgoPolySegundaEntregaTest {
 		unCasilleroSur.accionarPropiedad(otroJugador);
 		assertEquals(DINERO_INICIAL - BUENOS_AIRES_SUR.getAlquilerUnaCasa(), otroJugador.getDinero());
 	}
+	
+	// Punto 4 de la entrega.
 	
 	@Test
 	public void test04CuandoJugadorCuentaConAmbasBsAsConDosCasasEnSurYUnaEnNorteYContricanteCaeEnUnaSeDecrementaSuDineroCorrectamente() {
@@ -82,6 +93,8 @@ public class AlgoPolySegundaEntregaTest {
 		assertEquals(DINERO_INICIAL - BUENOS_AIRES_SUR.getAlquilerDosCasas(), otroJugador.getDinero());
 	}
 	
+	// Punto 5 de la entrega.
+	
 	@Test
 	public void test05CuandoJugadorCuentaConAmbasBsAsPeroNoTieneCubiertaSuMaximaCapacidadDeCasasYConstruyeHotelSuDineroNoCambia() {
 		Jugador unJugador = new Jugador();
@@ -96,6 +109,8 @@ public class AlgoPolySegundaEntregaTest {
 		int dineroRestante = DINERO_INICIAL - BUENOS_AIRES_SUR.getPrecio() - BUENOS_AIRES_NORTE.getPrecio();
 		assertEquals(dineroRestante, unJugador.getDinero());
 	}
+	
+	// Punto 6 de la entrega.
 	
 	@Test
 	public void test06CuandoJugadorCuentaConAmbasBsAsConDosCasasYConstruyeUnHotelSuDineroSeDecrementaCorrectamente() {
@@ -115,6 +130,8 @@ public class AlgoPolySegundaEntregaTest {
 		assertEquals(dineroRestante - BUENOS_AIRES_SUR.getPrecioHotel(), unJugador.getDinero());
 	}
 	
+	// Punto 7 de la entrega.
+	
 	@Test
 	public void test07CuandoJugadorCuentaConAmbasBsAsConDosCasasYConstruyeUnHotelAlCaerContrincantePierdeDineroCorrectamente() {
 		Jugador unJugador = new Jugador();
@@ -132,6 +149,8 @@ public class AlgoPolySegundaEntregaTest {
 		unCasilleroSur.accionarPropiedad(otroJugador);
 		assertEquals(DINERO_INICIAL - BUENOS_AIRES_SUR.getAlquilerHotel(), otroJugador.getDinero());
 	}
+	
+	// Punto 8 de la entrega.
 	
 	@Test
 	public void test08JugadorCuentaConCordobaSuryNorteConstruyeCasaYSeDecrementaSuDineroCorrectamente() {
@@ -323,10 +342,96 @@ public class AlgoPolySegundaEntregaTest {
 		assertEquals(DINERO_INICIAL - SALTA_SUR.getAlquilerHotel(), otroJugador.getDinero());
 	}
 	
-	//PRUEBAS NUMERO 13 y 14 en la entrega, segun lo sugerido por Fede.
+	// Punto 9 de la entrega.
 	
 	@Test
-	public void test20JugadorVendeUnaPropiedadYCuandoOtroJugadorCaeEnEsaPropiedadPuedeComprarla() {
+	public void test20CuandoJugadorCuentaConSantaFeYConstruyeUnaCasaSuDineroSeDecrementaCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Santa Fe"));
+		unCasillero.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Santa Fe");
+		int dineroRestante = DINERO_INICIAL - SANTA_FE.getPrecio();
+		assertEquals(dineroRestante - SANTA_FE.getPrecioCasa(),unJugador.getDinero());
+	}
+	
+	// Punto 10 de la entrega.
+	// Pruebas para Buenos Aires (Sur y Norte), Cordoba (Sur y Norte) y Salta (Sur y Norte) ya implementadas
+	// en pruebas anteriores. Se prueba ahora para Santa Fe, Neuquen y Tucuman.
+	
+	@Test
+	public void test21JugadorCaeEnSantaFeConConstruccionesYSuDineroSeDecrementaCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Santa Fe"));
+		unCasillero.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Santa Fe");
+		unCasillero.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - SANTA_FE.getAlquilerUnaCasa(),otroJugador.getDinero());
+	}
+	
+	@Test
+	public void test22JugadorCaeEnNeuquenConConstruccionesYSuDineroSeDecrementaCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Neuquen"));
+		unCasillero.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Neuquen");
+		unCasillero.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - NEUQUEN.getAlquilerUnaCasa(),otroJugador.getDinero());
+	}
+	
+	@Test
+	public void test23JugadorCaeEnTucumanConConstruccionesYSuDineroSeDecrementaCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Tucuman"));
+		unCasillero.accionarPropiedad(unJugador);
+		unJugador.construirCasa("Tucuman");
+		unCasillero.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - TUCUMAN.getAlquilerUnaCasa(),otroJugador.getDinero());
+	}
+	
+	// Punto 11 de la entrega.
+	
+	@Test
+	public void test24JugadorCaeEnTrenAdquiridaPorOtroQueNoTieneSubtesSuDineroSeReduceCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		int unDado = 4; int otroDado = 2;
+		otroJugador.setResultadoDados(unDado, otroDado);
+		Casillero tren = unTablero.getCasillero(unTablero.getIndiceConNombre("Tren"));
+		tren.accionarPropiedad(unJugador);
+		tren.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - (unDado + otroDado) * TREN.getTarifaSimple() , otroJugador.getDinero());
+	}
+	
+	// Punto 12 de la entrega.
+	
+	@Test
+	public void test25JugadorCaeEnTrenAdquiridaPorOtroQueTieneSubtesSuDineroSeReduceCorrectamente() {
+		Jugador unJugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Tablero unTablero = new Tablero();
+		int unDado = 4; int otroDado = 2;
+		otroJugador.setResultadoDados(unDado, otroDado);
+		Casillero tren = unTablero.getCasillero(unTablero.getIndiceConNombre("Tren"));
+		Casillero subte = unTablero.getCasillero(unTablero.getIndiceConNombre("Subte"));
+		tren.accionarPropiedad(unJugador);
+		subte.accionarPropiedad(unJugador);
+		tren.accionarPropiedad(otroJugador);
+		assertEquals(DINERO_INICIAL - (unDado + otroDado) * TREN.getTarifaDoble() , otroJugador.getDinero());
+
+	}
+	
+	// Puntos 13 y 14 en la entrega, segun lo sugerido por Fede.
+	
+	@Test
+	public void test26JugadorVendeUnaPropiedadYCuandoOtroJugadorCaeEnEsaPropiedadPuedeComprarla() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		Tablero unTablero = new Tablero();
@@ -337,41 +442,10 @@ public class AlgoPolySegundaEntregaTest {
 		assertTrue(otroJugador.estaEntreLasPropiedades("Buenos Aires Sur"));
 	}
 	
-	//PRUEBA NUMERO 15 en la entrega.
+	// Punto 15 en la entrega.
 	
 	@Test
-	public void test21JugadorCaeEnTrenAdquiridaPorOtroQueNoTieneSubtesSuDineroSeReduceCorrectamente() {
-		Jugador unJugador = new Jugador();
-		Jugador otroJugador = new Jugador();
-		int unDado = 4; int otroDado = 2;
-		otroJugador.setResultadoDados(unDado, otroDado);
-		Tablero unTablero = new Tablero();
-		Casillero tren = unTablero.getCasillero(unTablero.getIndiceConNombre("Tren"));
-		tren.accionarPropiedad(unJugador);
-		tren.accionarPropiedad(otroJugador);
-		assertEquals(DINERO_INICIAL - (unDado + otroDado) * TREN.getTarifaSimple() , otroJugador.getDinero());
-
-	}
-	
-	@Test
-	public void test22JugadorCaeEnTrenAdquiridaPorOtroQueTieneSubtesSuDineroSeReduceCorrectamente() {
-		Jugador unJugador = new Jugador();
-		Jugador otroJugador = new Jugador();
-		int unDado = 4; int otroDado = 2;
-		otroJugador.setResultadoDados(unDado, otroDado);
-		Tablero unTablero = new Tablero();
-		Casillero tren = unTablero.getCasillero(unTablero.getIndiceConNombre("Tren"));
-		Casillero subte = unTablero.getCasillero(unTablero.getIndiceConNombre("Subte"));
-		tren.accionarPropiedad(unJugador);
-		subte.accionarPropiedad(unJugador);
-		tren.accionarPropiedad(otroJugador);
-		assertEquals(DINERO_INICIAL - (unDado + otroDado) * TREN.getTarifaDoble() , otroJugador.getDinero());
-
-	}
-	
-	
-	@Test
-	public void test23JugadorCaeEnImpuestoAlLujoYSuDineroSeReduceEn10Porciento() {
+	public void test27JugadorCaeEnImpuestoAlLujoYSuDineroSeReduceEn10Porciento() {
 		Jugador unJugador = new Jugador();
 		Tablero unTablero = new Tablero();
 		Casillero unCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Impuesto Al Lujo"));
@@ -379,9 +453,10 @@ public class AlgoPolySegundaEntregaTest {
 		assertEquals(DINERO_INICIAL - ((int) (DINERO_INICIAL * 0.1)), unJugador.getDinero());
 	}
 
+	// Punto 16 en la entrega.
 	
 	@Test
-	public void test24JugadorCaeEnEdesurAdquiridaPorOtroQueNoTieneAysaSuDineroSeReduce500VecesSusDados() {
+	public void test28JugadorCaeEnEdesurAdquiridaPorOtroQueNoTieneAysaSuDineroSeReduce500VecesSusDados() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		int unDado = 4; int otroDado = 2;
@@ -393,8 +468,10 @@ public class AlgoPolySegundaEntregaTest {
 		assertEquals(DINERO_INICIAL - (unDado + otroDado) * EDESUR.getTarifaSimple() , otroJugador.getDinero());
 	}
 	
+	// Punto 17 en la entrega.
+	
 	@Test
-	public void test25JugadorCaeEnEdesurAdquiridaPorOtroQueTieneAysaSuDineroSeReduceCorrectamente() {
+	public void test29JugadorCaeEnEdesurAdquiridaPorOtroQueTieneAysaSuDineroSeReduceCorrectamente() {
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		int unDado = 4; int otroDado = 2;
