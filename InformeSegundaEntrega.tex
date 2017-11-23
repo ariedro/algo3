@@ -1,0 +1,183 @@
+\documentclass[titlepage,a4paper]{article}
+
+\usepackage{a4wide}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,bookmarksopen=true]{hyperref}
+\usepackage{bookmark}
+\usepackage{fancyhdr}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{float}
+
+\pagestyle{fancy} % Encabezado y pie de página
+\fancyhf{}
+\fancyhead[L]{TP2 - Grupo T10}
+\fancyhead[R]{Algoritmos y Programación III - FIUBA}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+\begin{titlepage} % Carátula
+	\hfill\includegraphics[width=6cm]{logofiuba.jpg}
+    \centering
+    \vfill
+    \Huge \textbf{Trabajo Práctico 2}
+    \vskip1cm
+    \Large \textbf{Segunda Entrega}
+    \vskip2cm
+    \Large [7507/9502] Algoritmos y Programación III\\
+    Curso 1
+    Segundo cuatrimestre de 2017 
+    \vfill
+    Grupo T10
+    \vfill
+    \begin{tabular}{ | l | l | l | } % Datos del alumno
+      \hline
+      Nombre & Padrón & Mail \\ \hline
+      Perez Ondarts, Flavio & 96786 & perezflavio94@gmail.com \\ \hline
+      Piersantolini, Matías & 98299 & matias.piersantolini@gmail.com \\ \hline
+      Ontiveros, Juan & 98425 & ontiverosfuertes@yahoo.com.ar \\ \hline
+      Aguirre, Ariel & 100199 & ariedro@gmail.com \\ \hline
+  	\end{tabular}
+    \vfill
+    \vfill
+\end{titlepage}
+
+\tableofcontents % Índice general
+\newpage
+
+\section{Introducción}\label{sec:intro}
+El presente informe reúne la documentación de la solución del segundo trabajo práctico de la materia Algoritmos y Programación III que consiste en desarrollar una aplicación completa con interfaz gráfica de una versión simplificada del Monopoly, utilizando los conceptos del paradigma de la orientación a objetos vistos en el curso.
+
+\section{Supuestos}\label{sec:supuestos}
+% Deberá contener explicaciones de cada uno de los supuestos que el alumno haya tenido que adoptar a partir de situaciones que no estén contempladas en la especificación.
+
+Para hacer esta parte del trabajo, se asumió que el tablero en el que se desarrollará el juego es siempre el mismo, es decir que los casilleros siempre están en las mismas posiciones que están en el enunciado.
+Se usó esto para hacer más simples las clases con las que se manejan los barrios y los servicios.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{tablero.PNG}
+\caption{\label{fig:tablero}Tablero del enunciado.}
+\end{figure}
+
+\section{Modelo de dominio}\label{sec:modelo}
+% Explicación concisa del diseño general del trabajo.
+
+Ésta entrega cuenta con una implementación casi completa manejo general del juego, siguiendo las pruebas de integración proporcionadas por la cátedra, se pudo hacer un modelo que implementa bien las reglas del juego en el manejo de las propiedades en los barrios y servicios.
+
+\vfill
+\
+\section{Diagramas de clase}\label{sec:diagramasdeclase}
+% Uno o varios diagramas de clases mostrando las relaciones estáticas entre las clases.  Puede agregarse todo el texto necesario para aclarar y explicar su diseño. Recuerden que la idea de todo el documento es que quede documentado y entendible cómo está implementada la solución.
+
+A continuación se mostrarán dos diagramas de clase que ayudarán a representar el funcionamiento del programa.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{Clases.png}
+\caption{\label{fig:class01}Diagrama general de clases.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{Encasillables.png}
+\caption{\label{fig:class02}Diagrama de las clases que implementan la interfaz Encasillable.}
+\end{figure}
+
+\vfill
+\section{Diagramas de secuencia}\label{sec:diagramasdesecuencia}
+% Mostrar las secuencias interesantes que hayan implementado. Pueden agregar texto para explicar si algo no queda claro.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{secuencia_1.jpg}
+\caption{\label{fig:sec1}Construcción del hotel}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{secuencia_2.jpg}
+\caption{\label{fig:sec2}Impuesto al lujo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{secuencia_3.jpg}
+\caption{\label{fig:sec3}Funcionamiento de Servicio}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{secuencia_4.jpg}
+\caption{\label{fig:sec4}Construcción de casa}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{secuencia_5.jpg}
+\caption{\label{fig:sec5}Venta de propiedad}
+\end{figure}
+
+\vfill
+\
+\section{Diagrama de paquetes}\label{sec:diagramadepaquetes}
+
+Ésta es una ilustración de cómo se manejaron los paquetes en el programa.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Paquetes.png}
+\caption{\label{fig:paq}Paquetes}
+\end{figure}
+\vfill
+\
+\section{Detalles de implementación}\label{sec:implementacion}
+% Explicaciones sobre la implementación interna de algunas clases que consideren que puedan llegar a resultar interesantes.
+
+\subsection{DatosDeBarrio}
+
+El barrio fue implementado de manera genérica, es decir que todos los barrios, tengan vecinos, diferentes cantidades de casas máximas o hoteles, son objetos de la misma clase.
+
+Tomando en cuenta lo dicho en la parte de Supuestos, si asumimos que la posición de los casilleros siempre será la misma, entonces los datos se pueden guardar en una estructura estática, para esto se usó la clase DatosDeBarrio, la cual contiene todos los nombres y los datos de los costos, de esta manera cada barrio delega su propia información con gets de esta clase.
+
+\begin{verbatim}
+public class DatosDeBarrio {
+    private static String[] NOMBRES = { "Buenos Aires Sur", "Buenos Aires Norte", ...
+    private static String[] VECINOS = {"Buenos Aires Norte","Buenos Aires Sur", ...
+    private static int [] PRECIO = { 20000, 25000, 18000, ...
+    private static int[] PRECIO_CASA = { 5000, 5500, 2000, ...
+    private static int[] PRECIO_HOTEL = { 8000, 9000, 3000, ...
+    private static int[] MAX_CASAS = { 2, 2, 2, ...
+    private static int [] ALQUILER_SIMPLE = { 2000, 2500, 1000, ...
+    private static int[] ALQUILER_UNA_CASA = { 3000, 3500, 1500, ...
+    private static int[] ALQUILER_DOS_CASAS = { 3500, 4000, 2500, ...
+    private static int[] ALQUILER_HOTEL = { 5000, 6000, 3000, ...
+
+    public static DatosDeBarrio getDatosBarrio(Barrios unBarrio) {
+        int numBarrio = unBarrio.getNumBarrio();
+        DatosDeBarrio datosDeUnBarrio = new DatosDeBarrio();
+        datosDeUnBarrio.llenarDatos(numBarrio);
+        return datosDeUnBarrio;
+        }
+
+\end{verbatim}
+
+De manera análoga se implementó de la misma manera con DatosDeServicios.
+
+\subsection{Tablero}
+
+Tablero, además de contener los casilleros, conoce los índices de cada uno (los casilleros no saben en qué posición están), de esta manera, en el futuro será el que se encargue de manejar las ubicaciones de los jugadores por cada turno.
+
+Nuevamente todo esto se pensó ausmiendo que el tablero conservará siempre los mismos índices, de esta manera siempre se inicializa con una clase Inicializador, que se encarga de agregar los casilleros manualmente al momento de crearse.
+
+\section{Excepciones}\label{sec:excepciones}
+% Explicación de cada una de las excepciones creadas y con qué fin fueron creadas.
+
+\begin{description}
+\item[BarrioNoPuedeConstruirHotelException] Ésta excepción se lanza cuando un jugador trata de construir un hotel pero no se puede o no cumple con los requisitos para hacerlo.
+\end{description}
+
+\end{document}
