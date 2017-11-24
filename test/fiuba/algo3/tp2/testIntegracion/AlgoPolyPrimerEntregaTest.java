@@ -244,10 +244,11 @@ public class AlgoPolyPrimerEntregaTest {
 	
 	@Test
 	public void test14CuandoJugadorCaeEnPoliciaVaALaCarcelYNoPuedeAccionar() {
+		Tablero unTablero = new Tablero();
 		Jugador unJugador = new Jugador();
-		Carcel unaCarcel = new Carcel();
-		Casillero casilleroCarcel = new Casillero(unaCarcel);
-		Policia unPolicia = new Policia(casilleroCarcel);
+		unTablero.agregarJugador(unJugador);
+		
+		Policia unPolicia = new Policia(unTablero);
 		Casillero unCasillero = new Casillero(unPolicia);
 		unCasillero.accionarPropiedad(unJugador);
 		assertFalse(unJugador.puedeAccionar());
@@ -255,13 +256,19 @@ public class AlgoPolyPrimerEntregaTest {
 	
 	@Test
 	public void test15CuandoJugadorCaeEnPoliciaSuUbicacionEsLaCarcel() {
+
 		Jugador unJugador = new Jugador();
-		Carcel unaCarcel = new Carcel();
-		Casillero casilleroCarcel = new Casillero(unaCarcel);
-		Policia unPolicia = new Policia(casilleroCarcel);
+		Tablero unTablero = new Tablero();
+		unTablero.agregarJugador(unJugador);
+		Casillero casilleroCarcel = unTablero.getCarcel();
+		
+		Policia unPolicia = new Policia(unTablero);
 		Casillero unCasillero = new Casillero(unPolicia);
 		unCasillero.accionarPropiedad(unJugador);
+				
+		
 		assertEquals(casilleroCarcel, unJugador.getUbicacion());
+	
 	}	
 	
 }

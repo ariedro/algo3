@@ -11,20 +11,55 @@ import fiuba.algo3.excepciones.*;
 
 public class PoliciaTest {
 
+	private static final int POS_POLICIA_EN_TABLERO = 15;
+	private static final int POS_CARCEL_EN_TABLERO = 5;
+	
+	
 	@Test
 	public void test01PoliciaCreadaNoEsNula() {
-		Policia unPolicia = new Policia(null);
+		Tablero unTablero = new Tablero();
+
+		Policia unPolicia = new Policia(unTablero);
+		
 		assertNotNull(unPolicia);
 	}
 	
 	@Test
 	public void test02CuandoJugadorCaeEnPoliciaVaALaCarcelYNoPuedeAccionar() {
+		
 		Jugador unJugador = new Jugador();
-		Carcel unaCarcel = new Carcel();
-		Casillero carcel = new Casillero(unaCarcel);
-		Policia unPolicia = new Policia(carcel);
-		unPolicia.mandarALaCarcel(unJugador);
+		
+		Tablero unTablero = new Tablero();
+		
+		unTablero.agregarJugador(unJugador);
+		
+		Policia unPolicia = new Policia(unTablero);
+		
+		unPolicia.accionarCon(unJugador);
+		
 		assertFalse(unJugador.puedeAccionar());
 	}
 
+	
+	@Test
+	public void test03UnJugadorCaeEnCasilleroPoliciaSuNuevaPosicionEsCarcel() {
+		
+		Jugador unJugador = new Jugador();
+		
+		Tablero unTablero = new Tablero();
+		
+		unTablero.agregarJugador(unJugador);
+		
+		Policia unPolicia = new Policia(unTablero);
+		
+		unTablero.modificarPosicion(unJugador, POS_POLICIA_EN_TABLERO);
+		
+		unPolicia.accionarCon(unJugador);
+		
+		assertEquals(POS_CARCEL_EN_TABLERO, unTablero.getPosicion(unJugador));
+		
+		
+	}
+	
+	
 }

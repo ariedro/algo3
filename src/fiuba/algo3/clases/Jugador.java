@@ -159,5 +159,12 @@ public class Jugador {
 	public int getResultadoDados() {
 		return this.resultadoDados;
 	}
+
+	public Dados tirarDados(Dados dados) {
+		
+		dados.rolarDados();
+		return dados;
+		
+	}
 	
 }

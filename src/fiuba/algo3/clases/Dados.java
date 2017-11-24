@@ -32,7 +32,7 @@ public class Dados {
 	}
 	
 	public int rolarDados() {
-		
+			
 		this.primerDado = (int) (Math.random() * 6) + 1;
 		this.segundoDado = (int) (Math.random() * 6) + 1;
 		
@@ -47,8 +47,6 @@ public class Dados {
 		return this.getSuma();
 		
 	}
-	
-	
 	
 	
 	

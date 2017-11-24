@@ -9,7 +9,9 @@ public class AlgoPoly {
 	private LinkedList<Jugador> jugadores = new LinkedList<Jugador>();
 	private Tablero tablero = new Tablero();
 	private ListIterator<Jugador> jugadorActual;
-	private Dados dados;
+	private Dados dados = new Dados();
+	private boolean jugadorHabiaSacadoDobles = false;
+	
 	
 	
 	public AlgoPoly() {
@@ -47,7 +49,15 @@ public class AlgoPoly {
 
 	public void acabarTurno() {
 	
-		this.getJugadorActual().finalizarTurno();
+		this.getJugadorActual().finalizarTurno();	
+		
+		if (dados.sonDobles() && !jugadorHabiaSacadoDobles) {
+			
+			this.jugadorHabiaSacadoDobles = true;
+		
+			return;
+		
+		}
 		
 		this.jugadorActual.next();		
 		
@@ -57,13 +67,36 @@ public class AlgoPoly {
 		
 		}
 		
-		
-	
-		
-	
+		this.jugadorHabiaSacadoDobles = false;
 	
 	
 	}
+		
+	public Casillero TirarDados(Jugador unJugador) {
+			
+			unJugador.tirarDados(dados);
+			
+			tablero.modificarPosicion(unJugador, dados.getSuma());
+			
+			Casillero unCasillero = tablero.getCasillero(tablero.getPosicion(unJugador));
+		
+			return unCasillero;
+			
+	}
+			
+		
+	
+	public void accionarCasillero(Casillero unCasillero, Jugador unJugador) {
+		
+		unCasillero.accionarPropiedad(unJugador);
+		
+	}
+			
+		
+	
+	
+	
+	
 
 	
 	
