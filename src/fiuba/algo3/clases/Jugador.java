@@ -163,6 +163,8 @@ public class Jugador {
 	public Dados tirarDados(Dados dados) {
 		
 		dados.rolarDados();
+		this.resultadoDados = dados.getSuma();
+		
 		return dados;
 		
 	}
