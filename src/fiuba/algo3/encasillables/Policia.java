@@ -34,7 +34,7 @@ public class Policia implements Encasillable {
 	
 	public void mandarALaCarcel(Jugador unJugador) {
 	
-		casilleroCarcel.accionarPropiedad(unJugador);
+		casilleroCarcel.accionarPropiedad(unJugador);		
 	
 	
 	}

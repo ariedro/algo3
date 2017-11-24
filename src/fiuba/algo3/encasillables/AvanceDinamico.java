@@ -15,10 +15,15 @@ public class AvanceDinamico implements Encasillable, MovimientoDinamico{
 	
 	@Override
 	public void accionarCon(Jugador unJugador) {
+		
 		int suma = unJugador.getResultadoDados();
+	
 		int resultadoDinamico = this.getCantidadDeMovimiento(unJugador,suma);
-		int indiceJugador = tablero.getIndiceConCasillero(unJugador.getUbicacion());
-		unJugador.mover(tablero.getCasillero(indiceJugador + resultadoDinamico));
+	
+		tablero.modificarPosicion(unJugador, resultadoDinamico);
+		
+		unJugador.mover(tablero.getCasillero(tablero.getPosicion(unJugador)));
+	
 	}
 
 	public int getCantidadDeMovimiento(Jugador unJugador, int suma) {
