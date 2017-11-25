@@ -1,5 +1,11 @@
 package fiuba.algo3.vista;
 
+import fiuba.algo3.clases.AlgoPoly;
+import fiuba.algo3.vista.eventos.BotonComprarPropiedadHandler;
+import fiuba.algo3.vista.eventos.BotonFinalizarTurnoHandler;
+import fiuba.algo3.vista.eventos.BotonPagarFianzaHandler;
+import fiuba.algo3.vista.eventos.BotonTirarDadosHandler;
+import fiuba.algo3.vista.eventos.BotonVenderPropiedadHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
@@ -24,25 +30,60 @@ public class ContenedorPrincipal extends BorderPane {
     Canvas canvasCentral;
     VBox contenedorCentral;
 
-    public ContenedorPrincipal(Stage stage) {
-        this.setMenu(stage);
+    public ContenedorPrincipal(Stage stage, AlgoPoly algoPoly) {
+        
+    	this.setMenu(stage);
         this.setCentro();
         this.setConsola();
-        //this.setBotonera();
+        this.setBotonera(algoPoly);
+        
     }
 
-    private void setBotonera() {
+    private void setBotonera(AlgoPoly algoPoly) {
+    	
+    	Button botonDados = new Button();
+        botonDados.setText("Tirar Dados");
+        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(algoPoly);
+        botonDados.setOnAction(tirarDadosHandler);
 
+    	Button botonComprar = new Button();
+        botonComprar.setText("Comprar Propiedad");
+        BotonComprarPropiedadHandler comprarPropiedadHandler = new BotonComprarPropiedadHandler(algoPoly);
+        botonComprar.setOnAction(comprarPropiedadHandler);
+
+    	Button botonVender = new Button();
+        botonVender.setText("Vender Propiedad");
+        BotonVenderPropiedadHandler venderPropiedadHandler = new BotonVenderPropiedadHandler(algoPoly);
+        botonVender.setOnAction(venderPropiedadHandler);
+       
+        Button botonPagarFianza = new Button();
+        botonPagarFianza.setText("Pagar Fianza");
+        BotonPagarFianzaHandler pagarFianzaHandler = new BotonPagarFianzaHandler(algoPoly);
+        botonPagarFianza.setOnAction(pagarFianzaHandler);
+        
+        
+        Button botonFinalizarTurno = new Button();
+        botonFinalizarTurno.setText("Finalizar Turno");
+        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(algoPoly);
+        botonFinalizarTurno.setOnAction(finalizarTurnoHandler);
+        
+        VBox contenedorVertical = new VBox(botonDados, botonComprar, botonVender,botonPagarFianza, botonFinalizarTurno);
+        contenedorVertical.setSpacing(10);
+        contenedorVertical.setPadding(new Insets(15));
+
+        this.setLeft(contenedorVertical);
+        
     }
 
     private void setMenu(Stage stage) {
-        this.menuBar = new BarraDeMenu(stage);
+        
+    	this.menuBar = new BarraDeMenu(stage);
         this.setTop(menuBar);
     }
 
     private void setCentro() {
     	
-    		canvasCentral = new Canvas(460, 220);
+    	canvasCentral = new Canvas(460, 220);
 
         contenedorCentral = new VBox(canvasCentral);
         contenedorCentral.setAlignment(Pos.CENTER);

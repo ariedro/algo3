@@ -3,6 +3,7 @@ package fiuba.algo3.vista.eventos;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import fiuba.algo3.clases.AlgoPoly;
 import fiuba.algo3.vista.*;
 
 public class Aplicacion extends Application {
@@ -15,8 +16,10 @@ public class Aplicacion extends Application {
     public void start(final Stage stage) throws Exception {
 
         stage.setTitle("AlgoPoly");
-
-        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage);
+        
+        AlgoPoly algoPoly = crearModelo();
+        
+        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage, algoPoly);
         Scene escenaJuego = new Scene(contenedorPrincipal, 800, 600);
 
         AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = new AplicacionOnKeyPressEventHandler(stage, contenedorPrincipal.getBarraDeMenu());
@@ -33,5 +36,12 @@ public class Aplicacion extends Application {
 
         stage.show();
 
+    }
+    
+    private AlgoPoly crearModelo() {
+        //Terreno terreno = new Terreno(460, 250);
+        AlgoPoly algoPoly = new AlgoPoly();
+        //robot.setDireccion(Direccion.oeste());
+        return algoPoly;
     }
 }

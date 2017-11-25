@@ -74,7 +74,7 @@ public class AlgoPoly {
 		
 	public Casillero TirarDados(Jugador unJugador) {
 			
-			unJugador.tirarDados(dados);
+			dados = unJugador.tirarDados(dados);
 			
 			tablero.modificarPosicion(unJugador, dados.getSuma());
 			
