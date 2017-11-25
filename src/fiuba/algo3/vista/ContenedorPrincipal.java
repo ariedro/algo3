@@ -1,11 +1,16 @@
 package fiuba.algo3.vista;
 
 import fiuba.algo3.clases.AlgoPoly;
+import fiuba.algo3.clases.Comprable;
+import fiuba.algo3.clases.Jugador;
 import fiuba.algo3.vista.eventos.BotonComprarPropiedadHandler;
 import fiuba.algo3.vista.eventos.BotonFinalizarTurnoHandler;
 import fiuba.algo3.vista.eventos.BotonPagarFianzaHandler;
 import fiuba.algo3.vista.eventos.BotonTirarDadosHandler;
 import fiuba.algo3.vista.eventos.BotonVenderPropiedadHandler;
+import fiuba.algo3.vista.eventos.BotonVenderPropiedadesHandler;
+import fiuba.algo3.vista.eventos.BotonVentaHandler;
+import fiuba.algo3.vista.eventos.BotonVolverHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
@@ -41,33 +46,35 @@ public class ContenedorPrincipal extends BorderPane {
 
     private void setBotonera(AlgoPoly algoPoly) {
     	
+    	VBox contenedorVertical = new VBox(10);
+    	
     	Button botonDados = new Button();
         botonDados.setText("Tirar Dados");
         BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(algoPoly);
         botonDados.setOnAction(tirarDadosHandler);
-
-    	Button botonComprar = new Button();
-        botonComprar.setText("Comprar Propiedad");
-        BotonComprarPropiedadHandler comprarPropiedadHandler = new BotonComprarPropiedadHandler(algoPoly);
-        botonComprar.setOnAction(comprarPropiedadHandler);
-
+        contenedorVertical.getChildren().add(botonDados);
+        
+        
     	Button botonVender = new Button();
-        botonVender.setText("Vender Propiedad");
-        BotonVenderPropiedadHandler venderPropiedadHandler = new BotonVenderPropiedadHandler(algoPoly);
-        botonVender.setOnAction(venderPropiedadHandler);
-       
+        botonVender.setText("Vender Propiedades");
+        BotonVenderPropiedadesHandler venderPropiedadesHandler = new BotonVenderPropiedadesHandler(algoPoly, this, contenedorVertical);
+        botonVender.setOnAction(venderPropiedadesHandler);
+        contenedorVertical.getChildren().add(botonVender);
+        
+        
         Button botonPagarFianza = new Button();
         botonPagarFianza.setText("Pagar Fianza");
         BotonPagarFianzaHandler pagarFianzaHandler = new BotonPagarFianzaHandler(algoPoly);
         botonPagarFianza.setOnAction(pagarFianzaHandler);
-        
+        contenedorVertical.getChildren().add(botonPagarFianza);
         
         Button botonFinalizarTurno = new Button();
         botonFinalizarTurno.setText("Finalizar Turno");
         BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(algoPoly);
         botonFinalizarTurno.setOnAction(finalizarTurnoHandler);
+        contenedorVertical.getChildren().add(botonFinalizarTurno);
         
-        VBox contenedorVertical = new VBox(botonDados, botonComprar, botonVender,botonPagarFianza, botonFinalizarTurno);
+        
         contenedorVertical.setSpacing(10);
         contenedorVertical.setPadding(new Insets(15));
 
@@ -116,5 +123,38 @@ public class ContenedorPrincipal extends BorderPane {
     public BarraDeMenu getBarraDeMenu() {
         return menuBar;
     }
+
+	public void setBotoneraVenta(AlgoPoly algoPoly, ContenedorPrincipal contenedorPrincipal, VBox botoneraAnterior) {
+
+		Jugador jugador = algoPoly.getJugadorActual();
+		
+		VBox contenedorVertical = new VBox(10);
+			
+		for (Comprable propiedad: jugador.getPropiedades()) {
+				
+			Button botonVender = new Button();
+				
+			botonVender.setText(propiedad.getNombre());
+				
+			BotonVentaHandler botonVenderHandler = new BotonVentaHandler(propiedad, algoPoly);
+			
+			botonVender.setOnAction(botonVenderHandler);
+		
+			contenedorVertical.getChildren().add(botonVender);
+			
+		}
+		
+		Button botonVolver = new Button();
+		botonVolver.setText("Acabar Ventas");
+		BotonVolverHandler botonVolverHandler = new BotonVolverHandler(botoneraAnterior, contenedorPrincipal);
+		botonVolver.setOnAction(botonVolverHandler);
+		contenedorVertical.getChildren().add(botonVolver);
+		
+		
+		contenedorVertical.setPadding(new Insets(15));
+			
+		contenedorPrincipal.setLeft(contenedorVertical);
+			
+	}
 
 }

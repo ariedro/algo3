@@ -168,5 +168,11 @@ public class Jugador {
 		return dados;
 		
 	}
+
+	public LinkedList<Comprable> getPropiedades() {
+		
+		return this.propiedades;
+		
+	}
 	
 }
