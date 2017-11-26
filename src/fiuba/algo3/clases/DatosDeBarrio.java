@@ -126,6 +126,9 @@ public class DatosDeBarrio {
 		return alquilerHotel;
 	}
 
+	public boolean puedeTenerHotel() {
+		return (alquilerHotel != 0);
+	}
 
 	public String getVecino() {
 		return vecino;

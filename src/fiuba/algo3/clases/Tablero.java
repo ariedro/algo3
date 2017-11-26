@@ -52,6 +52,9 @@ public class Tablero {
 
 	public void modificarPosicion(Jugador unJugador, int posiciones) {
 		
+		if (!unJugador.puedeAccionar())
+			return;
+		
 		int posicionActual = this.posiciones.get(unJugador);
 		
 		int posicionFinal;
@@ -72,6 +75,7 @@ public class Tablero {
 		}
 	
 		this.posiciones.put(unJugador, posicionFinal);
+		unJugador.mover(this.getCasillero(posicionFinal));
 		
 	}
 

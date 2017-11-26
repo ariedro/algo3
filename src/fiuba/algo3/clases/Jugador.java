@@ -22,11 +22,20 @@ public class Jugador {
 	
 	private int resultadoDados;
 		
+	public Jugador(Casillero ubicacionInicial){
+		this.dinero = DINERO_INICIAL;
+		this.propiedades = new LinkedList<Comprable>();
+		this.estado = new EstadoJugadorEnLibertad(this);
+		this.setUbicacion(ubicacionInicial);
+	}
+	
+	// Constructor alternativo para las pruebas, este no es el que maneja AlgoPoly
 	public Jugador(){
 		this.dinero = DINERO_INICIAL;
 		this.propiedades = new LinkedList<Comprable>();
 		this.estado = new EstadoJugadorEnLibertad(this);
 	}
+	
 	
 	public int getDinero() {
 		return this.dinero;
@@ -127,7 +136,7 @@ public class Jugador {
 	}
 	
 	public boolean estaEnCana() {
-		return this.estado.puedeAccionar();
+		return !this.estado.puedeAccionar();
 	}
 
 	public void pagarFianza() {

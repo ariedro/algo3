@@ -27,7 +27,7 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 	@Override
 	public void handle(ActionEvent event) {
 		Jugador jugadorActual = this.algoPoly.getJugadorActual();
-		this.algoPoly.TirarDados(jugadorActual); //Acá tira error cuando quiere reubicar en el tablero al jugador, no 
+		this.algoPoly.turnar(jugadorActual); //Acá tira error cuando quiere reubicar en el tablero al jugador, no 
 												 //entiendo por qué devuelve un casillero(pero eso no seria el problema)
 												//el problema esta cuando llama a reubicarlo en el tablero
 	}

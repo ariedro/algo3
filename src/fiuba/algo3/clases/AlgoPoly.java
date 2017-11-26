@@ -21,7 +21,8 @@ public class AlgoPoly {
 	
 	public void crearJugadores() {	
 		for (int i=1; i <= JUGADORES_INICIALES ; i++ ) {
-			Jugador unJugador = new Jugador();
+			Jugador unJugador = new Jugador(tablero.getCasillero(0));
+			this.tablero.agregarJugador(unJugador);
 			this.jugadores.add(unJugador);
 		}	
 	}
@@ -72,7 +73,7 @@ public class AlgoPoly {
 	
 	}
 		
-	public Casillero TirarDados(Jugador unJugador) {
+	public Casillero turnar(Jugador unJugador) {
 			
 			dados = unJugador.tirarDados(dados);
 			
@@ -91,13 +92,9 @@ public class AlgoPoly {
 		unCasillero.accionarPropiedad(unJugador);
 		
 	}
-			
-		
 	
-	
-	
-	
-
-	
+	public Dados getDados() {
+		return this.dados;
+	}
 	
 }

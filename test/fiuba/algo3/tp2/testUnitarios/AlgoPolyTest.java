@@ -107,9 +107,48 @@ public class AlgoPolyTest {
 		
 		
 	}
+	
+	@Test
+	public void test09JugadorTiraDadosYSiTienenMismoValorVuelveAJugar() {
+		AlgoPoly aPoly = new AlgoPoly();
 		
+		Jugador unJugador = aPoly.getJugadorActual();
+		aPoly.turnar(unJugador);
+		int resDado1 = aPoly.getDados().getValorPrimerDado();
+		int resDado2 = aPoly.getDados().getValorSegundoDado();
+		while (resDado1 != resDado2) {
+			aPoly.turnar(unJugador);
+			resDado1 = aPoly.getDados().getValorPrimerDado();
+			resDado2 = aPoly.getDados().getValorSegundoDado();
+		}
+		aPoly.acabarTurno();
+
+		assertEquals(unJugador, aPoly.getJugadorActual());
+	}
 	
-	
+	@Test
+	public void test10JugadorTiraDadosYSiTienenMismoValorDosVecesNoVuelveAJugar() {
+		AlgoPoly aPoly = new AlgoPoly();
+		
+		Jugador unJugador = aPoly.getJugadorActual();
+		aPoly.turnar(unJugador);
+		int resDado1 = aPoly.getDados().getValorPrimerDado();
+		int resDado2 = aPoly.getDados().getValorSegundoDado();
+		while (resDado1 != resDado2) {
+			aPoly.turnar(unJugador);
+			resDado1 = aPoly.getDados().getValorPrimerDado();
+			resDado2 = aPoly.getDados().getValorSegundoDado();
+		}
+		aPoly.acabarTurno();
+		while (resDado1 != resDado2) {
+			aPoly.turnar(unJugador);
+			resDado1 = aPoly.getDados().getValorPrimerDado();
+			resDado2 = aPoly.getDados().getValorSegundoDado();
+		}
+		aPoly.acabarTurno();
+
+		assertNotEquals(unJugador, aPoly.getJugadorActual());
+	}
 	
 	
 
