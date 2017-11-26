@@ -111,10 +111,10 @@ public class Barrio implements Encasillable, Comprable{
 					Barrio unVecino = (Barrio) this.propietario.getPropiedad(this.getVecino());
 					this.propietario.sacarDinero(this.datosDeBarrio.getPrecioHotel());
 					this.hotelConstruido = (unVecino.getNumeroDeCasasConstruidas() == this.numeroDeCasasConstruidas);
+					return;
 			}
 		}
-		else
-			throw new BarrioNoPuedeConstruirHotelException();
+		throw new BarrioNoPuedeConstruirHotelException();
 	}
 	
 	private boolean puedeTenerHotel() {
