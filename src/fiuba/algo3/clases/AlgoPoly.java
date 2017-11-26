@@ -6,7 +6,9 @@ import java.util.ListIterator;
 public class AlgoPoly {
 
 	private static final int JUGADORES_INICIALES = 3;
+	private static final int JUGADOR_FINAL = 1;
 	private LinkedList<Jugador> jugadores = new LinkedList<Jugador>();
+	private LinkedList<Ficha> fichas = new LinkedList<Ficha>();
 	private Tablero tablero = new Tablero();
 	private ListIterator<Jugador> jugadorActual;
 	private Dados dados = new Dados();
@@ -24,6 +26,7 @@ public class AlgoPoly {
 			Jugador unJugador = new Jugador(tablero.getCasillero(0));
 			this.tablero.agregarJugador(unJugador);
 			this.jugadores.add(unJugador);
+			this.setFicha(unJugador);
 		}	
 	}
 	
@@ -60,13 +63,7 @@ public class AlgoPoly {
 		
 		}
 		
-		this.jugadorActual.next();		
-		
-		if (!this.jugadorActual.hasNext()) {
-			
-			this.jugadorActual = jugadores.listIterator();
-		
-		}
+		this.avanzarASiguienteJugador();
 		
 		this.jugadorHabiaSacadoDobles = false;
 	
@@ -75,17 +72,15 @@ public class AlgoPoly {
 		
 	public Casillero turnar(Jugador unJugador) {
 			
-			dados = unJugador.tirarDados(dados);
-			
-			tablero.modificarPosicion(unJugador, dados.getSuma());
-			
-			Casillero unCasillero = tablero.getCasillero(tablero.getPosicion(unJugador));
+		dados = unJugador.tirarDados(dados);
 		
-			return unCasillero;
+		tablero.modificarPosicion(unJugador, dados.getSuma());
+			
+		Casillero unCasillero = tablero.getCasillero(tablero.getPosicion(unJugador));
+		
+		return unCasillero;
 			
 	}
-			
-		
 	
 	public void accionarCasillero(Casillero unCasillero, Jugador unJugador) {
 		
@@ -95,6 +90,53 @@ public class AlgoPoly {
 	
 	public Dados getDados() {
 		return this.dados;
+	}
+	
+	public int getCuantosJugadoresPerdieron() {
+		int i = 0;
+		for (Jugador unJugador: this.jugadores) {
+			if (unJugador.esPerdedor()) i++;
+		}
+		return i;
+	}
+	
+	public void avanzarASiguienteJugador() {
+		this.jugadorActual.next();	
+		if (!this.jugadorActual.hasNext()) {
+			this.jugadorActual = jugadores.listIterator();
+		}
+	}
+	
+	public boolean hayPerdedores() {
+		return (this.getCuantosJugadoresPerdieron() > 0);
+	}
+	
+	public boolean esPerdedorJugadorActual() {
+		return this.getJugadorActual().esPerdedor();
+	}
+	
+	public void sacarJugadorActualSiPerdio() {
+		if (!this.esPerdedorJugadorActual()) return;
+		Jugador unJugador = this.getJugadorActual();
+		this.jugadores.remove(unJugador);
+		this.avanzarASiguienteJugador();
+	}
+	
+	public boolean sePuedeSeguirJugando() {
+		return (this.jugadores.size() > JUGADOR_FINAL);
+	}
+	
+	// Codigo de prueba para las vistas (hay que hablarlo).
+	
+	public void setFicha(Jugador unJugador) {
+		Terreno terreno = new Terreno(840, 360);
+		Ficha ficha = new Ficha(unJugador, terreno, new Posicion(740, 330));
+		ficha.setDireccion(Direccion.oeste());
+		this.fichas.add(ficha);
+	}
+	
+	public Ficha getFicha(int index) {
+		return this.fichas.get(index);
 	}
 	
 }

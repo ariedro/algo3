@@ -20,13 +20,13 @@ public class Aplicacion extends Application {
         AlgoPoly algoPoly = crearModelo();
         
         ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage, algoPoly);
-        Scene escenaJuego = new Scene(contenedorPrincipal, 800, 600);
+        Scene escenaJuego = new Scene(contenedorPrincipal, 1280, 720);
 
         AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = new AplicacionOnKeyPressEventHandler(stage, contenedorPrincipal.getBarraDeMenu());
         escenaJuego.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
         
         ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(stage, escenaJuego);
-        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 800, 600);
+        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 1280, 720);
 
         // add handler to this:
         // stage.setOnCloseRequest()

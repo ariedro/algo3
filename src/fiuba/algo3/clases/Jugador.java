@@ -21,12 +21,15 @@ public class Jugador {
 	private Casillero ubicacion;
 	
 	private int resultadoDados;
+	
+	private boolean esPerdedor;
 		
 	public Jugador(Casillero ubicacionInicial){
 		this.dinero = DINERO_INICIAL;
 		this.propiedades = new LinkedList<Comprable>();
 		this.estado = new EstadoJugadorEnLibertad(this);
 		this.setUbicacion(ubicacionInicial);
+		this.esPerdedor = false;
 	}
 	
 	// Constructor alternativo para las pruebas, este no es el que maneja AlgoPoly
@@ -182,6 +185,57 @@ public class Jugador {
 		
 		return this.propiedades;
 		
+	}
+	
+	public boolean tieneSuficienteDinero(int unPrecio) {
+		return this.getDinero() > unPrecio;
+	}
+
+	public boolean tienePropiedadesConValorSuficiente(int unPrecio) {
+		int valorTotal = 0;
+		for (Comprable unaPropiedad: this.propiedades) {
+			valorTotal += unaPropiedad.getPrecio();
+		}
+		return (valorTotal > unPrecio);
+	}
+	
+	public String getPropiedadDeMenorValor() {
+		String unNombre = "";
+		int valor = 100000;
+		for (Comprable unaPropiedad: this.getPropiedades()) {
+			if (valor > unaPropiedad.getPrecio()) {
+				valor = unaPropiedad.getPrecio();
+				unNombre = unaPropiedad.getNombre();
+			}
+		}
+		return unNombre;
+	}
+	
+	public void elegirQuePropiedadesVender() {
+		//Hay que cambiar este pedazo de codigo para que quede acorde.
+		String unNombre = "";
+		
+		// Codigo en base al mail de Fede (a considerar).
+		// unNombre = this.getPropiedadDeMenorValor();
+		
+		this.venderPropiedad(unNombre);
+	}
+	
+	private void venderTodasLasPropiedades() {
+		Comprable unaPropiedad = null;
+		for(int i = 0; i < this.propiedades.size(); unaPropiedad = this.propiedades.removeFirst()) {
+			this.venderPropiedad(unaPropiedad.getNombre());
+		}
+		this.declararPerdedor();
+	}
+	
+	public void declararPerdedor() {
+		this.venderTodasLasPropiedades();
+		this.esPerdedor = true;
+	}
+
+	public boolean esPerdedor() {
+		return this.esPerdedor;
 	}
 	
 }

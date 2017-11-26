@@ -32,8 +32,14 @@ public class Barrio implements Encasillable, Comprable{
 			unJugador.comprarPropiedad(this);
 			this.setPropietario(unJugador);
 		}
-		else if (this.tienePropietario() && !this.esPropietario(unJugador)) this.cobrarAlquiler(unJugador);
-		
+		else if (this.tienePropietario() && !this.esPropietario(unJugador)) {
+			if (unJugador.tieneSuficienteDinero(this.getPrecio())) this.cobrarAlquiler(unJugador);
+			else if (unJugador.tienePropiedadesConValorSuficiente(this.getPrecio())) {
+				unJugador.elegirQuePropiedadesVender();
+				this.cobrarAlquiler(unJugador);
+			}
+			else unJugador.declararPerdedor();
+		}
 	}
 
 	public boolean tienePropietario() {
@@ -66,7 +72,7 @@ public class Barrio implements Encasillable, Comprable{
 		if(this.numeroDeCasasConstruidas == 0) valor = this.datosDeBarrio.getAlquilerSimple();
 		if(this.numeroDeCasasConstruidas == 1) valor = this.datosDeBarrio.getAlquilerUnaCasa();
 		if(this.numeroDeCasasConstruidas == 2) valor = this.datosDeBarrio.getAlquilerDosCasas();
-		if(this.numeroDeCasasConstruidas == 2 && this.hotelConstruido) valor = this.datosDeBarrio.getAlquilerHotel();
+		if(this.numeroDeCasasConstruidas == 2 && this.fueConstruidoHotel()) valor = this.datosDeBarrio.getAlquilerHotel();
 		return valor;
 	}
 	
@@ -92,7 +98,7 @@ public class Barrio implements Encasillable, Comprable{
 	
 	public void construirCasa() {
 		if (this.tienePropietario()) {
-			if (this.getMaximoCasas() > 1 && (this.hotelConstruido == false)) this.construirConVecino();
+			if (this.getMaximoCasas() > 1 && (!this.fueConstruidoHotel())) this.construirConVecino();
 			else this.construirConSoloUnaCasa();
 		}
 	}
@@ -105,7 +111,7 @@ public class Barrio implements Encasillable, Comprable{
 	}
 	
 	public void construirHotel() {
-		if (this.puedeTenerHotel() && this.tienePropietario() && (this.getMaximoCasas() > 1 && (this.hotelConstruido == false))) {
+		if (this.puedeTenerHotel() && this.tienePropietario() && (this.getMaximoCasas() > 1 && (!this.fueConstruidoHotel()))) {
 			if (this.propietario.estaEntreLasPropiedades(this.getVecino()) && 
 				(this.getMaximoCasas() <= this.numeroDeCasasConstruidas)) {
 					Barrio unVecino = (Barrio) this.propietario.getPropiedad(this.getVecino());

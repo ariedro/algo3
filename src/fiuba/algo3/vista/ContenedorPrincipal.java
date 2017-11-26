@@ -34,28 +34,28 @@ public class ContenedorPrincipal extends BorderPane {
     BarraDeMenu menuBar;
     Canvas canvasCentral;
     VBox contenedorCentral;
+    VistaTablero vistaTablero;
 
     public ContenedorPrincipal(Stage stage, AlgoPoly algoPoly) {
         
-    	this.setMenu(stage);
-        this.setCentro();
+     	this.setMenu(stage);
+        this.setCentro(algoPoly);
         this.setConsola();
         this.setBotonera(algoPoly);
-        
     }
 
-    private void setBotonera(AlgoPoly algoPoly) {
+	private void setBotonera(AlgoPoly algoPoly) {
     	
-    	VBox contenedorVertical = new VBox(10);
+    		VBox contenedorVertical = new VBox(10);
     	
-    	Button botonDados = new Button();
+    		Button botonDados = new Button();
         botonDados.setText("Tirar Dados");
         BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(algoPoly);
         botonDados.setOnAction(tirarDadosHandler);
         contenedorVertical.getChildren().add(botonDados);
         
         
-    	Button botonVender = new Button();
+        Button botonVender = new Button();
         botonVender.setText("Vender Propiedades");
         BotonVenderPropiedadesHandler venderPropiedadesHandler = new BotonVenderPropiedadesHandler(algoPoly, this, contenedorVertical);
         botonVender.setOnAction(venderPropiedadesHandler);
@@ -84,13 +84,16 @@ public class ContenedorPrincipal extends BorderPane {
 
     private void setMenu(Stage stage) {
         
-    	this.menuBar = new BarraDeMenu(stage);
+    		this.menuBar = new BarraDeMenu(stage);
         this.setTop(menuBar);
     }
 
-    private void setCentro() {
+    private void setCentro(AlgoPoly algoPoly) {
+    		
     	
-    	canvasCentral = new Canvas(460, 220);
+    		canvasCentral = new Canvas(840, 360);
+    		vistaTablero = new VistaTablero(canvasCentral, algoPoly);
+    		vistaTablero.dibujar();
 
         contenedorCentral = new VBox(canvasCentral);
         contenedorCentral.setAlignment(Pos.CENTER);
@@ -156,5 +159,6 @@ public class ContenedorPrincipal extends BorderPane {
 		contenedorPrincipal.setLeft(contenedorVertical);
 			
 	}
+
 
 }
