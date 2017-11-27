@@ -7,6 +7,7 @@ import fiuba.algo3.estados.EstadoJugador;
 import fiuba.algo3.estados.EstadoJugadorEnCana;
 import fiuba.algo3.estados.EstadoJugadorEnLibertad;
 import fiuba.algo3.excepciones.JugadorNoTieneDineroException;
+import fiuba.algo3.excepciones.JugadorYaTiroDadosException;
 
 public class Jugador {
 	
@@ -23,6 +24,8 @@ public class Jugador {
 	private int resultadoDados;
 	
 	private boolean esPerdedor;
+	
+	private boolean yaTiroDados;
 		
 	public Jugador(Casillero ubicacionInicial){
 		this.dinero = DINERO_INICIAL;
@@ -131,6 +134,7 @@ public class Jugador {
 
 	public void finalizarTurno() {
 		this.estado.finalizarTurno();
+		this.yaTiroDados = false;
 	}
 
 	public void setUbicacion(Casillero unCasillero) {
@@ -175,10 +179,11 @@ public class Jugador {
 	}
 
 	public Dados tirarDados(Dados dados) {
-		
+		if (this.yaTiroDados)
+			throw new JugadorYaTiroDadosException();
 		dados.rolarDados();
 		this.resultadoDados = dados.getSuma();
-		
+		this.yaTiroDados = true;		
 		return dados;
 		
 	}

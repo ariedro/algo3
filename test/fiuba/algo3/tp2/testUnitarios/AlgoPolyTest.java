@@ -117,6 +117,8 @@ public class AlgoPolyTest {
 		int resDado1 = aPoly.getDados().getValorPrimerDado();
 		int resDado2 = aPoly.getDados().getValorSegundoDado();
 		while (resDado1 != resDado2) {
+			aPoly.acabarTurno();
+			unJugador = aPoly.getJugadorActual();
 			aPoly.turnar(unJugador);
 			resDado1 = aPoly.getDados().getValorPrimerDado();
 			resDado2 = aPoly.getDados().getValorSegundoDado();
@@ -135,12 +137,16 @@ public class AlgoPolyTest {
 		int resDado1 = aPoly.getDados().getValorPrimerDado();
 		int resDado2 = aPoly.getDados().getValorSegundoDado();
 		while (resDado1 != resDado2) {
+			aPoly.acabarTurno();
+			unJugador = aPoly.getJugadorActual();
 			aPoly.turnar(unJugador);
 			resDado1 = aPoly.getDados().getValorPrimerDado();
 			resDado2 = aPoly.getDados().getValorSegundoDado();
 		}
 		aPoly.acabarTurno();
 		while (resDado1 != resDado2) {
+			aPoly.acabarTurno();
+			unJugador = aPoly.getJugadorActual();
 			aPoly.turnar(unJugador);
 			resDado1 = aPoly.getDados().getValorPrimerDado();
 			resDado2 = aPoly.getDados().getValorSegundoDado();

@@ -32,16 +32,14 @@ public class Aplicacion extends Application {
         // stage.setOnCloseRequest()
 
         stage.setScene(escenaBienvenidos);
-        stage.setFullScreen(true);
+        stage.setFullScreen(false);
 
         stage.show();
 
     }
     
     private AlgoPoly crearModelo() {
-        //Terreno terreno = new Terreno(460, 250);
         AlgoPoly algoPoly = new AlgoPoly();
-        //robot.setDireccion(Direccion.oeste());
         return algoPoly;
     }
 }

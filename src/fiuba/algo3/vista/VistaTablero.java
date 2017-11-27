@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import fiuba.algo3.clases.AlgoPoly;
 import fiuba.algo3.clases.Casillero;
-import fiuba.algo3.clases.Ficha;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;

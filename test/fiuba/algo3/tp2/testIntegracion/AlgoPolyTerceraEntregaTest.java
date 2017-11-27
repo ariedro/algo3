@@ -14,6 +14,7 @@ import fiuba.algo3.clases.Jugador;
 import fiuba.algo3.clases.Tablero;
 import fiuba.algo3.excepciones.BarrioNoPuedeConstruirHotelException;
 import fiuba.algo3.excepciones.JugadorNoPuedePagarFianzaException;
+import fiuba.algo3.excepciones.JugadorYaTiroDadosException;
 
 public class AlgoPolyTerceraEntregaTest {
 
@@ -39,6 +40,8 @@ public class AlgoPolyTerceraEntregaTest {
 		int resDado1 = aPoly.getDados().getValorPrimerDado();
 		int resDado2 = aPoly.getDados().getValorSegundoDado();
 		while (resDado1 != resDado2) {
+			aPoly.acabarTurno();
+			unJugador = aPoly.getJugadorActual();
 			aPoly.turnar(unJugador);
 			resDado1 = aPoly.getDados().getValorPrimerDado();
 			resDado2 = aPoly.getDados().getValorSegundoDado();
@@ -58,12 +61,16 @@ public class AlgoPolyTerceraEntregaTest {
 		int resDado1 = aPoly.getDados().getValorPrimerDado();
 		int resDado2 = aPoly.getDados().getValorSegundoDado();
 		while (resDado1 != resDado2) {
+			aPoly.acabarTurno();
+			unJugador = aPoly.getJugadorActual();
 			aPoly.turnar(unJugador);
 			resDado1 = aPoly.getDados().getValorPrimerDado();
 			resDado2 = aPoly.getDados().getValorSegundoDado();
 		}
 		aPoly.acabarTurno();
 		while (resDado1 != resDado2) {
+			aPoly.acabarTurno();
+			unJugador = aPoly.getJugadorActual();
 			aPoly.turnar(unJugador);
 			resDado1 = aPoly.getDados().getValorPrimerDado();
 			resDado2 = aPoly.getDados().getValorSegundoDado();

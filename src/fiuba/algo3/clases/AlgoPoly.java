@@ -8,12 +8,10 @@ public class AlgoPoly {
 	private static final int JUGADORES_INICIALES = 3;
 	private static final int JUGADOR_FINAL = 1;
 	private LinkedList<Jugador> jugadores = new LinkedList<Jugador>();
-	private LinkedList<Ficha> fichas = new LinkedList<Ficha>();
 	private Tablero tablero = new Tablero();
 	private ListIterator<Jugador> jugadorActual;
 	private Dados dados = new Dados();
 	private boolean jugadorHabiaSacadoDobles = false;
-	
 	
 	
 	public AlgoPoly() {
@@ -26,7 +24,6 @@ public class AlgoPoly {
 			Jugador unJugador = new Jugador(tablero.getCasillero(0));
 			this.tablero.agregarJugador(unJugador);
 			this.jugadores.add(unJugador);
-			this.setFicha(unJugador);
 		}	
 	}
 	
@@ -35,7 +32,7 @@ public class AlgoPoly {
 	}
 	
 	public LinkedList<Jugador> getJugadores(){
-		return jugadores;
+		return this.jugadores;
 	}
 
 	public Tablero getTablero() {
@@ -129,18 +126,5 @@ public class AlgoPoly {
 	public boolean sePuedeSeguirJugando() {
 		return (this.jugadores.size() > JUGADOR_FINAL);
 	}
-	
-	// Codigo de prueba para las vistas (hay que hablarlo).
-	
-	public void setFicha(Jugador unJugador) {
-		Terreno terreno = new Terreno(840, 360);
-		Ficha ficha = new Ficha(unJugador, terreno, new Posicion(740, 330));
-		ficha.setDireccion(Direccion.oeste());
-		this.fichas.add(ficha);
-	}
-	
-	public Ficha getFicha(int index) {
-		return this.fichas.get(index);
-	}
-	
+
 }

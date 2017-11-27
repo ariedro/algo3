@@ -35,11 +35,14 @@ public class ContenedorPrincipal extends BorderPane {
     Canvas canvasCentral;
     VBox contenedorCentral;
     VistaTablero vistaTablero;
+    VBox contenedorDados;
+    VistaDados vistaDados;
 
     public ContenedorPrincipal(Stage stage, AlgoPoly algoPoly) {
         
      	this.setMenu(stage);
         this.setCentro(algoPoly);
+        this.setDados(algoPoly);
         this.setConsola();
         this.setBotonera(algoPoly);
     }
@@ -50,7 +53,7 @@ public class ContenedorPrincipal extends BorderPane {
     	
     	Button botonDados = new Button();
         botonDados.setText("Tirar Dados");
-        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaTablero, algoPoly);
+        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaTablero, vistaDados, algoPoly);
         botonDados.setOnAction(tirarDadosHandler);
         contenedorVertical.getChildren().add(botonDados);
         
@@ -94,17 +97,21 @@ public class ContenedorPrincipal extends BorderPane {
     	canvasCentral = new Canvas(840, 360);
     	vistaTablero = new VistaTablero(canvasCentral, algoPoly);
     	vistaTablero.dibujar();
-
         contenedorCentral = new VBox(canvasCentral);
         contenedorCentral.setAlignment(Pos.CENTER);
         contenedorCentral.setSpacing(20);
-        contenedorCentral.setPadding(new Insets(25));
+        contenedorCentral.setPadding(new Insets(25));    	
+        
         Image imagen = new Image("file:src/fiuba/algo3/vista/imagenes/textura.png");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         contenedorCentral.setBackground(new Background(imagenDeFondo));
 
         this.setCenter(contenedorCentral);
     		
+    }
+    
+    private void setDados(AlgoPoly algoPoly) {
+    	vistaDados = new VistaDados(canvasCentral, algoPoly.getDados());
     }
 
     private void setConsola() {

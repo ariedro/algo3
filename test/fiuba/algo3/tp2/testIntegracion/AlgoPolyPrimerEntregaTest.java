@@ -132,7 +132,7 @@ public class AlgoPolyPrimerEntregaTest {
 		unJugador.tirarDados(unosDados);
 		
 		while (unosDados.getSuma() > 6) {
-			
+			unJugador.finalizarTurno();
 			unJugador.tirarDados(unosDados);
 			
 		}
@@ -166,6 +166,7 @@ public class AlgoPolyPrimerEntregaTest {
 		
 		while (unosDados.getSuma() < 7 || unosDados.getSuma() > 10) {
 		
+			unJugador.finalizarTurno();
 			unJugador.tirarDados(unosDados);
 		
 		}
@@ -198,7 +199,10 @@ public class AlgoPolyPrimerEntregaTest {
 		
 		unJugador.tirarDados(unosDados);
 		
-		while (unosDados.getSuma() < 11) unJugador.tirarDados(unosDados);
+		while (unosDados.getSuma() < 11) {
+			unJugador.finalizarTurno();
+			unJugador.tirarDados(unosDados);
+		}
 		
 		Casillero casilleroAvanceDinamico = unTablero.getCasillero(INDICE_AVANCE_DINAMICO);
 		
@@ -229,7 +233,10 @@ public class AlgoPolyPrimerEntregaTest {
 		
 		unJugador.tirarDados(unosDados);
 		
-		while (unosDados.getSuma() > 6) unJugador.tirarDados(unosDados);
+		while (unosDados.getSuma() > 6) {
+			unJugador.finalizarTurno();
+			unJugador.tirarDados(unosDados);
+		}
 		
 		Casillero casilleroRetrocesoDinamico = unTablero.getCasillero(INDICE_RETROCESO_DINAMICO);
 		
@@ -284,7 +291,10 @@ public class AlgoPolyPrimerEntregaTest {
 		
 		unJugador.tirarDados(unosDados);
 		
-		while (unosDados.getSuma() < 11) unJugador.tirarDados(unosDados);
+		while (unosDados.getSuma() < 11) {
+			unJugador.finalizarTurno();
+			unJugador.tirarDados(unosDados);
+		}
 
 		Casillero casilleroRetrocesoDinamico = unTablero.getCasillero(INDICE_RETROCESO_DINAMICO);
 		
