@@ -46,9 +46,6 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 		this.vistaTablero.update();
 		this.vistaDados.update();
 		this.botonFinTurno.setDisable(false);;
-		//Acá tira error cuando quiere reubicar en el tablero al jugador, no 
-		//entiendo por qué devuelve un casillero(pero eso no seria el problema)
-		//el problema esta cuando llama a reubicarlo en el tablero
 	}
 	
 	public void tirarAlertaQueYaTiroDados() {
