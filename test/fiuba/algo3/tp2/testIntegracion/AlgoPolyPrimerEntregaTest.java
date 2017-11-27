@@ -264,6 +264,8 @@ public class AlgoPolyPrimerEntregaTest {
 		
 		while (( unosDados.getSuma() < 7 ) || ( unosDados.getSuma() > 10 )) {
 			
+			unJugador.finalizarTurno();
+			
 			unJugador.tirarDados(unosDados);
 			
 		}
