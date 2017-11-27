@@ -157,7 +157,7 @@ public class ContenedorPrincipal extends BorderPane {
 				
 			botonVender.setText(propiedad.getNombre());
 				
-			BotonVentaHandler botonVenderHandler = new BotonVentaHandler(propiedad, algoPoly);
+			BotonVentaHandler botonVenderHandler = new BotonVentaHandler(propiedad, algoPoly, botonVender);
 			
 			botonVender.setOnAction(botonVenderHandler);
 		
