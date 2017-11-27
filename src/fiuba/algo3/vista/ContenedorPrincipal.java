@@ -51,13 +51,6 @@ public class ContenedorPrincipal extends BorderPane {
     	
     	VBox contenedorVertical = new VBox(10);
     	
-    	Button botonDados = new Button();
-        botonDados.setText("Tirar Dados");
-        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaTablero, vistaDados, algoPoly);
-        botonDados.setOnAction(tirarDadosHandler);
-        contenedorVertical.getChildren().add(botonDados);
-        
-        
         Button botonVender = new Button();
         botonVender.setText("Vender Propiedades");
         BotonVenderPropiedadesHandler venderPropiedadesHandler = new BotonVenderPropiedadesHandler(algoPoly, this, contenedorVertical);
@@ -73,9 +66,17 @@ public class ContenedorPrincipal extends BorderPane {
         
         Button botonFinalizarTurno = new Button();
         botonFinalizarTurno.setText("Finalizar Turno");
-        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(algoPoly);
+        botonFinalizarTurno.setDisable(true);
+        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(vistaTablero, algoPoly, botonFinalizarTurno);
         botonFinalizarTurno.setOnAction(finalizarTurnoHandler);
         contenedorVertical.getChildren().add(botonFinalizarTurno);
+        
+    	Button botonDados = new Button();
+        botonDados.setText("Tirar Dados");
+        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaTablero, vistaDados, algoPoly, botonFinalizarTurno);
+        botonDados.setOnAction(tirarDadosHandler);
+        contenedorVertical.getChildren().add(botonDados);
+        
         
         
         contenedorVertical.setSpacing(10);

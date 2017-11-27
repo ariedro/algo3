@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -25,11 +26,13 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 	private final AlgoPoly algoPoly;
 	private final VistaTablero vistaTablero;
 	private final VistaDados vistaDados;
+	private final Button botonFinTurno;
 	
-	public BotonTirarDadosHandler(VistaTablero unaVistaTablero, VistaDados unaVistaDados, AlgoPoly juego) {
+	public BotonTirarDadosHandler(VistaTablero unaVistaTablero, VistaDados unaVistaDados, AlgoPoly juego, Button unBotonFinTurno) {
 		this.algoPoly = juego;
 		this.vistaTablero = unaVistaTablero;
 		this.vistaDados = unaVistaDados;
+		this.botonFinTurno = unBotonFinTurno;
 	}
 	
 	@Override
@@ -42,6 +45,7 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 		}
 		this.vistaTablero.update();
 		this.vistaDados.update();
+		this.botonFinTurno.setDisable(false);;
 		//Acá tira error cuando quiere reubicar en el tablero al jugador, no 
 		//entiendo por qué devuelve un casillero(pero eso no seria el problema)
 		//el problema esta cuando llama a reubicarlo en el tablero
