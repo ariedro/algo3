@@ -68,14 +68,17 @@ public class ContenedorPrincipal extends BorderPane {
         
         Button botonFinalizarTurno = new Button();
         botonFinalizarTurno.setText("Finalizar Turno");
+        
+        Button botonDados = new Button();
+        botonDados.setText("Tirar Dados");
+        
         botonFinalizarTurno.setDisable(true);
-        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(vistaTablero, vistaInfoJugadores, algoPoly, botonFinalizarTurno);
+        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(vistaTablero, vistaInfoJugadores, algoPoly, botonFinalizarTurno,botonDados, botonVender);
         botonFinalizarTurno.setOnAction(finalizarTurnoHandler);
+        if (algoPoly.getJugadorActual().estaEnCana()) botonFinalizarTurno.setDisable(false);
         contenedorVertical.getChildren().add(botonFinalizarTurno);
         
-    	Button botonDados = new Button();
-        botonDados.setText("Tirar Dados");
-        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaTablero, vistaDados, vistaInfoJugadores, algoPoly, botonFinalizarTurno);
+        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaTablero, vistaDados, vistaInfoJugadores, algoPoly, botonFinalizarTurno, botonVender);
         botonDados.setOnAction(tirarDadosHandler);
         contenedorVertical.getChildren().add(botonDados);
         

@@ -12,8 +12,8 @@ public class Tablero {
 	
 	public Tablero(){
 		Inicializador unInicializador = new Inicializador();
-		unInicializador.inicializarTablero(this);
 		this.unIndice = new IndiceDeTablero();
+		unInicializador.inicializarTablero(this);
 	}
 	
 	public void agregarJugador(Jugador unJugador) {
@@ -80,8 +80,7 @@ public class Tablero {
 	}
 
 	public Casillero getCarcel() {
-		
-		return this.listaCasilleros.get(5);
+		return this.listaCasilleros.get(this.getIndiceConNombre("Carcel"));
 		
 	}
 	

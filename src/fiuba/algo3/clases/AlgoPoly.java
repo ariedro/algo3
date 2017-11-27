@@ -55,6 +55,10 @@ public class AlgoPoly {
 	public int getIndiceJugadorActual() {
 		return jugadorActual.nextIndex() + 1;
 	}
+	
+	public Jugador getJugadorMedianteIndice(int indice) {
+		return this.jugadores.get(indice - 1);
+	}
 
 	public void acabarTurno() {
 	
