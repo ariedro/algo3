@@ -30,8 +30,12 @@ public class AlgoPoly {
 		}	
 	}
 	
-	public Object getCantidadJugadores() {	
+	public int getCantidadJugadores() {	
 		return (this.jugadores.size());
+	}
+	
+	public LinkedList<Jugador> getJugadores(){
+		return jugadores;
 	}
 
 	public Tablero getTablero() {

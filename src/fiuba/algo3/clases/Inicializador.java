@@ -24,19 +24,16 @@ public class Inicializador {
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.CORDOBA_SUR))));
 		unTablero.agregarCasillero(inicializarCasillero(new AvanceDinamico(unTablero)));
 		unTablero.agregarCasillero(inicializarCasillero(new Servicio(DatosDeServicio.getDatosServicio(Servicios.SUBTE))));
-		
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.CORDOBA_NORTE))));
 
 		unTablero.agregarCasillero(inicializarCasillero(new ImpuestoAlLujo()));
-		
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.SANTA_FE))));
 		unTablero.agregarCasillero(inicializarCasillero(new Servicio(DatosDeServicio.getDatosServicio(Servicios.AYSA))));
-		
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.SALTA_NORTE))));
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.SALTA_SUR))));
+		
 		unTablero.agregarCasillero(inicializarCasillero(new Policia(unTablero)));
 		unTablero.agregarCasillero(inicializarCasillero(new Servicio(DatosDeServicio.getDatosServicio(Servicios.TREN))));
-		
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.NEUQUEN))));
 		unTablero.agregarCasillero(inicializarCasillero(new RetrocesoDinamico(unTablero)));
 		unTablero.agregarCasillero(inicializarCasillero(new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.TUCUMAN))));

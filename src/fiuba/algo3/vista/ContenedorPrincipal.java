@@ -46,11 +46,11 @@ public class ContenedorPrincipal extends BorderPane {
 
 	private void setBotonera(AlgoPoly algoPoly) {
     	
-    		VBox contenedorVertical = new VBox(10);
+    	VBox contenedorVertical = new VBox(10);
     	
-    		Button botonDados = new Button();
+    	Button botonDados = new Button();
         botonDados.setText("Tirar Dados");
-        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(algoPoly);
+        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaTablero, algoPoly);
         botonDados.setOnAction(tirarDadosHandler);
         contenedorVertical.getChildren().add(botonDados);
         
@@ -84,16 +84,16 @@ public class ContenedorPrincipal extends BorderPane {
 
     private void setMenu(Stage stage) {
         
-    		this.menuBar = new BarraDeMenu(stage);
+    	this.menuBar = new BarraDeMenu(stage);
         this.setTop(menuBar);
     }
 
     private void setCentro(AlgoPoly algoPoly) {
     		
     	
-    		canvasCentral = new Canvas(840, 360);
-    		vistaTablero = new VistaTablero(canvasCentral, algoPoly);
-    		vistaTablero.dibujar();
+    	canvasCentral = new Canvas(840, 360);
+    	vistaTablero = new VistaTablero(canvasCentral, algoPoly);
+    	vistaTablero.dibujar();
 
         contenedorCentral = new VBox(canvasCentral);
         contenedorCentral.setAlignment(Pos.CENTER);

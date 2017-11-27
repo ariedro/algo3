@@ -1,6 +1,9 @@
 package fiuba.algo3.vista;
 
+import java.util.HashMap;
+
 import fiuba.algo3.clases.AlgoPoly;
+import fiuba.algo3.clases.Casillero;
 import fiuba.algo3.clases.Ficha;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
@@ -10,11 +13,28 @@ public class VistaTablero {
     Canvas canvas;
     AlgoPoly algoPoly;
     Image imagenTablero;
+	HashMap<Casillero,Vector> posicionesCasilleros;
+
+	
 
     public VistaTablero(Canvas canvas, AlgoPoly algoPoly) {
         this.canvas = canvas;
         this.algoPoly = algoPoly;
         this.imagenTablero = new Image("file:src/fiuba/algo3/vista/imagenes/tableroJuego.png");
+        this.posicionesCasilleros = new HashMap<>();
+        for(int i = 0; i < 5; i++) {
+        	posicionesCasilleros.put(algoPoly.getTablero().getCasillero(i), new Vector(770 - (i * 140), 330));
+        }
+        for(int i = 0; i < 6; i++) {
+        	posicionesCasilleros.put(algoPoly.getTablero().getCasillero(i + 5), new Vector(70, 330 - (i * 60)));
+        }
+        for(int i = 0; i < 5; i++) {
+        	posicionesCasilleros.put(algoPoly.getTablero().getCasillero(i + 11), new Vector(210 + (i * 140), 30));
+        }
+        for(int i = 0; i < 4; i++) {
+        	posicionesCasilleros.put(algoPoly.getTablero().getCasillero(i + 16), new Vector(770, 90 + (i * 60)));
+        }
+        
     }
 
     public void dibujar() {
@@ -23,17 +43,19 @@ public class VistaTablero {
 
     private void dibujarFormas() {
         this.clean();
-        canvas.getGraphicsContext2D().setFill(Color.CRIMSON);
-        Ficha primerFicha = this.algoPoly.getFicha(0);
-        canvas.getGraphicsContext2D().fillOval(primerFicha.getPosicion().getX() + 10, primerFicha.getPosicion().getY() + 10, primerFicha.RADIO, primerFicha.RADIO);
+        canvas.getGraphicsContext2D().setFill(Color.DARKBLUE);
+        canvas.getGraphicsContext2D().fillOval(	posicionesCasilleros.get(algoPoly.getJugadores().get(0).getUbicacion()).getX() - 30,
+        										posicionesCasilleros.get(algoPoly.getJugadores().get(0).getUbicacion()).getY(),
+        										30,30);
+        canvas.getGraphicsContext2D().setFill(Color.DARKRED);
+        canvas.getGraphicsContext2D().fillOval(	posicionesCasilleros.get(algoPoly.getJugadores().get(1).getUbicacion()).getX(),
+        										posicionesCasilleros.get(algoPoly.getJugadores().get(1).getUbicacion()).getY(),
+        										30,30);
+        canvas.getGraphicsContext2D().setFill(Color.DARKVIOLET);
+        canvas.getGraphicsContext2D().fillOval(	posicionesCasilleros.get(algoPoly.getJugadores().get(2).getUbicacion()).getX() + 30,
+        										posicionesCasilleros.get(algoPoly.getJugadores().get(2).getUbicacion()).getY(),
+        										30,30);
         
-        canvas.getGraphicsContext2D().setFill(Color.CYAN);
-        Ficha segundaFicha = this.algoPoly.getFicha(1);
-        canvas.getGraphicsContext2D().fillOval(segundaFicha.getPosicion().getX() + 20, segundaFicha.getPosicion().getY() + 10, segundaFicha.RADIO, segundaFicha.RADIO);
-    
-        canvas.getGraphicsContext2D().setFill(Color.FUCHSIA);
-        Ficha tercerFicha = this.algoPoly.getFicha(2);
-        canvas.getGraphicsContext2D().fillOval(tercerFicha.getPosicion().getX() + 30, tercerFicha.getPosicion().getY() + 10, tercerFicha.RADIO, tercerFicha.RADIO);
     }
 
     public void clean() {
