@@ -28,8 +28,6 @@ public class Policia implements Encasillable {
 		
 		unJugador.mover(casilleroCarcel);
 		
-		System.out.println("DEADPOOL");
-		
 		this.mandarALaCarcel(unJugador);
 		
 	}
