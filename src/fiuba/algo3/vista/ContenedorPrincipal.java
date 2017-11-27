@@ -37,13 +37,15 @@ public class ContenedorPrincipal extends BorderPane {
     VistaTablero vistaTablero;
     VBox contenedorDados;
     VistaDados vistaDados;
+    VistaInfoJugadores vistaInfoJugadores;
 
     public ContenedorPrincipal(Stage stage, AlgoPoly algoPoly) {
         
      	this.setMenu(stage);
         this.setCentro(algoPoly);
         this.setDados(algoPoly);
-        this.setConsola();
+        this.setInfoJugadores(algoPoly);
+        //this.setConsola();
         this.setBotonera(algoPoly);
     }
 
@@ -60,24 +62,22 @@ public class ContenedorPrincipal extends BorderPane {
         
         Button botonPagarFianza = new Button();
         botonPagarFianza.setText("Pagar Fianza");
-        BotonPagarFianzaHandler pagarFianzaHandler = new BotonPagarFianzaHandler(algoPoly);
+        BotonPagarFianzaHandler pagarFianzaHandler = new BotonPagarFianzaHandler(algoPoly, vistaInfoJugadores);
         botonPagarFianza.setOnAction(pagarFianzaHandler);
         contenedorVertical.getChildren().add(botonPagarFianza);
         
         Button botonFinalizarTurno = new Button();
         botonFinalizarTurno.setText("Finalizar Turno");
         botonFinalizarTurno.setDisable(true);
-        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(vistaTablero, algoPoly, botonFinalizarTurno);
+        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(vistaTablero, vistaInfoJugadores, algoPoly, botonFinalizarTurno);
         botonFinalizarTurno.setOnAction(finalizarTurnoHandler);
         contenedorVertical.getChildren().add(botonFinalizarTurno);
         
     	Button botonDados = new Button();
         botonDados.setText("Tirar Dados");
-        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaTablero, vistaDados, algoPoly, botonFinalizarTurno);
+        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaTablero, vistaDados, vistaInfoJugadores, algoPoly, botonFinalizarTurno);
         botonDados.setOnAction(tirarDadosHandler);
         contenedorVertical.getChildren().add(botonDados);
-        
-        
         
         contenedorVertical.setSpacing(10);
         contenedorVertical.setPadding(new Insets(15));
@@ -113,6 +113,16 @@ public class ContenedorPrincipal extends BorderPane {
     
     private void setDados(AlgoPoly algoPoly) {
     	vistaDados = new VistaDados(canvasCentral, algoPoly.getDados());
+    }
+    
+    private void setInfoJugadores(AlgoPoly algoPoly) {
+    	vistaInfoJugadores = new VistaInfoJugadores(algoPoly);
+        VBox contenedorInfoJugadores = new VBox(vistaInfoJugadores.getLabel());
+        contenedorInfoJugadores.setSpacing(10);
+        contenedorInfoJugadores.setPadding(new Insets(0));
+        contenedorInfoJugadores.setStyle("-fx-background-color: lightgray;");
+        
+        this.setBottom(contenedorInfoJugadores);
     }
 
     private void setConsola() {

@@ -51,6 +51,10 @@ public class AlgoPoly {
 		return unJugador;
 		
 	}
+	
+	public int getIndiceJugadorActual() {
+		return jugadorActual.nextIndex() + 1;
+	}
 
 	public void acabarTurno() {
 	
@@ -78,6 +82,8 @@ public class AlgoPoly {
 		tablero.modificarPosicion(unJugador, dados.getSuma());
 			
 		Casillero unCasillero = tablero.getCasillero(tablero.getPosicion(unJugador));
+		
+		this.accionarCasillero(unCasillero, unJugador);
 		
 		return unCasillero;
 			
