@@ -24,8 +24,9 @@ public class Servicio implements Encasillable,Comprable {
 		}
 		else if (this.tienePropietario() && !this.esPropietario(unJugador)) {
 			if (unJugador.tieneSuficienteDinero(this.getPrecio())) this.cobrarTarifa(unJugador);
-			else if (unJugador.tienePropiedadesConValorSuficiente(this.getPrecio())) {
-				unJugador.elegirQuePropiedadesVender();
+			else if (unJugador.tienePropiedadesConValorSuficiente(this.getTarifa())) {
+				while (unJugador.getDinero() < this.getTarifa()) 
+					unJugador.elegirQuePropiedadesVender();
 				this.cobrarTarifa(unJugador);
 			}
 			else unJugador.declararPerdedor();
@@ -38,14 +39,14 @@ public class Servicio implements Encasillable,Comprable {
 
 	private void cobrarTarifa(Jugador unJugador) {
 		int numeroDados = unJugador.getResultadoDados();
-		if(!this.propietario.estaEntreLasPropiedades(this.getServicioAsociado())) {
-			unJugador.sacarDinero(numeroDados * this.getTarifaSimple());
-		}
-		else {
-			unJugador.sacarDinero(numeroDados * this.getTarifaDoble());
-		}
+		unJugador.sacarDinero(numeroDados * this.getTarifa());
 	}
 
+	public int getTarifa() {
+		if(!this.propietario.estaEntreLasPropiedades(this.getServicioAsociado())) return this.getTarifaSimple();
+		else return this.getTarifaDoble();
+	}
+	
 	@Override
 	public Jugador getPropietario() {
 		return this.propietario;

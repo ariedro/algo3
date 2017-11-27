@@ -75,23 +75,18 @@ public class AlgoPolyTerceraEntregaTest {
 	
 	// Punto 3
 	@Test
-	public void test03JugadorNoCuentaConEfectivoYCaeEnUnAreaQueGeneraGastoVendeSuPropiedadParaPagarYUnTercerJugadorCompraEsaPropiedad(){
-		// Hay que hablar acerca de esta prueba y muy posiblemente con Fede.
-		
-		/*Jugador primerJugador = new Jugador();
+	public void test03JugadorNoCuentaConEfectivoYCaeEnUnAreaQueGeneraGastoVendeSuPropiedadParaPagarYUnTercerJugadorCompraEsaPropiedad(){Jugador primerJugador = new Jugador();
 		Jugador segundoJugador = new Jugador();
 		Jugador tercerJugador = new Jugador();
 		Tablero unTablero = new Tablero();
-		Casillero primerCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Tucuman")));
+		Casillero primerCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Tucuman"));
 		primerCasillero.accionarPropiedad(primerJugador);
 		Casillero segundoCasillero = unTablero.getCasillero(unTablero.getIndiceConNombre("Santa Fe"));
 		segundoCasillero.accionarPropiedad(segundoJugador);
 		segundoJugador.sacarDinero(DINERO_A_SACAR);
-		primerCasillero.accionarCasillero(segundoJugador);
+		primerCasillero.accionarPropiedad(segundoJugador);
 		segundoCasillero.accionarPropiedad(tercerJugador);
-		assertTrue(tercerJugador.estaEntreLasPropiedades("Santa Fe"));*/
-		
-		assertTrue(true);
+		assertTrue(tercerJugador.estaEntreLasPropiedades("Santa Fe"));
 	}
 	
 	// Punto 4

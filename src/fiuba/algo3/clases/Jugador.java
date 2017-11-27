@@ -55,9 +55,7 @@ public class Jugador {
 	}
 	
 	public int getCantidadPropiedades() {
-		
 		return this.propiedades.size();
-		
 	}
 	
 	public void incorporarPropiedad(Comprable unaPropiedad) {
@@ -91,6 +89,10 @@ public class Jugador {
 				propiedadBuscada = unaPropiedad;
 		}
 		return propiedadBuscada;	
+	}
+	
+	public boolean tienePropiedades() {
+		return (this.getCantidadPropiedades() != 0);
 	}
 	
 	public void construirCasa(String unNombre) {
@@ -194,7 +196,7 @@ public class Jugador {
 	public boolean tienePropiedadesConValorSuficiente(int unPrecio) {
 		int valorTotal = 0;
 		for (Comprable unaPropiedad: this.propiedades) {
-			valorTotal += unaPropiedad.getPrecio();
+			valorTotal += unaPropiedad.getValorVenta();
 		}
 		return (valorTotal > unPrecio);
 	}
@@ -212,17 +214,13 @@ public class Jugador {
 	}
 	
 	public void elegirQuePropiedadesVender() {
-		//Hay que cambiar este pedazo de codigo para que quede acorde.
-		String unNombre = "";
-		
-		// Codigo en base al mail de Fede (a considerar).
-		// unNombre = this.getPropiedadDeMenorValor();
-		
+		String unNombre = this.getPropiedadDeMenorValor();
 		this.venderPropiedad(unNombre);
 	}
 	
 	private void venderTodasLasPropiedades() {
-		Comprable unaPropiedad = null;
+		if (!this.tienePropiedades()) return;
+		Comprable unaPropiedad = this.propiedades.removeFirst();
 		for(int i = 0; i < this.propiedades.size(); unaPropiedad = this.propiedades.removeFirst()) {
 			this.venderPropiedad(unaPropiedad.getNombre());
 		}

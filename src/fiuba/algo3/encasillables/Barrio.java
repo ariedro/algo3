@@ -34,8 +34,9 @@ public class Barrio implements Encasillable, Comprable{
 		}
 		else if (this.tienePropietario() && !this.esPropietario(unJugador)) {
 			if (unJugador.tieneSuficienteDinero(this.getPrecio())) this.cobrarAlquiler(unJugador);
-			else if (unJugador.tienePropiedadesConValorSuficiente(this.getPrecio())) {
-				unJugador.elegirQuePropiedadesVender();
+			else if (unJugador.tienePropiedadesConValorSuficiente(this.getAlquiler())) {
+				while (unJugador.getDinero() < this.getAlquiler()) 
+					unJugador.elegirQuePropiedadesVender();
 				this.cobrarAlquiler(unJugador);
 			}
 			else unJugador.declararPerdedor();
