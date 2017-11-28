@@ -23,13 +23,13 @@ public class Servicio implements Encasillable,Comprable {
 			this.setPropietario(unJugador);
 		}
 		else if (this.tienePropietario() && !this.esPropietario(unJugador)) {
-			if (unJugador.tieneSuficienteDinero(this.getPrecio())) this.cobrarTarifa(unJugador);
+			if (unJugador.tieneSuficienteDinero(this.getTarifa())) this.cobrarTarifa(unJugador);
 			else if (unJugador.tienePropiedadesConValorSuficiente(this.getTarifa())) {
 				while (unJugador.getDinero() < this.getTarifa()) 
 					unJugador.elegirQuePropiedadesVender();
 				this.cobrarTarifa(unJugador);
 			}
-			else unJugador.declararPerdedor();
+			else unJugador.declararPerdedor(this.propietario);
 		}
 	}
 

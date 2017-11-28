@@ -6,6 +6,7 @@ import fiuba.algo3.clases.Encasillable;
 import fiuba.algo3.clases.Jugador;
 import fiuba.algo3.excepciones.BarrioNoPuedeConstruirCasaException;
 import fiuba.algo3.excepciones.BarrioNoPuedeConstruirHotelException;
+import fiuba.algo3.excepciones.JugadorNoTieneDineroException;
 
 public class Barrio implements Encasillable, Comprable{
 	
@@ -40,7 +41,7 @@ public class Barrio implements Encasillable, Comprable{
 					unJugador.elegirQuePropiedadesVender();
 				this.cobrarAlquiler(unJugador);
 			}
-			else unJugador.declararPerdedor();
+			else unJugador.declararPerdedor(this.propietario);
 		}
 	}
 
@@ -98,14 +99,14 @@ public class Barrio implements Encasillable, Comprable{
 		return this.datosDeBarrio.getMaximoCasas();
 	}
 	
-	public void construirCasa() {
+	public void construirCasa() throws JugadorNoTieneDineroException {
 		if (this.tienePropietario()) {
 			if (this.getMaximoCasas() > 1 && (!this.fueConstruidoHotel())) this.construirConVecino();
 			else this.construirConSoloUnaCasa();
 		}
 	}
 	
-	private void construirConSoloUnaCasa() {
+	private void construirConSoloUnaCasa() throws JugadorNoTieneDineroException{
 		if(this.getMaximoCasas() > this.numeroDeCasasConstruidas) {
 			this.propietario.sacarDinero(this.datosDeBarrio.getPrecioCasa());
 			this.numeroDeCasasConstruidas++;
@@ -113,7 +114,7 @@ public class Barrio implements Encasillable, Comprable{
 		else throw new BarrioNoPuedeConstruirCasaException();
 	}
 	
-	public void construirHotel() {
+	public void construirHotel() throws JugadorNoTieneDineroException {
 		if (this.puedeTenerHotel() && this.tienePropietario() && (this.getMaximoCasas() > 1 && (!this.fueConstruidoHotel()))) {
 			if (this.propietario.estaEntreLasPropiedades(this.getVecino()) && 
 				(this.getMaximoCasas() <= this.numeroDeCasasConstruidas)) {

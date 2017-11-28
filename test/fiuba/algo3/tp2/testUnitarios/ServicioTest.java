@@ -33,13 +33,15 @@ public class ServicioTest {
 		Servicio unServicio = new Servicio(DatosDeServicio.getDatosServicio(Servicios.TREN));
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
-		Dado unDado = new Dado();
-		int numeroDado1 = 0;
-		int numeroDado2 = 0;
+		
+		Dados unosDados = new Dados();
+		
+		
+		
 		unServicio.accionarCon(unJugador);
-		numeroDado1 = otroJugador.tirarDado(unDado);
-		numeroDado2 = otroJugador.tirarDado(unDado);
-		otroJugador.setResultadoDados(numeroDado1,numeroDado2);
+
+		otroJugador.tirarDados(unosDados);
+		
 		unServicio.accionarCon(otroJugador);
 		assertEquals(DINERO_INICIAL - (otroJugador.getResultadoDados() * TARIFA_SIMPLE), otroJugador.getDinero());	
 	}
@@ -50,14 +52,14 @@ public class ServicioTest {
 		Servicio otroServicio = new Servicio(DatosDeServicio.getDatosServicio(Servicios.SUBTE));
 		Jugador unJugador = new Jugador();
 		Jugador otroJugador = new Jugador();
-		Dado unDado = new Dado();
-		int numeroDado1 = 0;
-		int numeroDado2 = 0;
+		
+		Dados unosDados = new Dados();
+
 		unServicio.accionarCon(unJugador);
 		otroServicio.accionarCon(unJugador);
-		numeroDado1 = otroJugador.tirarDado(unDado);
-		numeroDado2 = otroJugador.tirarDado(unDado);
-		otroJugador.setResultadoDados(numeroDado1,numeroDado2);
+		
+		otroJugador.tirarDados(unosDados);
+		
 		unServicio.accionarCon(otroJugador);
 		assertEquals(DINERO_INICIAL - (otroJugador.getResultadoDados() * TARIFA_DOBLE), otroJugador.getDinero());	
 	}

@@ -8,6 +8,7 @@ import fiuba.algo3.clases.Jugador;
 import fiuba.algo3.encasillables.Barrio;
 import fiuba.algo3.excepciones.BarrioNoPuedeConstruirCasaException;
 import fiuba.algo3.excepciones.BarrioNoPuedeConstruirHotelException;
+import fiuba.algo3.excepciones.JugadorNoTieneDineroException;
 import fiuba.algo3.vista.ContenedorPrincipal;
 import fiuba.algo3.vista.VistaInfoJugadores;
 import javafx.event.ActionEvent;
@@ -42,7 +43,7 @@ public class BotonConstruirCasaHandler implements EventHandler<ActionEvent>{
 			Media sound = new Media(new File(musicFile).toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
-		} catch (BarrioNoPuedeConstruirCasaException e) {
+		} catch (BarrioNoPuedeConstruirCasaException | JugadorNoTieneDineroException e) {
 			tirarAlerta();
 		}
 		vistaInfoJugadores.update();

@@ -166,9 +166,6 @@ public class Jugador {
 		}
 	}
 	
-	public int tirarDado(Dado unDado) {
-		return unDado.tirar();
-	}
 	
 	public void setResultadoDados(int primerNumero, int segundoNumero) {
 		this.resultadoDados = primerNumero + segundoNumero;
@@ -229,16 +226,19 @@ public class Jugador {
 		for(int i = 0; i < this.propiedades.size(); unaPropiedad = this.propiedades.removeFirst()) {
 			this.venderPropiedad(unaPropiedad.getNombre());
 		}
-		this.declararPerdedor();
 	}
 	
-	public void declararPerdedor() {
+	public void declararPerdedor(Jugador jugadorAlQueLeDebe) {
 		this.venderTodasLasPropiedades();
+		jugadorAlQueLeDebe.recibirDinero(this.getDinero());
+		this.sacarDinero(this.getDinero());
 		this.esPerdedor = true;
 	}
 
 	public boolean esPerdedor() {
 		return this.esPerdedor;
 	}
+	
+	
 	
 }
