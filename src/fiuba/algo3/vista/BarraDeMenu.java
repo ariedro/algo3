@@ -21,6 +21,9 @@ public class BarraDeMenu extends MenuBar {
         MenuItem opcionAbrir = new MenuItem("Abrir");
         MenuItem opcionAcercaDe = new MenuItem("Acerca de...");
         
+        OpcionAbrirEventHandler opcionAbrirHandler = new OpcionAbrirEventHandler();
+        opcionAbrir.setOnAction(opcionAbrirHandler);
+        
         OpcionSalirEventHandler opcionSalirHandler = new OpcionSalirEventHandler();
         opcionSalir.setOnAction(opcionSalirHandler);
 
