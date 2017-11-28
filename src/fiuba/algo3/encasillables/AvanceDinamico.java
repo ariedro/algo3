@@ -27,7 +27,12 @@ public class AvanceDinamico implements Encasillable, MovimientoDinamico{
 		
 		Casillero nuevoCasillero = unJugador.getUbicacion();
 		
-		nuevoCasillero.accionarPropiedad(unJugador);
+		if (nuevoCasillero.getPropiedad() != this) {
+			
+			nuevoCasillero.accionarPropiedad(unJugador);
+			
+		}
+		
 	
 	}
 

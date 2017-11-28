@@ -7,6 +7,7 @@ import fiuba.algo3.clases.AlgoPoly;
 import fiuba.algo3.clases.Jugador;
 import fiuba.algo3.excepciones.JugadorNoPuedePagarFianzaException;
 import fiuba.algo3.excepciones.JugadorYaTiroDadosException;
+import fiuba.algo3.vista.VistaAlgoPoly;
 import fiuba.algo3.vista.VistaDados;
 import fiuba.algo3.vista.VistaInfoJugadores;
 import fiuba.algo3.vista.VistaTablero;
@@ -32,26 +33,24 @@ import java.io.File;
 public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 
 	private final AlgoPoly algoPoly;
-	private final VistaTablero vistaTablero;
-	private final VistaDados vistaDados;
-	private final VistaInfoJugadores vistaInfoJugadores;
+	
+	private final VistaAlgoPoly vistaAlgoPoly;
 	private final Button botonFinTurno;
 	private final Button botonVender;
 	private final Button botonConstruirCasas;
 	private final Button botonConstruirHoteles;
 	
-	public BotonTirarDadosHandler(VistaTablero unaVistaTablero, VistaDados unaVistaDados, 
-			VistaInfoJugadores unaVistaInfoJugadores, AlgoPoly juego, Button unBotonFinTurno, 
+	public BotonTirarDadosHandler(VistaAlgoPoly unaVistaAlgoPoly, Button unBotonFinTurno, 
 			Button botonVender, Button botonConstruirCasas, Button botonConstruirHoteles) {
-		this.algoPoly = juego;
-		this.vistaTablero = unaVistaTablero;
-		this.vistaDados = unaVistaDados;
-		this.vistaInfoJugadores = unaVistaInfoJugadores;
+	
+		this.algoPoly = unaVistaAlgoPoly.getAlgoPoly();
+		this.vistaAlgoPoly = unaVistaAlgoPoly;
 		this.botonFinTurno = unBotonFinTurno;
 		this.botonVender = botonVender;
 		this.botonConstruirCasas = botonConstruirCasas;
 		this.botonConstruirHoteles = botonConstruirHoteles;
 	}
+	
 	
 	@Override
 	public void handle(ActionEvent event) {
@@ -65,9 +64,10 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 		} catch(JugadorYaTiroDadosException e){
 			tirarAlertaQueYaTiroDados();
 		}
-		this.vistaTablero.update();
-		this.vistaDados.update();
-		this.vistaInfoJugadores.update();
+	
+
+		this.vistaAlgoPoly.update();
+		
 		this.botonFinTurno.setDisable(false);
 		this.botonVender.setDisable(true);
 		this.botonConstruirCasas.setDisable(true);

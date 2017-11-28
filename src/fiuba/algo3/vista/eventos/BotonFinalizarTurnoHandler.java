@@ -1,5 +1,6 @@
 package fiuba.algo3.vista.eventos;
 import fiuba.algo3.clases.AlgoPoly;
+import fiuba.algo3.vista.VistaAlgoPoly;
 import fiuba.algo3.vista.VistaInfoJugadores;
 import fiuba.algo3.vista.VistaTablero;
 import javafx.event.ActionEvent;
@@ -8,22 +9,25 @@ import javafx.scene.control.Button;
 
 public class BotonFinalizarTurnoHandler implements EventHandler<ActionEvent>{
 
+	
+	
 	private final AlgoPoly algoPoly;
-	private VistaTablero vistaTablero;
-	private VistaInfoJugadores vistaInfoJugadores;
+	private VistaAlgoPoly vistaAlgoPoly;
+	
 	private final Button botonFinTurno;
 	private final Button botonDados;
 	private final Button botonVender;
 	private final Button botonConstruirCasas;
 	private final Button botonConstruirHoteles;
 	
-	public BotonFinalizarTurnoHandler(VistaTablero unaVistaTablero, VistaInfoJugadores unaVistaInfoJugadores, 
-			AlgoPoly algoPoly, Button unBotonFinTurno, Button botonDados, Button botonVender, 
+	public BotonFinalizarTurnoHandler(VistaAlgoPoly unaVistaAlgoPoly, Button unBotonFinTurno, Button botonDados, Button botonVender, 
 			Button botonConstruirCasas, Button botonConstruirHoteles) {
-		this.algoPoly = algoPoly;
-		this.vistaTablero = unaVistaTablero;
+		
+		
+		
+		this.algoPoly = unaVistaAlgoPoly.getAlgoPoly();
+		this.vistaAlgoPoly = unaVistaAlgoPoly;
 		this.botonFinTurno = unBotonFinTurno;
-		this.vistaInfoJugadores = unaVistaInfoJugadores;
 		this.botonDados = botonDados;
 		this.botonVender = botonVender;
 		this.botonConstruirCasas = botonConstruirCasas;
@@ -33,8 +37,7 @@ public class BotonFinalizarTurnoHandler implements EventHandler<ActionEvent>{
 	@Override
 	public void handle(ActionEvent event) {
 		this.algoPoly.acabarTurno();
-		this.vistaTablero.update();
-		this.vistaInfoJugadores.update();
+		this.vistaAlgoPoly.update();
 		this.botonFinTurno.setDisable(true);
 		this.considerarLosDemasBotones();
 	}

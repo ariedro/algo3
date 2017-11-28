@@ -16,6 +16,7 @@ public class RetrocesoDinamico implements Encasillable, MovimientoDinamico{
 
 	@Override
 	public void accionarCon(Jugador unJugador) {
+		
 		int suma = unJugador.getResultadoDados();
 		
 		int resultadoDinamico = this.getCantidadDeMovimiento(unJugador,suma);
@@ -26,7 +27,12 @@ public class RetrocesoDinamico implements Encasillable, MovimientoDinamico{
 	
 		Casillero nuevoCasillero = unJugador.getUbicacion();
 		
-		nuevoCasillero.accionarPropiedad(unJugador);
+		if (nuevoCasillero.getPropiedad() != this) {
+		
+			nuevoCasillero.accionarPropiedad(unJugador);
+			
+		}
+		
 		
 	}
 	

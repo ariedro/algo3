@@ -175,21 +175,26 @@ public class AlgoPolyPrimerEntregaTest {
 		
 		casilleroAvanceDinamico.accionarPropiedad(unJugador);
 		
-		assertEquals(INDICE_AVANCE_DINAMICO + (unJugador.getDinero() % unosDados.getSuma()), 
+		assertEquals(INDICE_AVANCE_DINAMICO + (DINERO_INICIAL % unosDados.getSuma()), 
 				
 				unTablero.getPosicion(unJugador));
 		
 	}
 	
 	@Test
+	/*Si la prueba se hace sacando 12, la nueva posicion es RetrocesoDinamico, que me reubica nuevamente*/
 	public void test10JugadorCaeEnAvanceDinamicoSumandoEntre11Y12SuNuevaPosicionEsLoQueLeCorresponde() {
+		
+		
 		Tablero unTablero = new Tablero();
 	
 		Jugador unJugador = new Jugador();
-		
+	
 		unTablero.agregarJugador(unJugador);
 		
 		unTablero.modificarPosicion(unJugador, INDICE_AVANCE_DINAMICO);
+	
+		int propiedadesAlCaerEnMovDinamico = 1;
 		
 		Dados unosDados = new Dados();
 	
@@ -199,7 +204,7 @@ public class AlgoPolyPrimerEntregaTest {
 		
 		unJugador.tirarDados(unosDados);
 		
-		while (unosDados.getSuma() < 11) {
+		while (unosDados.getSuma() != 11) {
 			unJugador.finalizarTurno();
 			unJugador.tirarDados(unosDados);
 		}
@@ -208,7 +213,7 @@ public class AlgoPolyPrimerEntregaTest {
 		
 		casilleroAvanceDinamico.accionarPropiedad(unJugador);
 	
-		assertEquals(INDICE_AVANCE_DINAMICO + unosDados.getSuma() - unJugador.getCantidadPropiedades(),
+		assertEquals(INDICE_AVANCE_DINAMICO + unosDados.getSuma() - propiedadesAlCaerEnMovDinamico,
 					
 				unTablero.getPosicion(unJugador));
 	
@@ -220,6 +225,8 @@ public class AlgoPolyPrimerEntregaTest {
 		Tablero unTablero = new Tablero();
 		
 		Jugador unJugador = new Jugador();
+		
+		int propiedadesAlCaerEnMovDinamico = 1;
 		
 		unTablero.agregarJugador(unJugador);
 		
@@ -242,7 +249,7 @@ public class AlgoPolyPrimerEntregaTest {
 		
 		casilleroRetrocesoDinamico.accionarPropiedad(unJugador);
 		
-		assertEquals(INDICE_RETROCESO_DINAMICO - unosDados.getSuma() + unJugador.getCantidadPropiedades(),
+		assertEquals(INDICE_RETROCESO_DINAMICO - unosDados.getSuma() + propiedadesAlCaerEnMovDinamico,
 				
 				unTablero.getPosicion(unJugador));
 	}

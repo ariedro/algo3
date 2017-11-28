@@ -51,42 +51,46 @@ public class ContenedorPrincipal extends BorderPane {
     VBox contenedorDados;
     VistaDados vistaDados;
     VistaInfoJugadores vistaInfoJugadores;
-
+    VistaAlgoPoly vistaAlgoPoly;
+    
     public ContenedorPrincipal(Stage stage, AlgoPoly algoPoly) {
         
-     	this.setMenu(stage);
+    	
+    	this.canvasCentral = new Canvas(840, 360);
+    	this.setVistaAlgoPoly(algoPoly);
+    	this.setMenu(stage);
         this.setCentro(algoPoly);
-        this.setDados(algoPoly);
-        this.setInfoJugadores(algoPoly);
-        //this.setConsola();
-        this.setBotonera(algoPoly);
+        this.setInfoJugadores();
+        
+          //this.setConsola();
+        this.setBotonera();
     }
 
-	private void setBotonera(AlgoPoly algoPoly) {
+	private void setBotonera() {
     	
     	VBox contenedorVertical = new VBox(10);
     	
         Button botonVender = new Button();
         botonVender.setText("Vender Propiedades");
-        BotonVenderPropiedadesHandler venderPropiedadesHandler = new BotonVenderPropiedadesHandler(algoPoly, this, contenedorVertical);
+        BotonVenderPropiedadesHandler venderPropiedadesHandler = new BotonVenderPropiedadesHandler(vistaAlgoPoly.getAlgoPoly(), this, contenedorVertical);
         botonVender.setOnAction(venderPropiedadesHandler);
         contenedorVertical.getChildren().add(botonVender);
         
         Button botonConstruirCasas = new Button();
         botonConstruirCasas.setText("Construir Casas");
-        BotonConstruirCasasHandler construirCasasHandler = new BotonConstruirCasasHandler(algoPoly, this, contenedorVertical);
+        BotonConstruirCasasHandler construirCasasHandler = new BotonConstruirCasasHandler(vistaAlgoPoly.getAlgoPoly(), this, contenedorVertical);
         botonConstruirCasas.setOnAction(construirCasasHandler);
         contenedorVertical.getChildren().add(botonConstruirCasas);
         
         Button botonConstruirHoteles = new Button();
         botonConstruirHoteles.setText("Construir Hoteles");
-        BotonConstruirHotelesHandler construirHotelesHandler = new BotonConstruirHotelesHandler(algoPoly, this, contenedorVertical);
+        BotonConstruirHotelesHandler construirHotelesHandler = new BotonConstruirHotelesHandler(vistaAlgoPoly.getAlgoPoly(), this, contenedorVertical);
         botonConstruirHoteles.setOnAction(construirHotelesHandler);
         contenedorVertical.getChildren().add(botonConstruirHoteles);
         
         Button botonPagarFianza = new Button();
         botonPagarFianza.setText("Pagar Fianza");
-        BotonPagarFianzaHandler pagarFianzaHandler = new BotonPagarFianzaHandler(algoPoly, vistaInfoJugadores);
+        BotonPagarFianzaHandler pagarFianzaHandler = new BotonPagarFianzaHandler(vistaAlgoPoly);
         botonPagarFianza.setOnAction(pagarFianzaHandler);
         contenedorVertical.getChildren().add(botonPagarFianza);
         
@@ -97,12 +101,12 @@ public class ContenedorPrincipal extends BorderPane {
         botonDados.setText("Tirar Dados");
         
         botonFinalizarTurno.setDisable(true);
-        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(vistaTablero, vistaInfoJugadores, algoPoly, botonFinalizarTurno,botonDados, botonVender, botonConstruirCasas, botonConstruirHoteles);
+        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(vistaAlgoPoly, botonFinalizarTurno,botonDados, botonVender, botonConstruirCasas, botonConstruirHoteles);
         botonFinalizarTurno.setOnAction(finalizarTurnoHandler);
-        if (algoPoly.getJugadorActual().estaEnCana()) botonFinalizarTurno.setDisable(false);
+        if (vistaAlgoPoly.getAlgoPoly().getJugadorActual().estaEnCana()) botonFinalizarTurno.setDisable(false);
         contenedorVertical.getChildren().add(botonFinalizarTurno);
         
-        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaTablero, vistaDados, vistaInfoJugadores, algoPoly, botonFinalizarTurno, botonVender, botonConstruirCasas, botonConstruirHoteles);
+        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaAlgoPoly, botonFinalizarTurno, botonVender, botonConstruirCasas, botonConstruirHoteles);
         botonDados.setOnAction(tirarDadosHandler);
         contenedorVertical.getChildren().add(botonDados);
         
@@ -121,14 +125,15 @@ public class ContenedorPrincipal extends BorderPane {
 
     private void setCentro(AlgoPoly algoPoly) {
     		
+    	 	
     	
-    	canvasCentral = new Canvas(840, 360);
-    	vistaTablero = new VistaTablero(canvasCentral, algoPoly);
-    	vistaTablero.dibujar();
-        contenedorCentral = new VBox(canvasCentral);
+    	this.vistaAlgoPoly.dibujarTablero();
+    	
+    	
+    	contenedorCentral = new VBox(canvasCentral);
         contenedorCentral.setAlignment(Pos.CENTER);
         contenedorCentral.setSpacing(20);
-        contenedorCentral.setPadding(new Insets(25));    	
+        contenedorCentral.setPadding(new Insets(25));   
         
         Image imagen = new Image("file:res/imagenes/textura.png");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
@@ -148,12 +153,8 @@ public class ContenedorPrincipal extends BorderPane {
     		
     }
     
-    private void setDados(AlgoPoly algoPoly) {
-    	vistaDados = new VistaDados(canvasCentral, algoPoly.getDados());
-    }
-    
-    private void setInfoJugadores(AlgoPoly algoPoly) {
-    	vistaInfoJugadores = new VistaInfoJugadores(algoPoly);
+    private void setInfoJugadores() {
+    	vistaInfoJugadores = vistaAlgoPoly.getVistaInfoJugadores();
         VBox contenedorInfoJugadores = new VBox(vistaInfoJugadores.getLabel());
         contenedorInfoJugadores.setSpacing(10);
         contenedorInfoJugadores.setPadding(new Insets(0));
@@ -177,6 +178,12 @@ public class ContenedorPrincipal extends BorderPane {
         this.setBottom(contenedorConsola);
     }
 
+    private void setVistaAlgoPoly(AlgoPoly algoPoly) {
+    	
+    	this.vistaAlgoPoly = new VistaAlgoPoly(algoPoly, canvasCentral);
+    }
+    
+    
     public BarraDeMenu getBarraDeMenu() {
         return menuBar;
     }
@@ -209,7 +216,7 @@ public class ContenedorPrincipal extends BorderPane {
 			if (DatosDeBarrio.esBarrio(propiedad.getNombre())) {
 				Button botonConstruirCasa = new Button();
 				botonConstruirCasa.setText(propiedad.getNombre() + " $" + propiedad.getPrecio());
-				BotonConstruirCasaHandler botonConstruirCasaHandler = new BotonConstruirCasaHandler(propiedad, algoPoly, botonConstruirCasa, vistaInfoJugadores);
+				BotonConstruirCasaHandler botonConstruirCasaHandler = new BotonConstruirCasaHandler(propiedad, algoPoly, botonConstruirCasa, vistaAlgoPoly.getVistaInfoJugadores());
 				botonConstruirCasa.setOnAction(botonConstruirCasaHandler);
 				contenedorVertical.getChildren().add(botonConstruirCasa);	
 			}
@@ -230,7 +237,7 @@ public class ContenedorPrincipal extends BorderPane {
 			if (DatosDeBarrio.esBarrio(propiedad.getNombre())) {
 				Button botonConstruirHotel = new Button();
 				botonConstruirHotel.setText(propiedad.getNombre() + " $" + propiedad.getPrecio());
-				BotonConstruirHotelHandler botonConstruirHotelHandler = new BotonConstruirHotelHandler(propiedad, algoPoly, botonConstruirHotel, vistaInfoJugadores);
+				BotonConstruirHotelHandler botonConstruirHotelHandler = new BotonConstruirHotelHandler(propiedad, algoPoly, botonConstruirHotel, vistaAlgoPoly.getVistaInfoJugadores());
 				botonConstruirHotel.setOnAction(botonConstruirHotelHandler);
 				contenedorVertical.getChildren().add(botonConstruirHotel);	
 			}
