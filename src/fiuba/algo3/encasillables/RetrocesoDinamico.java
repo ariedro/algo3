@@ -1,5 +1,6 @@
 package fiuba.algo3.encasillables;
 
+import fiuba.algo3.clases.Casillero;
 import fiuba.algo3.clases.Encasillable;
 import fiuba.algo3.clases.Jugador;
 import fiuba.algo3.clases.MovimientoDinamico;
@@ -22,6 +23,10 @@ public class RetrocesoDinamico implements Encasillable, MovimientoDinamico{
 		tablero.modificarPosicion(unJugador, -resultadoDinamico);
 	
 		unJugador.mover(tablero.getCasillero(tablero.getPosicion(unJugador)));
+	
+		Casillero nuevoCasillero = unJugador.getUbicacion();
+		
+		nuevoCasillero.accionarPropiedad(unJugador);
 		
 	}
 	
