@@ -8,6 +8,7 @@ import org.junit.rules.ExpectedException;
 
 import fiuba.algo3.clases.*;
 import fiuba.algo3.encasillables.Barrio;
+import fiuba.algo3.excepciones.BarrioNoPuedeConstruirCasaException;
 import fiuba.algo3.excepciones.BarrioNoPuedeConstruirHotelException;
 
 public class BarrioTest {
@@ -57,7 +58,10 @@ public class BarrioTest {
 		Barrio unBarrio = new Barrio(DatosDeBarrio.getDatosBarrio(Barrios.BUENOS_AIRES_SUR));
 		Jugador unJugador = new Jugador();
 		unBarrio.accionarCon(unJugador);
+		try {
 		unBarrio.construirCasa();
+		}
+		catch (BarrioNoPuedeConstruirCasaException e) {}
 		assertEquals(0, unBarrio.getNumeroDeCasasConstruidas());
 	}
 	
@@ -127,7 +131,10 @@ public class BarrioTest {
 		Jugador unJugador = new Jugador();
 		unBarrio.accionarCon(unJugador);
 		unBarrio.construirCasa();
+		try {
 		unBarrio.construirCasa();
+		} 
+		catch (BarrioNoPuedeConstruirCasaException e) { }
 		assertEquals(1, unBarrio.getNumeroDeCasasConstruidas());
 	}
 	
