@@ -15,7 +15,7 @@ public class VistaDados {
 		this.dados = unosDados;
 		this.imagenesDados = new Image[6];
 		for(int i = 0; i < 6; i++)
-			this.imagenesDados[i] = new Image("file:src/fiuba/algo3/vista/imagenes/dados/" + Integer.toString(i + 1) +".png");
+			this.imagenesDados[i] = new Image("file:res/imagenes/dados/" + Integer.toString(i + 1) +".png");
 	}
 	
     public void dibujar() {

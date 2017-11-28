@@ -58,7 +58,7 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 		Jugador jugadorActual = this.algoPoly.getJugadorActual();
 		try {
 			this.algoPoly.turnar(jugadorActual);	
-			String musicFile = "src/fiuba/algo3/vista/sonidos/dados.mp3";     
+			String musicFile = "res/sonidos/dados.mp3";     
 			Media sound = new Media(new File(musicFile).toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();

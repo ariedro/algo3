@@ -130,11 +130,11 @@ public class ContenedorPrincipal extends BorderPane {
         contenedorCentral.setSpacing(20);
         contenedorCentral.setPadding(new Insets(25));    	
         
-        Image imagen = new Image("file:src/fiuba/algo3/vista/imagenes/textura.png");
+        Image imagen = new Image("file:res/imagenes/textura.png");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         contenedorCentral.setBackground(new Background(imagenDeFondo));
         
-        String musicFile = "src/fiuba/algo3/vista/sonidos/monopoly.mp3";     
+        String musicFile = "res/sonidos/monopoly.mp3";     
 		Media sound = new Media(new File(musicFile).toURI().toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.setOnEndOfMedia(new Runnable() {
@@ -209,7 +209,7 @@ public class ContenedorPrincipal extends BorderPane {
 			if (DatosDeBarrio.esBarrio(propiedad.getNombre())) {
 				Button botonConstruirCasa = new Button();
 				botonConstruirCasa.setText(propiedad.getNombre());
-				BotonConstruirCasaHandler botonConstruirCasaHandler = new BotonConstruirCasaHandler(propiedad, algoPoly, botonConstruirCasa);
+				BotonConstruirCasaHandler botonConstruirCasaHandler = new BotonConstruirCasaHandler(propiedad, algoPoly, botonConstruirCasa, vistaInfoJugadores);
 				botonConstruirCasa.setOnAction(botonConstruirCasaHandler);
 				contenedorVertical.getChildren().add(botonConstruirCasa);	
 			}
@@ -230,7 +230,7 @@ public class ContenedorPrincipal extends BorderPane {
 			if (DatosDeBarrio.esBarrio(propiedad.getNombre())) {
 				Button botonConstruirHotel = new Button();
 				botonConstruirHotel.setText(propiedad.getNombre());
-				BotonConstruirHotelHandler botonConstruirHotelHandler = new BotonConstruirHotelHandler(propiedad, algoPoly, botonConstruirHotel);
+				BotonConstruirHotelHandler botonConstruirHotelHandler = new BotonConstruirHotelHandler(propiedad, algoPoly, botonConstruirHotel, vistaInfoJugadores);
 				botonConstruirHotel.setOnAction(botonConstruirHotelHandler);
 				contenedorVertical.getChildren().add(botonConstruirHotel);	
 			}

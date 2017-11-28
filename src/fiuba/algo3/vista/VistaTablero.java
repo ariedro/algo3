@@ -19,7 +19,7 @@ public class VistaTablero {
     public VistaTablero(Canvas canvas, AlgoPoly algoPoly) {
         this.canvas = canvas;
         this.algoPoly = algoPoly;
-        this.imagenTablero = new Image("file:src/fiuba/algo3/vista/imagenes/tableroJuego.png");
+        this.imagenTablero = new Image("file:res/imagenes/tableroJuego.png");
         this.posicionesCasilleros = new HashMap<>();
         for(int i = 0; i < 5; i++) {
         	posicionesCasilleros.put(algoPoly.getTablero().getCasillero(i), new Vector(770 - (i * 140), 330));
