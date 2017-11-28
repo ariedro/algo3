@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 import fiuba.algo3.clases.AlgoPoly;
+import fiuba.algo3.clases.Casillero;
 import fiuba.algo3.clases.Jugador;
 
 
@@ -156,8 +157,46 @@ public class AlgoPolyTest {
 		assertNotEquals(unJugador, aPoly.getJugadorActual());
 	}
 	
+	@Test
+	public void test11JugadorQuePierdeYaNoVuelveAJugar() {
+		AlgoPoly aPoly = new AlgoPoly();
+		int cantJugadores = aPoly.getCantidadJugadores();
+		Jugador unJugador = aPoly.getJugadorActual();
+		Casillero unCasillero = aPoly.getTablero().getCasillero(4);
+		aPoly.accionarCasillero(unCasillero, unJugador);
+		aPoly.avanzarASiguienteJugador();
+		
+		Jugador jugadorQuePierde = aPoly.getJugadorActual();
+		jugadorQuePierde.sacarDinero(jugadorQuePierde.getDinero());
+		aPoly.accionarCasillero(unCasillero, jugadorQuePierde);
+		aPoly.avanzarASiguienteJugador();
+		
+		boolean yaNoEsta = true;
+		for(int i = 0; i < cantJugadores && yaNoEsta; i++) {
+			if (aPoly.getJugadorActual() == jugadorQuePierde)
+				yaNoEsta = false;
+			aPoly.avanzarASiguienteJugador();
+		}
+		assertTrue(yaNoEsta);
+	}
 	
+	// Se asumen que solo son 3 jugadores
+	@Test
+	public void test12JugadorPerdioYAhoraLeTocaAlSiguiente() {
+		AlgoPoly aPoly = new AlgoPoly();
+		Jugador primerJugador = aPoly.getJugadorActual();
+		Casillero unCasillero = aPoly.getTablero().getCasillero(4);
+		aPoly.accionarCasillero(unCasillero, primerJugador);
+		aPoly.avanzarASiguienteJugador();
+		
+		Jugador jugadorQuePierde = aPoly.getJugadorActual();
+		jugadorQuePierde.sacarDinero(jugadorQuePierde.getDinero());
+		aPoly.accionarCasillero(unCasillero, jugadorQuePierde);
 
+		aPoly.avanzarASiguienteJugador();
+		assertNotEquals(primerJugador, aPoly.getJugadorActual());
+	}
+	
 }
 
 

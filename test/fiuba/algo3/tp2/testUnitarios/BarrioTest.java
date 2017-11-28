@@ -61,7 +61,7 @@ public class BarrioTest {
 		try {
 		unBarrio.construirCasa();
 		}
-		catch (BarrioNoPuedeConstruirCasaException e) {}
+		catch (Exception e) {}
 		assertEquals(0, unBarrio.getNumeroDeCasasConstruidas());
 	}
 	
@@ -134,7 +134,7 @@ public class BarrioTest {
 		try {
 		unBarrio.construirCasa();
 		} 
-		catch (BarrioNoPuedeConstruirCasaException e) { }
+		catch (Exception e) { }
 		assertEquals(1, unBarrio.getNumeroDeCasasConstruidas());
 	}
 	

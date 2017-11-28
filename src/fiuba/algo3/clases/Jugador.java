@@ -29,7 +29,7 @@ public class Jugador {
 	private LinkedList<Servicios> servicios = new LinkedList<Servicios>();
 	
 	
-	private boolean esPerdedor;
+	private boolean perdedor;
 	
 	private boolean yaTiroDados;
 		
@@ -38,7 +38,7 @@ public class Jugador {
 		this.propiedades = new LinkedList<Comprable>();
 		this.estado = new EstadoJugadorEnLibertad(this);
 		this.setUbicacion(ubicacionInicial);
-		this.esPerdedor = false;
+		this.perdedor = false;
 	}
 	
 	// Constructor alternativo para las pruebas, este no es el que maneja AlgoPoly
@@ -227,7 +227,8 @@ public class Jugador {
 	}
 	
 	private void venderTodasLasPropiedades() {
-		if (!this.tienePropiedades()) return;
+		if (!this.tienePropiedades())
+			return;
 		Comprable unaPropiedad = this.propiedades.removeFirst();
 		for(int i = 0; i < this.propiedades.size(); unaPropiedad = this.propiedades.removeFirst()) {
 			this.venderPropiedad(unaPropiedad.getNombre());
@@ -238,14 +239,17 @@ public class Jugador {
 		this.venderTodasLasPropiedades();
 		jugadorAlQueLeDebe.recibirDinero(this.getDinero());
 		this.sacarDinero(this.getDinero());
-		this.esPerdedor = true;
+		this.perdedor = true;
+	}
+	
+	// Metodo alternativo a declararPerdedor sin parametro para que pasen las pruebas
+	public void declararPerdedor() {
+		this.sacarDinero(this.getDinero());
+		this.perdedor = true;
 	}
 
 	public boolean esPerdedor() {
-		return this.esPerdedor;
+		return this.perdedor;
 	}
-
-	
-	
 	
 }

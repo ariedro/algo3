@@ -235,6 +235,8 @@ public class ContenedorPrincipal extends BorderPane {
 		VBox contenedorVertical = new VBox(10);
 		for (Comprable propiedad: jugador.getPropiedades()) {
 			if (DatosDeBarrio.esBarrio(propiedad.getNombre())) {
+				if (propiedad.getPrecioHotel() == 0)
+					continue;
 				Button botonConstruirHotel = new Button();
 				botonConstruirHotel.setText(propiedad.getNombre() + " $" + propiedad.getPrecioHotel());
 				BotonConstruirHotelHandler botonConstruirHotelHandler = new BotonConstruirHotelHandler(propiedad, algoPoly, botonConstruirHotel, vistaAlgoPoly.getVistaInfoJugadores());

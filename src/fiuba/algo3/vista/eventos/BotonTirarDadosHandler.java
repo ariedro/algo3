@@ -62,7 +62,7 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
 		} catch(JugadorYaTiroDadosException e){
-			tirarAlertaQueYaTiroDados();
+			new Alerta("Ya tiraste los dados");
 		}
 	
 
@@ -73,17 +73,6 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 		this.botonConstruirCasas.setDisable(true);
 		this.botonConstruirHoteles.setDisable(true);
 	}
-	
-	public void tirarAlertaQueYaTiroDados() {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Advertencia");
-        alert.setHeaderText("Jugada ilegal");
-        String mensaje = "Ya tiraste los dados";
-        alert.setContentText(mensaje);
-        
-        alert.show();
-	}
-	
 }
 
 

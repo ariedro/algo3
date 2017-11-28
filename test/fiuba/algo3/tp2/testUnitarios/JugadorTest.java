@@ -1,10 +1,9 @@
 package fiuba.algo3.tp2.testUnitarios;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Rule;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import org.junit.rules.ExpectedException;
 
@@ -214,5 +213,6 @@ public class JugadorTest {
 		thrown.expect(JugadorNoTieneDineroException.class);
 		unJugador.sacarDinero(DINERO_INICIAL + 1);
 	}
+	
 	
 }

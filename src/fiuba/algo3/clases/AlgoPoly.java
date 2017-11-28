@@ -96,6 +96,8 @@ public class AlgoPoly {
 	public void accionarCasillero(Casillero unCasillero, Jugador unJugador) {
 		
 		unCasillero.accionarPropiedad(unJugador);
+		if (unJugador.esPerdedor())
+			this.sacarJugador(unJugador);
 		
 	}
 	
@@ -126,11 +128,21 @@ public class AlgoPoly {
 		return this.getJugadorActual().esPerdedor();
 	}
 	
-	public void sacarJugadorActualSiPerdio() {
-		if (!this.esPerdedorJugadorActual()) return;
-		Jugador unJugador = this.getJugadorActual();
+	public void sacarJugador(Jugador unJugador) {
+		int indiceActual;
+		if (this.jugadorActual.hasNext())
+			indiceActual = this.jugadorActual.nextIndex() - 1;			
+		else
+			indiceActual = 0;
 		this.jugadores.remove(unJugador);
-		this.avanzarASiguienteJugador();
+		this.avanzarHastaElJugador(indiceActual);
+	}
+	
+	public void avanzarHastaElJugador(int indice) {
+		this.jugadorActual = jugadores.listIterator();
+		for(int i = 0; i < indice; i++)
+			this.jugadorActual.next();
+
 	}
 	
 	public boolean sePuedeSeguirJugando() {

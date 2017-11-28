@@ -4,8 +4,10 @@ import fiuba.algo3.clases.Comprable;
 import fiuba.algo3.clases.DatosDeBarrio;
 import fiuba.algo3.clases.Encasillable;
 import fiuba.algo3.clases.Jugador;
+import fiuba.algo3.excepciones.BarrioNecesitaVecinoParaConstruirCasaException;
 import fiuba.algo3.excepciones.BarrioNoPuedeConstruirCasaException;
 import fiuba.algo3.excepciones.BarrioNoPuedeConstruirHotelException;
+import fiuba.algo3.excepciones.BarrioYaTieneTodasLasCasasConstruidasException;
 import fiuba.algo3.excepciones.JugadorNoTieneDineroException;
 
 public class Barrio implements Encasillable, Comprable{
@@ -111,7 +113,7 @@ public class Barrio implements Encasillable, Comprable{
 			this.propietario.sacarDinero(this.datosDeBarrio.getPrecioCasa());
 			this.numeroDeCasasConstruidas++;
 		}
-		else throw new BarrioNoPuedeConstruirCasaException();
+		else throw new BarrioYaTieneTodasLasCasasConstruidasException();
 	}
 	
 	public void construirHotel() throws JugadorNoTieneDineroException {
@@ -135,7 +137,7 @@ public class Barrio implements Encasillable, Comprable{
 		if (this.propietario.estaEntreLasPropiedades(this.getVecino())) {
 			 construirConSoloUnaCasa();
 		}
-		else throw new BarrioNoPuedeConstruirCasaException();
+		else throw new BarrioNecesitaVecinoParaConstruirCasaException();
 	}
 	
 
