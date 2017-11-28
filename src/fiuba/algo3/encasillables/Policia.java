@@ -24,9 +24,9 @@ public class Policia implements Encasillable {
 	
 	public void accionarCon(Jugador unJugador) {
 		
-		this.tablero.modificarPosicion(unJugador, DISTANCIA_A_LA_CARCEL);
-		
 		unJugador.mover(casilleroCarcel);
+		
+		this.tablero.modificarPosicion(unJugador, DISTANCIA_A_LA_CARCEL);
 		
 		this.mandarALaCarcel(unJugador);
 		

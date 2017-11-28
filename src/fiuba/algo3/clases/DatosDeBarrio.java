@@ -10,6 +10,7 @@ public class DatosDeBarrio {
 	
 	private static String[] VECINOS = {"Buenos Aires Norte","Buenos Aires Sur", "Cordoba Norte", "Cordoba Sur",
 										 	null, "Salta Sur" , "Salta Norte", null, null };
+	private static int CANTIDAD_BARRIOS = 9;
 	
 	private static int [] PRECIO = { 20000, 25000, 18000, 20000, 15000, 23000, 23000, 17000, 25000}; 
 	
@@ -134,6 +135,13 @@ public class DatosDeBarrio {
 		return vecino;
 	}
 
+	public static boolean esBarrio(String nombreDelBarrio) {
+		boolean esBarrio = false;
+		for(int i=0; i<CANTIDAD_BARRIOS; i++) {
+			if (nombreDelBarrio.equals(NOMBRES[i])) esBarrio = true;
+		}
+		return esBarrio;
+	}
 
 	
 }

@@ -136,5 +136,8 @@ public class AlgoPoly {
 	public boolean sePuedeSeguirJugando() {
 		return (this.jugadores.size() > JUGADOR_FINAL);
 	}
-
+	
+	public void construirCasa() {
+		
+	}
 }

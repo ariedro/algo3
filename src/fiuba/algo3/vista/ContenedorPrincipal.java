@@ -1,9 +1,15 @@
 package fiuba.algo3.vista;
 
+import fiuba.algo3.encasillables.Barrio;
+import fiuba.algo3.clases.DatosDeBarrio;
 import fiuba.algo3.clases.AlgoPoly;
 import fiuba.algo3.clases.Comprable;
 import fiuba.algo3.clases.Jugador;
 import fiuba.algo3.vista.eventos.BotonComprarPropiedadHandler;
+import fiuba.algo3.vista.eventos.BotonConstruirCasaHandler;
+import fiuba.algo3.vista.eventos.BotonConstruirCasasHandler;
+import fiuba.algo3.vista.eventos.BotonConstruirHotelHandler;
+import fiuba.algo3.vista.eventos.BotonConstruirHotelesHandler;
 import fiuba.algo3.vista.eventos.BotonFinalizarTurnoHandler;
 import fiuba.algo3.vista.eventos.BotonPagarFianzaHandler;
 import fiuba.algo3.vista.eventos.BotonTirarDadosHandler;
@@ -59,6 +65,17 @@ public class ContenedorPrincipal extends BorderPane {
         botonVender.setOnAction(venderPropiedadesHandler);
         contenedorVertical.getChildren().add(botonVender);
         
+        Button botonConstruirCasas = new Button();
+        botonConstruirCasas.setText("Construir Casas");
+        BotonConstruirCasasHandler construirCasasHandler = new BotonConstruirCasasHandler(algoPoly, this, contenedorVertical);
+        botonConstruirCasas.setOnAction(construirCasasHandler);
+        contenedorVertical.getChildren().add(botonConstruirCasas);
+        
+        Button botonConstruirHoteles = new Button();
+        botonConstruirHoteles.setText("Construir Hoteles");
+        BotonConstruirHotelesHandler construirHotelesHandler = new BotonConstruirHotelesHandler(algoPoly, this, contenedorVertical);
+        botonConstruirHoteles.setOnAction(construirHotelesHandler);
+        contenedorVertical.getChildren().add(botonConstruirHoteles);
         
         Button botonPagarFianza = new Button();
         botonPagarFianza.setText("Pagar Fianza");
@@ -130,7 +147,6 @@ public class ContenedorPrincipal extends BorderPane {
 
     private void setConsola() {
 
-        // TODO cambiar por el modelo de Consola...
         Label etiqueta = new Label();
         etiqueta.setText("consola...");
         etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
@@ -151,34 +167,64 @@ public class ContenedorPrincipal extends BorderPane {
 	public void setBotoneraVenta(AlgoPoly algoPoly, ContenedorPrincipal contenedorPrincipal, VBox botoneraAnterior) {
 
 		Jugador jugador = algoPoly.getJugadorActual();
-		
 		VBox contenedorVertical = new VBox(10);
-			
 		for (Comprable propiedad: jugador.getPropiedades()) {
-				
 			Button botonVender = new Button();
-				
 			botonVender.setText(propiedad.getNombre());
-				
 			BotonVentaHandler botonVenderHandler = new BotonVentaHandler(propiedad, algoPoly, botonVender);
-			
 			botonVender.setOnAction(botonVenderHandler);
-		
-			contenedorVertical.getChildren().add(botonVender);
-			
+			contenedorVertical.getChildren().add(botonVender);	
 		}
-		
 		Button botonVolver = new Button();
-		botonVolver.setText("Acabar Ventas");
+		botonVolver.setText("Volver");
 		BotonVolverHandler botonVolverHandler = new BotonVolverHandler(botoneraAnterior, contenedorPrincipal);
 		botonVolver.setOnAction(botonVolverHandler);
 		contenedorVertical.getChildren().add(botonVolver);
-		
-		
 		contenedorVertical.setPadding(new Insets(15));
-			
 		contenedorPrincipal.setLeft(contenedorVertical);
 			
+	}
+	
+	public void setBotoneraConstruirCasa(AlgoPoly algoPoly, ContenedorPrincipal contenedorPrincipal, VBox botoneraAnterior) {
+		Jugador jugador = algoPoly.getJugadorActual();
+		VBox contenedorVertical = new VBox(10);
+		for (Comprable propiedad: jugador.getPropiedades()) {
+			if (DatosDeBarrio.esBarrio(propiedad.getNombre())) {
+				Button botonConstruirCasa = new Button();
+				botonConstruirCasa.setText(propiedad.getNombre());
+				BotonConstruirCasaHandler botonConstruirCasaHandler = new BotonConstruirCasaHandler(propiedad, algoPoly, botonConstruirCasa);
+				botonConstruirCasa.setOnAction(botonConstruirCasaHandler);
+				contenedorVertical.getChildren().add(botonConstruirCasa);	
+			}
+		}
+		Button botonVolver = new Button();
+		botonVolver.setText("Volver");
+		BotonVolverHandler botonVolverHandler = new BotonVolverHandler(botoneraAnterior, contenedorPrincipal);
+		botonVolver.setOnAction(botonVolverHandler);
+		contenedorVertical.getChildren().add(botonVolver);
+		contenedorVertical.setPadding(new Insets(15));
+		contenedorPrincipal.setLeft(contenedorVertical);
+	}
+	
+	public void setBotoneraConstruirHotel(AlgoPoly algoPoly, ContenedorPrincipal contenedorPrincipal, VBox botoneraAnterior) {
+		Jugador jugador = algoPoly.getJugadorActual();
+		VBox contenedorVertical = new VBox(10);
+		for (Comprable propiedad: jugador.getPropiedades()) {
+			if (DatosDeBarrio.esBarrio(propiedad.getNombre())) {
+				Button botonConstruirHotel = new Button();
+				botonConstruirHotel.setText(propiedad.getNombre());
+				BotonConstruirHotelHandler botonConstruirHotelHandler = new BotonConstruirHotelHandler(propiedad, algoPoly, botonConstruirHotel);
+				botonConstruirHotel.setOnAction(botonConstruirHotelHandler);
+				contenedorVertical.getChildren().add(botonConstruirHotel);	
+			}
+		}
+		Button botonVolver = new Button();
+		botonVolver.setText("Volver");
+		BotonVolverHandler botonVolverHandler = new BotonVolverHandler(botoneraAnterior, contenedorPrincipal);
+		botonVolver.setOnAction(botonVolverHandler);
+		contenedorVertical.getChildren().add(botonVolver);
+		contenedorVertical.setPadding(new Insets(15));
+		contenedorPrincipal.setLeft(contenedorVertical);
 	}
 
 
