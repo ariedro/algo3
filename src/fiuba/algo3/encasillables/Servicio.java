@@ -4,6 +4,7 @@ import fiuba.algo3.clases.Comprable;
 import fiuba.algo3.clases.DatosDeServicio;
 import fiuba.algo3.clases.Encasillable;
 import fiuba.algo3.clases.Jugador;
+import fiuba.algo3.excepciones.ServicioNoPuedeConstruirException;
 
 public class Servicio implements Encasillable,Comprable {
 
@@ -97,5 +98,43 @@ public class Servicio implements Encasillable,Comprable {
 		this.propietario = null;
 	}
 	
+	
+	
+	public void construir() throws ServicioNoPuedeConstruirException {
+		
+		throw new ServicioNoPuedeConstruirException();
+		
+	}
+	
+	public void construirCasa() throws ServicioNoPuedeConstruirException {
+		
+		this.construir();
+		
+	}
+	
+	public void construirHotel() throws ServicioNoPuedeConstruirException {
+		
+		this.construir();
+	}
+	
+	public int getPrecioHotel() {
+		
+		return 0;
+		
+	}
+
+
+	public int getPrecioCasa() {
+		
+		return 0;
+	
+	}
+
+	@Override
+	public boolean puedeConstruir() {
+	
+		return false;
+	
+	}
 
 }

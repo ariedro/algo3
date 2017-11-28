@@ -240,7 +240,8 @@ public class AlgoPolyPrimerEntregaTest {
 		
 		unJugador.tirarDados(unosDados);
 		
-		while (unosDados.getSuma() > 6) {
+		/*Si sale 4 me manda a Policia, que vuelve a modificar mi posicion*/
+		while (unosDados.getSuma() > 6 || unosDados.getSuma() == 4) {
 			unJugador.finalizarTurno();
 			unJugador.tirarDados(unosDados);
 		}
@@ -281,7 +282,7 @@ public class AlgoPolyPrimerEntregaTest {
 		
 		casilleroRetrocesoDinamico.accionarPropiedad(unJugador);
 		
-		assertEquals(INDICE_RETROCESO_DINAMICO - ( unJugador.getDinero() % unosDados.getSuma()), 
+		assertEquals(INDICE_RETROCESO_DINAMICO - ( DINERO_INICIAL % unosDados.getSuma()), 
 				
 				unTablero.getPosicion(unJugador));
 	}

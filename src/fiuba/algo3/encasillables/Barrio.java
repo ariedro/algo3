@@ -158,5 +158,27 @@ public class Barrio implements Encasillable, Comprable{
 		this.propietario = null;
 	}
 
+	@Override
+	public boolean puedeConstruir() {
+
+		return true;
+
+	}
+
+	@Override
+	public int getPrecioCasa() {
+	
+		// TODO Auto-generated method stub
+		return this.datosDeBarrio.getPrecioCasa();
+	
+	}
+
+	@Override
+	public int getPrecioHotel() {
+		
+		return this.datosDeBarrio.getPrecioHotel();
+		
+	}
+
 	
 }

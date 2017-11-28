@@ -3,6 +3,7 @@ package fiuba.algo3.clases;
 import java.util.LinkedList;
 
 import fiuba.algo3.encasillables.Barrio;
+import fiuba.algo3.encasillables.Servicio;
 import fiuba.algo3.estados.EstadoJugador;
 import fiuba.algo3.estados.EstadoJugadorEnCana;
 import fiuba.algo3.estados.EstadoJugadorEnLibertad;
@@ -22,6 +23,11 @@ public class Jugador {
 	private Casillero ubicacion;
 	
 	private int resultadoDados;
+	
+	private LinkedList<Barrio> barrios = new LinkedList<Barrio>();
+	
+	private LinkedList<Servicios> servicios = new LinkedList<Servicios>();
+	
 	
 	private boolean esPerdedor;
 	
@@ -238,6 +244,7 @@ public class Jugador {
 	public boolean esPerdedor() {
 		return this.esPerdedor;
 	}
+
 	
 	
 	

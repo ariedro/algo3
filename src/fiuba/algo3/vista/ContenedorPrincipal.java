@@ -215,7 +215,7 @@ public class ContenedorPrincipal extends BorderPane {
 		for (Comprable propiedad: jugador.getPropiedades()) {
 			if (DatosDeBarrio.esBarrio(propiedad.getNombre())) {
 				Button botonConstruirCasa = new Button();
-				botonConstruirCasa.setText(propiedad.getNombre() + " $" + propiedad.getPrecio());
+				botonConstruirCasa.setText(propiedad.getNombre() + " $" + propiedad.getPrecioCasa());
 				BotonConstruirCasaHandler botonConstruirCasaHandler = new BotonConstruirCasaHandler(propiedad, algoPoly, botonConstruirCasa, vistaAlgoPoly.getVistaInfoJugadores());
 				botonConstruirCasa.setOnAction(botonConstruirCasaHandler);
 				contenedorVertical.getChildren().add(botonConstruirCasa);	
@@ -236,7 +236,7 @@ public class ContenedorPrincipal extends BorderPane {
 		for (Comprable propiedad: jugador.getPropiedades()) {
 			if (DatosDeBarrio.esBarrio(propiedad.getNombre())) {
 				Button botonConstruirHotel = new Button();
-				botonConstruirHotel.setText(propiedad.getNombre() + " $" + propiedad.getPrecio());
+				botonConstruirHotel.setText(propiedad.getNombre() + " $" + propiedad.getPrecioHotel());
 				BotonConstruirHotelHandler botonConstruirHotelHandler = new BotonConstruirHotelHandler(propiedad, algoPoly, botonConstruirHotel, vistaAlgoPoly.getVistaInfoJugadores());
 				botonConstruirHotel.setOnAction(botonConstruirHotelHandler);
 				contenedorVertical.getChildren().add(botonConstruirHotel);	
