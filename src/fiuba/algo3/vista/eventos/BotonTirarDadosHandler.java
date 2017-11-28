@@ -37,14 +37,20 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 	private final VistaInfoJugadores vistaInfoJugadores;
 	private final Button botonFinTurno;
 	private final Button botonVender;
+	private final Button botonConstruirCasas;
+	private final Button botonConstruirHoteles;
 	
-	public BotonTirarDadosHandler(VistaTablero unaVistaTablero, VistaDados unaVistaDados, VistaInfoJugadores unaVistaInfoJugadores, AlgoPoly juego, Button unBotonFinTurno, Button botonVender) {
+	public BotonTirarDadosHandler(VistaTablero unaVistaTablero, VistaDados unaVistaDados, 
+			VistaInfoJugadores unaVistaInfoJugadores, AlgoPoly juego, Button unBotonFinTurno, 
+			Button botonVender, Button botonConstruirCasas, Button botonConstruirHoteles) {
 		this.algoPoly = juego;
 		this.vistaTablero = unaVistaTablero;
 		this.vistaDados = unaVistaDados;
 		this.vistaInfoJugadores = unaVistaInfoJugadores;
 		this.botonFinTurno = unBotonFinTurno;
 		this.botonVender = botonVender;
+		this.botonConstruirCasas = botonConstruirCasas;
+		this.botonConstruirHoteles = botonConstruirHoteles;
 	}
 	
 	@Override
@@ -64,6 +70,8 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 		this.vistaInfoJugadores.update();
 		this.botonFinTurno.setDisable(false);
 		this.botonVender.setDisable(true);
+		this.botonConstruirCasas.setDisable(true);
+		this.botonConstruirHoteles.setDisable(true);
 	}
 	
 	public void tirarAlertaQueYaTiroDados() {

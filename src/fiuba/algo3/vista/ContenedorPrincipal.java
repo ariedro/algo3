@@ -2,6 +2,10 @@ package fiuba.algo3.vista;
 
 import fiuba.algo3.encasillables.Barrio;
 import fiuba.algo3.clases.DatosDeBarrio;
+
+import java.io.File;
+import java.net.URL;
+
 import fiuba.algo3.clases.AlgoPoly;
 import fiuba.algo3.clases.Comprable;
 import fiuba.algo3.clases.Jugador;
@@ -30,10 +34,13 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class ContenedorPrincipal extends BorderPane {
 
@@ -90,12 +97,12 @@ public class ContenedorPrincipal extends BorderPane {
         botonDados.setText("Tirar Dados");
         
         botonFinalizarTurno.setDisable(true);
-        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(vistaTablero, vistaInfoJugadores, algoPoly, botonFinalizarTurno,botonDados, botonVender);
+        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(vistaTablero, vistaInfoJugadores, algoPoly, botonFinalizarTurno,botonDados, botonVender, botonConstruirCasas, botonConstruirHoteles);
         botonFinalizarTurno.setOnAction(finalizarTurnoHandler);
         if (algoPoly.getJugadorActual().estaEnCana()) botonFinalizarTurno.setDisable(false);
         contenedorVertical.getChildren().add(botonFinalizarTurno);
         
-        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaTablero, vistaDados, vistaInfoJugadores, algoPoly, botonFinalizarTurno, botonVender);
+        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaTablero, vistaDados, vistaInfoJugadores, algoPoly, botonFinalizarTurno, botonVender, botonConstruirCasas, botonConstruirHoteles);
         botonDados.setOnAction(tirarDadosHandler);
         contenedorVertical.getChildren().add(botonDados);
         
@@ -126,6 +133,16 @@ public class ContenedorPrincipal extends BorderPane {
         Image imagen = new Image("file:src/fiuba/algo3/vista/imagenes/textura.png");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         contenedorCentral.setBackground(new Background(imagenDeFondo));
+        
+        String musicFile = "src/fiuba/algo3/vista/sonidos/monopoly.mp3";     
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.setOnEndOfMedia(new Runnable() {
+        		public void run() {
+        			mediaPlayer.seek(Duration.ZERO);
+        		}
+        });
+		mediaPlayer.play();
 
         this.setCenter(contenedorCentral);
     		

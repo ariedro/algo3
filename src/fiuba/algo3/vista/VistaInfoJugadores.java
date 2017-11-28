@@ -36,18 +36,32 @@ public class VistaInfoJugadores {
 		texto += "Estado: " + (jugador.estaEnCana() ? "En cana" : "En libertad") + "\n";
 		texto += "Propiedades: ";
 		for(int i = 0; i < jugador.getPropiedades().size(); i++) {
+			texto += (i + 1) + ") ";
 			texto += jugador.getPropiedades().get(i).getNombre();
-			texto += ", ";
+			texto += " ";
 		}
 		texto += "\n";
 		texto += "Cantidad de casas por barrio: ";
 		for(int i = 0; i < jugador.getPropiedades().size(); i++) {
 			if(DatosDeBarrio.esBarrio(jugador.getPropiedades().get(i).getNombre())) {
+				//texto += (i + 1) + ") ";
 				Barrio unBarrio = (Barrio)jugador.getPropiedades().get(i);
 				texto += unBarrio.getNombre();
 				texto += ": ";
 				texto += unBarrio.getNumeroDeCasasConstruidas();
-				texto += ", ";
+				texto += " | ";
+			}
+		}
+		texto += "\n";
+		//texto += "Barrios con hotel: ";
+		for(int i = 0; i < jugador.getPropiedades().size(); i++) {
+			if(DatosDeBarrio.esBarrio(jugador.getPropiedades().get(i).getNombre())) {
+				Barrio unBarrio = (Barrio)jugador.getPropiedades().get(i);
+				//texto += (i + 1) + ") ";
+				texto += unBarrio.getNombre();
+				texto += ": ";
+				texto += this.fueConstruidoHotel(unBarrio);
+				texto += " | ";
 			}
 		}
 		texto += "\n\n";
@@ -69,5 +83,10 @@ public class VistaInfoJugadores {
 		else if (algoPoly.getIndiceJugadorActual() == 2) color = JUGADOR2;
 		else color = JUGADOR3;
 		return color;
+	}
+	
+	public String fueConstruidoHotel(Barrio unBarrio) {
+		if (unBarrio.fueConstruidoHotel()) return "Tiene Hotel";
+		return "No tiene Hotel";
 	}
 }
