@@ -14,6 +14,7 @@ import fiuba.algo3.clases.Jugador;
 import fiuba.algo3.clases.Tablero;
 import fiuba.algo3.excepciones.BarrioNoPuedeConstruirHotelException;
 import fiuba.algo3.excepciones.JugadorNoPuedePagarFianzaException;
+import fiuba.algo3.excepciones.JugadorNoTieneDineroException;
 import fiuba.algo3.excepciones.JugadorYaTiroDadosException;
 
 public class AlgoPolyTerceraEntregaTest {
@@ -154,7 +155,11 @@ public class AlgoPolyTerceraEntregaTest {
 		Jugador unJugador = null;
 		while (algoPoly.getCantidadJugadores() != 2) {
 			unJugador = algoPoly.getJugadorActual();
-			algoPoly.turnar(unJugador);
+			try {
+				algoPoly.turnar(unJugador);
+			} 
+			catch (JugadorNoTieneDineroException e) { }
+			
 			algoPoly.acabarTurno();
 		}
 		assertTrue(algoPoly.hayPerdedores());		

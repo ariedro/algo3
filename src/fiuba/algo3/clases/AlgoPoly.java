@@ -146,7 +146,7 @@ public class AlgoPoly {
 	}
 	
 	public boolean sePuedeSeguirJugando() {
-		return (this.getCuantosJugadoresPerdieron() < 2);
+		return (this.jugadores.size() > 1);
 	}
 	
 	
