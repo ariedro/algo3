@@ -14,7 +14,7 @@ public class OpcionAbrirEventHandler implements EventHandler<ActionEvent>{
 
         try {
         	//Estaria bueno poner el informe aca.
-			Desktop.getDesktop().open(new File("src/fiuba/algo3/vista/informe.pdf"));
+			Desktop.getDesktop().open(new File("res/informe.pdf"));
 		} catch (IOException e) {
 		}
 	}

@@ -18,7 +18,7 @@ public class BarraDeMenu extends MenuBar {
         Menu menuAyuda = new Menu("Ayuda");
 
         MenuItem opcionSalir = new MenuItem("Salir");
-        MenuItem opcionAbrir = new MenuItem("Abrir");
+        MenuItem opcionAbrir = new MenuItem("Abrir informe");
         MenuItem opcionAcercaDe = new MenuItem("Acerca de...");
         
         OpcionAbrirEventHandler opcionAbrirHandler = new OpcionAbrirEventHandler();
