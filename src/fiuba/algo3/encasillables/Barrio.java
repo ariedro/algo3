@@ -45,6 +45,7 @@ public class Barrio implements Encasillable, Comprable{
 			}
 			else unJugador.declararPerdedor(this.propietario);
 		}
+		else unJugador.declararPerdedor(this.propietario);
 	}
 
 	public boolean tienePropietario() {

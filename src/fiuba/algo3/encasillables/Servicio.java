@@ -32,6 +32,7 @@ public class Servicio implements Encasillable,Comprable {
 			}
 			else unJugador.declararPerdedor(this.propietario);
 		}
+		else unJugador.declararPerdedor(this.propietario);
 	}
 
 	private boolean tieneDineroSuficiente(Jugador unJugador) {

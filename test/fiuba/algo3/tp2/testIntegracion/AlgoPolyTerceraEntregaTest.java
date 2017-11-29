@@ -56,7 +56,6 @@ public class AlgoPolyTerceraEntregaTest {
 	public void test02JugadorTiraDadosYSiTienenMismoValorDosVecesNoVuelveAJugar() {
 		AlgoPoly aPoly = new AlgoPoly();
 		Jugador unJugador = aPoly.getJugadorActual();
-
 		aPoly.turnar(unJugador);
 		int resDado1 = aPoly.getDados().getValorPrimerDado();
 		int resDado2 = aPoly.getDados().getValorSegundoDado();
@@ -99,12 +98,19 @@ public class AlgoPolyTerceraEntregaTest {
 	// Punto 4
 	@Test
 	public void test04JugadorTiraDadosYSeMueveEnLaPosicionQueIndicabanLosDados() {
-		AlgoPoly aPoly = new AlgoPoly();
-		Jugador unJugador = aPoly.getJugadorActual();
-		
-		aPoly.turnar(unJugador);
-		int suma = aPoly.getDados().getSuma();
-		
+		/*
+		 * El while es para que cuando saque 7(avance dinamico) no tire error,
+		 * porque el casillero al que cae no es el mismo que el nro de dados que saca
+		 */
+		AlgoPoly aPoly = new AlgoPoly(); 
+		Jugador unJugador = null;
+		int suma = 7;
+		while (suma == 7) {
+			aPoly = new AlgoPoly();
+			unJugador = aPoly.getJugadorActual();
+			aPoly.turnar(unJugador);
+			suma = aPoly.getDados().getSuma();
+		}
 		assertEquals(aPoly.getTablero().getCasillero(suma), unJugador.getUbicacion());
 	}
 	
@@ -142,4 +148,29 @@ public class AlgoPolyTerceraEntregaTest {
 		thrown.expect(BarrioNoPuedeConstruirHotelException.class);
 		unJugador.construirHotel("Tucuman");		
 	}
+	@Test
+	public void test08jugadorSinPlataNiPropiedadesCaeEnUnCasilleroQueGeneraGastoYQuedaEliminado() {
+		AlgoPoly algoPoly = new AlgoPoly(); 
+		Jugador unJugador = null;
+		while (algoPoly.getCantidadJugadores() != 2) {
+			unJugador = algoPoly.getJugadorActual();
+			algoPoly.turnar(unJugador);
+			algoPoly.acabarTurno();
+		}
+		assertTrue(algoPoly.hayPerdedores());		
+	}
+
+	@Test
+	public void test09HayUnGanador() {
+		AlgoPoly algoPoly = new AlgoPoly(); 
+		Jugador unJugador = null;
+		while (algoPoly.sePuedeSeguirJugando()) {
+			unJugador = algoPoly.getJugadorActual();
+			algoPoly.turnar(unJugador);
+			algoPoly.acabarTurno();
+		}
+		assertTrue(algoPoly.hayUnGanador());		
+	}
+	
+	
 }

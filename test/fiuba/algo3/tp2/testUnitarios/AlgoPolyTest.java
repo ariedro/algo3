@@ -129,7 +129,7 @@ public class AlgoPolyTest {
 		assertEquals(unJugador, aPoly.getJugadorActual());
 	}
 	
-	@Test
+	/*@Test
 	public void test10JugadorTiraDadosYSiTienenMismoValorDosVecesNoVuelveAJugar() {
 		AlgoPoly aPoly = new AlgoPoly();
 		
@@ -155,7 +155,7 @@ public class AlgoPolyTest {
 		aPoly.acabarTurno();
 
 		assertNotEquals(unJugador, aPoly.getJugadorActual());
-	}
+	}*/
 	
 	@Test
 	public void test11JugadorQuePierdeYaNoVuelveAJugar() {

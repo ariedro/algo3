@@ -39,9 +39,9 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 	private final Button botonVender;
 	private final Button botonConstruirCasas;
 	private final Button botonConstruirHoteles;
-	
+	private final Button botonPagarFianza;
 	public BotonTirarDadosHandler(VistaAlgoPoly unaVistaAlgoPoly, Button unBotonFinTurno, 
-			Button botonVender, Button botonConstruirCasas, Button botonConstruirHoteles) {
+			Button botonVender, Button botonConstruirCasas, Button botonConstruirHoteles, Button botonPagarFianza) {
 	
 		this.algoPoly = unaVistaAlgoPoly.getAlgoPoly();
 		this.vistaAlgoPoly = unaVistaAlgoPoly;
@@ -49,6 +49,7 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 		this.botonVender = botonVender;
 		this.botonConstruirCasas = botonConstruirCasas;
 		this.botonConstruirHoteles = botonConstruirHoteles;
+		this.botonPagarFianza = botonPagarFianza;
 	}
 	
 	
@@ -56,23 +57,45 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent event) {
 		Jugador jugadorActual = this.algoPoly.getJugadorActual();
 		try {
-			this.algoPoly.turnar(jugadorActual);	
 			String musicFile = "res/sonidos/dados.mp3";     
 			Media sound = new Media(new File(musicFile).toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
+			this.algoPoly.turnar(jugadorActual);	
 		} catch(JugadorYaTiroDadosException e){
 			new Alerta("Ya tiraste los dados");
 		}
-	
-
 		this.vistaAlgoPoly.update();
-		
 		this.botonFinTurno.setDisable(false);
 		this.botonVender.setDisable(true);
 		this.botonConstruirCasas.setDisable(true);
 		this.botonConstruirHoteles.setDisable(true);
+		
+		//this.updateBotonera();
 	}
+	
+	/*public void updateBotonera() {
+		this.botonFinTurno.setDisable(false);
+		this.botonVender.setDisable(true);
+		this.botonConstruirCasas.setDisable(true);
+		this.botonConstruirHoteles.setDisable(true);
+		if(this.algoPoly.hayUnGanador()) {
+			this.botonFinTurno.setDisable(true);
+			this.botonPagarFianza.setDisable(true);
+			this.alertaGanador();
+		}
+	}
+	
+	public void alertaGanador() {
+		Jugador ganador = this.algoPoly.getGanador();
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("FELICITACIONES");
+		alert.setHeaderText("Hay un ganador");
+		//alert.setContentText(unMensaje);
+	    alert.show();
+	}
+	*/
 }
 
 

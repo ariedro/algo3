@@ -96,9 +96,9 @@ public class AlgoPoly {
 	public void accionarCasillero(Casillero unCasillero, Jugador unJugador) {
 		
 		unCasillero.accionarPropiedad(unJugador);
-		if (unJugador.esPerdedor())
+		if (unJugador.esPerdedor()) {
 			this.sacarJugador(unJugador);
-		
+		}
 	}
 	
 	public Dados getDados() {
@@ -121,7 +121,7 @@ public class AlgoPoly {
 	}
 	
 	public boolean hayPerdedores() {
-		return (this.getCuantosJugadoresPerdieron() > 0);
+		return (this.jugadores.size() < 3);
 	}
 	
 	public boolean esPerdedorJugadorActual() {
@@ -146,10 +146,18 @@ public class AlgoPoly {
 	}
 	
 	public boolean sePuedeSeguirJugando() {
-		return (this.jugadores.size() > JUGADOR_FINAL);
+		return (this.getCuantosJugadoresPerdieron() < 2);
 	}
 	
-	public void construirCasa() {
-		
+	
+	public boolean hayUnGanador() {
+		return (!this.sePuedeSeguirJugando());
 	}
+	
+	public Jugador getGanador() {
+		Jugador ganador = null;
+		if(this.hayUnGanador()) ganador = this.jugadores.getFirst();
+		return ganador;
+	}
+	
 }

@@ -237,7 +237,7 @@ public class Jugador {
 	
 	public void declararPerdedor(Jugador jugadorAlQueLeDebe) {
 		this.venderTodasLasPropiedades();
-		jugadorAlQueLeDebe.recibirDinero(this.getDinero());
+		//jugadorAlQueLeDebe.recibirDinero(this.getDinero());
 		this.sacarDinero(this.getDinero());
 		this.perdedor = true;
 	}
