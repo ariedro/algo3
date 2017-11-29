@@ -26,7 +26,7 @@ public class BotonPagarFianzaHandler implements EventHandler<ActionEvent>{
 		try {
 			jugador.pagarFianza();
 		} catch(JugadorNoPuedePagarFianzaException e) {
-			new Alerta("No podes pagar la fianza");
+			new Alerta("Jugada ilegal","No podes pagar la fianza");
 		}
 		this.vistaInfoJugadores.update();
 	}

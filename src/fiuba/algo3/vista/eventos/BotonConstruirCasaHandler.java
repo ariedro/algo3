@@ -46,13 +46,13 @@ public class BotonConstruirCasaHandler implements EventHandler<ActionEvent>{
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
 		} catch (JugadorNoTieneDineroException e1) {
-			new Alerta("No tienes dinero para comprar esta casa.");
+			new Alerta("Jugada ilegal","No tienes dinero para comprar esta casa.");
 		} catch (BarrioNoPuedeConstruirCasaException e2) {
-			new Alerta("No se puede construir una casa.");
+			new Alerta("Jugada ilegal","No se puede construir una casa.");
 		} catch (BarrioNecesitaVecinoParaConstruirCasaException e3) {
-			new Alerta("Necesitas tener la propiedad de " + this.barrio.getVecino() + " para poder construir una casa aca");
+			new Alerta("Jugada ilegal","Necesitas tener la propiedad de " + this.barrio.getVecino() + " para poder construir una casa aca");
 		} catch (BarrioYaTieneTodasLasCasasConstruidasException e4) {
-			new Alerta(this.barrio.getNombre() + " ya tiene todas las casas construidas");
+			new Alerta("Jugada ilegal",this.barrio.getNombre() + " ya tiene todas las casas construidas");
 		}
 		vistaInfoJugadores.update();
 

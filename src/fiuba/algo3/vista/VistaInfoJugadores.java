@@ -1,5 +1,8 @@
 package fiuba.algo3.vista;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+
 import fiuba.algo3.clases.AlgoPoly;
 import fiuba.algo3.clases.DatosDeBarrio;
 import fiuba.algo3.clases.Jugador;
@@ -11,16 +14,22 @@ import javafx.scene.text.FontWeight;
 
 public class VistaInfoJugadores {
 
-	private static final String JUGADOR1 = "Azul";
-	private static final String JUGADOR2 = "Marron";
-	private static final String JUGADOR3 = "Fucsia";
+	private static final String JUGADOR1 = "Rojo";
+	private static final String JUGADOR2 = "Verde";
+	private static final String JUGADOR3 = "Azul";
 	private AlgoPoly algoPoly;
 	private Label label;
 	private String texto;
+	HashMap<Jugador,String> coloresJugadores;
+
 	
 	public VistaInfoJugadores(AlgoPoly unAlgoPoly) {
 		this.algoPoly = unAlgoPoly;
         this.label = new Label();
+        this.coloresJugadores = new HashMap<>();
+        coloresJugadores.put(unAlgoPoly.getJugadorMedianteIndice(1), JUGADOR1);
+        coloresJugadores.put(unAlgoPoly.getJugadorMedianteIndice(2), JUGADOR2);
+        coloresJugadores.put(unAlgoPoly.getJugadorMedianteIndice(3), JUGADOR3);
         this.label.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
         this.label.setTextFill(Color.BLACK);
         this.escribir();
@@ -31,7 +40,7 @@ public class VistaInfoJugadores {
 	public void escribir() {
 		Jugador jugador = algoPoly.getJugadorActual();
 		texto = "";
-		texto += "Jugador: " + consultarColor(algoPoly) + "\n";
+		texto += "Jugador: " + coloresJugadores.get(jugador) + "\n";
 		texto += "Dinero: " + jugador.getDinero() + "\n";
 		texto += "Estado: " + (jugador.estaEnCana() ? "En cana" : "En libertad") + "\n";
 		texto += "Propiedades: ";
@@ -75,14 +84,6 @@ public class VistaInfoJugadores {
 
 	public Label getLabel() {
 		return this.label;
-	}
-	
-	public String consultarColor(AlgoPoly algoPoly) {
-		String color = "";
-		if (algoPoly.getIndiceJugadorActual() == 1) color = JUGADOR1;
-		else if (algoPoly.getIndiceJugadorActual() == 2) color = JUGADOR2;
-		else color = JUGADOR3;
-		return color;
 	}
 	
 	public String fueConstruidoHotel(Barrio unBarrio) {

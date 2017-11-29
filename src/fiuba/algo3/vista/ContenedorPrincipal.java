@@ -106,7 +106,7 @@ public class ContenedorPrincipal extends BorderPane {
         if (vistaAlgoPoly.getAlgoPoly().getJugadorActual().estaEnCana()) botonFinalizarTurno.setDisable(false);
         contenedorVertical.getChildren().add(botonFinalizarTurno);
         
-        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaAlgoPoly, botonFinalizarTurno, botonVender, botonConstruirCasas, botonConstruirHoteles, botonPagarFianza);
+        BotonTirarDadosHandler tirarDadosHandler = new BotonTirarDadosHandler(vistaAlgoPoly, botonFinalizarTurno, botonVender, botonConstruirCasas, botonConstruirHoteles, botonPagarFianza, botonDados);
         botonDados.setOnAction(tirarDadosHandler);
         contenedorVertical.getChildren().add(botonDados);
         

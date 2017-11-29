@@ -41,7 +41,7 @@ public class BotonConstruirHotelHandler implements EventHandler<ActionEvent>{
 			mediaPlayer.play();
 		}
 		catch (BarrioNoPuedeConstruirHotelException e) {
-			new Alerta("No se puede construir un hotel.");
+			new Alerta("Jugada ilegal","No se puede construir un hotel.");
 		}
 		vistaInfoJugadores.update();
 	}

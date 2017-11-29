@@ -40,8 +40,10 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 	private final Button botonConstruirCasas;
 	private final Button botonConstruirHoteles;
 	private final Button botonPagarFianza;
+	private final Button botonDados;
+	
 	public BotonTirarDadosHandler(VistaAlgoPoly unaVistaAlgoPoly, Button unBotonFinTurno, 
-			Button botonVender, Button botonConstruirCasas, Button botonConstruirHoteles, Button botonPagarFianza) {
+			Button botonVender, Button botonConstruirCasas, Button botonConstruirHoteles, Button botonPagarFianza, Button unBotonDados) {
 	
 		this.algoPoly = unaVistaAlgoPoly.getAlgoPoly();
 		this.vistaAlgoPoly = unaVistaAlgoPoly;
@@ -50,6 +52,7 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 		this.botonConstruirCasas = botonConstruirCasas;
 		this.botonConstruirHoteles = botonConstruirHoteles;
 		this.botonPagarFianza = botonPagarFianza;
+		this.botonDados = unBotonDados;
 	}
 	
 	
@@ -63,39 +66,32 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 			mediaPlayer.play();
 			this.algoPoly.turnar(jugadorActual);	
 		} catch(JugadorYaTiroDadosException e){
-			new Alerta("Ya tiraste los dados");
+			new Alerta("Jugada ilegal","Ya tiraste los dados");
 		}
-		this.vistaAlgoPoly.update();
-		this.botonFinTurno.setDisable(false);
-		this.botonVender.setDisable(true);
-		this.botonConstruirCasas.setDisable(true);
-		this.botonConstruirHoteles.setDisable(true);
 		
-		//this.updateBotonera();
+		this.vistaAlgoPoly.update();
+		this.updateBotonera(jugadorActual);
 	}
+
 	
-	/*public void updateBotonera() {
-		this.botonFinTurno.setDisable(false);
+	public void updateBotonera(Jugador jugadorActual) {
+		if (jugadorActual.esPerdedor() && algoPoly.sePuedeSeguirJugando()) {
+			new Alerta("Lastima","Perdiste");
+			this.botonFinTurno.setDisable(true);
+		}
+		else
+			this.botonFinTurno.setDisable(false);
 		this.botonVender.setDisable(true);
 		this.botonConstruirCasas.setDisable(true);
 		this.botonConstruirHoteles.setDisable(true);
 		if(this.algoPoly.hayUnGanador()) {
 			this.botonFinTurno.setDisable(true);
 			this.botonPagarFianza.setDisable(true);
-			this.alertaGanador();
+			this.botonDados.setDisable(true);
+			new Alerta("FELICITACIONES","Ganaste!");
 		}
 	}
-	
-	public void alertaGanador() {
-		Jugador ganador = this.algoPoly.getGanador();
-		
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("FELICITACIONES");
-		alert.setHeaderText("Hay un ganador");
-		//alert.setContentText(unMensaje);
-	    alert.show();
-	}
-	*/
+
 }
 
 

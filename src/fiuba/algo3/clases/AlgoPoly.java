@@ -121,7 +121,7 @@ public class AlgoPoly {
 	}
 	
 	public boolean hayPerdedores() {
-		return (this.jugadores.size() < 3);
+		return (this.jugadores.size() < JUGADORES_INICIALES);
 	}
 	
 	public boolean esPerdedorJugadorActual() {

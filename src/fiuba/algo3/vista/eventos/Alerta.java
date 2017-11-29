@@ -5,10 +5,10 @@ import javafx.scene.control.Alert.AlertType;
 
 public class Alerta {
 
-	public Alerta(String unMensaje) {
+	public Alerta(String unTitulo, String unMensaje) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Advertencia");
-		alert.setHeaderText("Jugada ilegal");
+		alert.setHeaderText(unTitulo);
 		alert.setContentText(unMensaje);
 	    alert.show();
 	}
