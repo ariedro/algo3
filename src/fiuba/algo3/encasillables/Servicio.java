@@ -20,17 +20,27 @@ public class Servicio implements Encasillable,Comprable {
 	@Override
 	public void accionarCon(Jugador unJugador) {
 		if (!this.tienePropietario() && this.tieneDineroSuficiente(unJugador)) {
+			
 			unJugador.comprarPropiedad(this);
+			
 			this.setPropietario(unJugador);
-		}
-		else if (this.tienePropietario() && !this.esPropietario(unJugador)) {
-			if (unJugador.tieneSuficienteDinero(this.getTarifa())) this.cobrarTarifa(unJugador);
-			else if (unJugador.tienePropiedadesConValorSuficiente(this.getTarifa())) {
-				while (unJugador.getDinero() < this.getTarifa()) 
-					unJugador.elegirQuePropiedadesVender();
-				this.cobrarTarifa(unJugador);
-			}
-			else unJugador.declararPerdedor(this.propietario);
+		
+		}else if (this.tienePropietario() && !this.esPropietario(unJugador)) {
+			
+				if (unJugador.tieneSuficienteDinero(this.getTarifa())) {
+					
+					this.cobrarTarifa(unJugador);
+				
+				} else if (unJugador.tienePropiedadesConValorSuficiente(this.getTarifa())) {
+				
+					while (unJugador.getDinero() < this.getTarifa()) { 
+					
+						unJugador.elegirQuePropiedadesVender();
+				
+					}
+					this.cobrarTarifa(unJugador);
+		
+				}else unJugador.declararPerdedor(this.propietario);
 		}
 		else unJugador.declararPerdedor(this.propietario);
 	}

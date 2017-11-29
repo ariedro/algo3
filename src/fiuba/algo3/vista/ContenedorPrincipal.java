@@ -161,7 +161,7 @@ public class ContenedorPrincipal extends BorderPane {
 		for (Comprable propiedad: jugador.getPropiedades()) {
 			Button botonVender = new Button();
 			botonVender.setText(propiedad.getNombre() + " -$" + propiedad.getValorVenta());
-			BotonVentaHandler botonVenderHandler = new BotonVentaHandler(propiedad, algoPoly, botonVender);
+			BotonVentaHandler botonVenderHandler = new BotonVentaHandler(propiedad, algoPoly, botonVender, vistaAlgoPoly.getVistaInfoJugadores());
 			botonVender.setOnAction(botonVenderHandler);
 			contenedorVertical.getChildren().add(botonVender);	
 		}
