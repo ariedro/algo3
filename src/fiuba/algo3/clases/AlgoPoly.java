@@ -43,7 +43,6 @@ public class AlgoPoly {
 	
 	public Jugador getJugadorActual() {
 		
-		
 		Jugador unJugador = this.jugadorActual.next();
 		
 		this.jugadorActual.previous();
@@ -105,14 +104,6 @@ public class AlgoPoly {
 		return this.dados;
 	}
 	
-	public int getCuantosJugadoresPerdieron() {
-		int i = 0;
-		for (Jugador unJugador: this.jugadores) {
-			if (unJugador.esPerdedor()) i++;
-		}
-		return i;
-	}
-	
 	public void avanzarASiguienteJugador() {
 		this.jugadorActual.next();	
 		if (!this.jugadorActual.hasNext()) {
@@ -122,10 +113,6 @@ public class AlgoPoly {
 	
 	public boolean hayPerdedores() {
 		return (this.jugadores.size() < JUGADORES_INICIALES);
-	}
-	
-	public boolean esPerdedorJugadorActual() {
-		return this.getJugadorActual().esPerdedor();
 	}
 	
 	public void sacarJugador(Jugador unJugador) {
@@ -146,18 +133,12 @@ public class AlgoPoly {
 	}
 	
 	public boolean sePuedeSeguirJugando() {
-		return (this.jugadores.size() > 1);
+		return (this.jugadores.size() > JUGADOR_FINAL);
 	}
 	
 	
 	public boolean hayUnGanador() {
 		return (!this.sePuedeSeguirJugando());
-	}
-	
-	public Jugador getGanador() {
-		Jugador ganador = null;
-		if(this.hayUnGanador()) ganador = this.jugadores.getFirst();
-		return ganador;
 	}
 	
 }

@@ -4,8 +4,6 @@ public class Casillero {
 	
 	private Encasillable unaPropiedad;
 	
-	
-
 	public Casillero (Encasillable propiedad) {
 		this.unaPropiedad = propiedad;
 	}

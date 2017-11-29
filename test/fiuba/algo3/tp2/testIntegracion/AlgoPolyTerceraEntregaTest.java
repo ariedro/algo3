@@ -46,6 +46,14 @@ public class AlgoPolyTerceraEntregaTest {
 			aPoly.turnar(unJugador);
 			resDado1 = aPoly.getDados().getValorPrimerDado();
 			resDado2 = aPoly.getDados().getValorSegundoDado();
+			if (aPoly.getCantidadJugadores() == 0) {
+				// Caso que se quede sin jugadores.
+				aPoly = new AlgoPoly();
+				unJugador = aPoly.getJugadorActual();
+				aPoly.turnar(unJugador);
+				resDado1 = aPoly.getDados().getValorPrimerDado();
+				resDado2 = aPoly.getDados().getValorSegundoDado();
+			}
 		}
 		aPoly.acabarTurno();
 
@@ -149,6 +157,8 @@ public class AlgoPolyTerceraEntregaTest {
 		thrown.expect(BarrioNoPuedeConstruirHotelException.class);
 		unJugador.construirHotel("Tucuman");		
 	}
+	
+	// Punto 6
 	@Test
 	public void test08jugadorSinPlataNiPropiedadesCaeEnUnCasilleroQueGeneraGastoYQuedaEliminado() {
 		AlgoPoly algoPoly = new AlgoPoly(); 
