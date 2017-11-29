@@ -60,11 +60,8 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent event) {
 		Jugador jugadorActual = this.algoPoly.getJugadorActual();
 		try {
-			String musicFile = "res/sonidos/dados.mp3";     
-			Media sound = new Media(new File(musicFile).toURI().toString());
-			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.play();
-			this.algoPoly.turnar(jugadorActual);	
+			this.algoPoly.turnar(jugadorActual); 
+			new Sonido("res/sonidos/dados.mp3");
 		} catch(JugadorYaTiroDadosException e){
 			new Alerta("Jugada ilegal","Ya tiraste los dados");
 		}
@@ -89,6 +86,7 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent>{
 			this.botonPagarFianza.setDisable(true);
 			this.botonDados.setDisable(true);
 			new Alerta("FELICITACIONES","Ganaste!");
+			new Sonido("res/sonidos/ganador.mp3");
 		}
 	}
 

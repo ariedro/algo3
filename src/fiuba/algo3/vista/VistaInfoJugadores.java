@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class VistaInfoJugadores {
+public class VistaInfoJugadores implements Vista {
 
 	private static final String JUGADOR1 = "Rojo";
 	private static final String JUGADOR2 = "Verde";

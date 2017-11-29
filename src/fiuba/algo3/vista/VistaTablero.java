@@ -11,7 +11,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
-public class VistaTablero {
+public class VistaTablero implements Vista{
     Canvas canvas;
     AlgoPoly algoPoly;
     Image imagenTablero;

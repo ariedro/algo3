@@ -1,13 +1,15 @@
 package fiuba.algo3.vista;
 
+import java.util.LinkedList;
+
 import fiuba.algo3.clases.AlgoPoly;
 import javafx.scene.canvas.Canvas;
 
-public class VistaAlgoPoly {
+public class VistaAlgoPoly implements Vista {
 
 	private AlgoPoly algoPoly;
 	
-	private VistaDados vistaDados;
+	private LinkedList<Vista> vistas;
 	
 	private VistaInfoJugadores vistaInfoJugadores;
 	
@@ -16,12 +18,15 @@ public class VistaAlgoPoly {
 	public VistaAlgoPoly(AlgoPoly unAlgoPoly, Canvas canvasCentral) {
 		
 		this.algoPoly = unAlgoPoly;
-
-		this.vistaDados = new VistaDados(canvasCentral, unAlgoPoly.getDados());
-	
+		this.vistas = new LinkedList<>();
+		
 		this.vistaInfoJugadores = new VistaInfoJugadores(unAlgoPoly);
+		vistas.add(vistaInfoJugadores);
 	
 		this.vistaTablero = new VistaTablero(canvasCentral, unAlgoPoly);
+		vistas.add(vistaTablero);
+
+		vistas.add(new VistaDados(canvasCentral, unAlgoPoly.getDados()));
 
 	}
 	
@@ -39,12 +44,8 @@ public class VistaAlgoPoly {
 
 	public void update() {
 		
-		this.vistaTablero.update();
-		
-		this.vistaDados.update();
-		
-		this.vistaInfoJugadores.update();
-		
+		for(Vista vista: vistas)
+			vista.update();
 		
 	}
 

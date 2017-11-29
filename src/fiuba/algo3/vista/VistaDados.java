@@ -4,7 +4,7 @@ import fiuba.algo3.clases.Dados;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 
-public class VistaDados {
+public class VistaDados implements Vista {
 	
 	Dados dados;
 	Canvas canvas;
@@ -23,8 +23,8 @@ public class VistaDados {
     }
     
     private void dibujarDados() {
-        canvas.getGraphicsContext2D().drawImage(this.imagenesDados[dados.getValorPrimerDado() - 1], canvas.getWidth() / 2 - 64, canvas.getHeight() / 2 + 20);
-        canvas.getGraphicsContext2D().drawImage(this.imagenesDados[dados.getValorSegundoDado() - 1], canvas.getWidth() / 2, canvas.getHeight() / 2 + 20);
+        canvas.getGraphicsContext2D().drawImage(this.imagenesDados[dados.getValorPrimerDado() - 1], canvas.getWidth() / 2 - 64, canvas.getHeight() / 2 + 45);
+        canvas.getGraphicsContext2D().drawImage(this.imagenesDados[dados.getValorSegundoDado() - 1], canvas.getWidth() / 2, canvas.getHeight() / 2 + 45);
     }
 
     public void update() {

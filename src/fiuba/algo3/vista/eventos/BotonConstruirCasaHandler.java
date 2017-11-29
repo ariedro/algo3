@@ -41,10 +41,7 @@ public class BotonConstruirCasaHandler implements EventHandler<ActionEvent>{
 		Jugador jugadorActual = algoPoly.getJugadorActual();
 		try {
 			jugadorActual.construirCasa(this.barrio.getNombre());
-			String musicFile = "res/sonidos/kaching.mp3";     
-			Media sound = new Media(new File(musicFile).toURI().toString());
-			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.play();
+			new Sonido("res/sonidos/kaching.mp3");
 		} catch (JugadorNoTieneDineroException e1) {
 			new Alerta("Jugada ilegal","No tienes dinero para comprar esta casa.");
 		} catch (BarrioNoPuedeConstruirCasaException e2) {

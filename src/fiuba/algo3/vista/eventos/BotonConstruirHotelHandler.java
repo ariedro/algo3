@@ -35,12 +35,8 @@ public class BotonConstruirHotelHandler implements EventHandler<ActionEvent>{
 		Jugador jugadorActual = algoPoly.getJugadorActual();
 		try {
 			jugadorActual.construirHotel(this.barrio.getNombre());
-			String musicFile = "res/sonidos/kaching.mp3";     
-			Media sound = new Media(new File(musicFile).toURI().toString());
-			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.play();
-		}
-		catch (BarrioNoPuedeConstruirHotelException e) {
+			new Sonido("res/sonidos/kaching.mp3");
+		} catch (BarrioNoPuedeConstruirHotelException e) {
 			new Alerta("Jugada ilegal","No se puede construir un hotel.");
 		}
 		vistaInfoJugadores.update();
