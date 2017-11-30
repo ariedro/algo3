@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 
 public class VistaTablero implements Vista{
     Canvas canvas;
-    AlgoPoly algoPoly;
     Image imagenTablero;
 	HashMap<Casillero,Vector> posicionesCasilleros;
 	LinkedList<Jugador> jugadores;
@@ -23,7 +22,6 @@ public class VistaTablero implements Vista{
 
     public VistaTablero(Canvas canvas, AlgoPoly algoPoly) {
         this.canvas = canvas;
-        this.algoPoly = algoPoly;
         this.imagenTablero = new Image("file:res/imagenes/tableroJuego.png");
         this.posicionesCasilleros = new HashMap<>();
         for(int i = 0; i < 5; i++) {

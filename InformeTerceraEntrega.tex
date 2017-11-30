@@ -1,0 +1,196 @@
+\documentclass[titlepage,a4paper]{article}
+
+\usepackage{a4wide}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,bookmarksopen=true]{hyperref}
+\usepackage{bookmark}
+\usepackage{fancyhdr}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{float}
+
+\pagestyle{fancy} % Encabezado y pie de página
+\fancyhf{}
+\fancyhead[L]{TP2 - Grupo T10}
+\fancyhead[R]{Algoritmos y Programación III - FIUBA}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+\begin{titlepage} % Carátula
+	\hfill\includegraphics[width=6cm]{logofiuba.jpg}
+    \centering
+    \vfill
+    \Huge \textbf{Trabajo Práctico 2}
+    \vskip1cm
+    \Large \textbf{Tercera Entrega}
+    \vskip2cm
+    \Large [7507/9502] Algoritmos y Programación III\\
+    Curso 1
+    Segundo cuatrimestre de 2017 
+    \vfill
+    Grupo T10
+    \vfill
+    \begin{tabular}{ | l | l | l | } % Datos del alumno
+      \hline
+      Nombre & Padrón & Mail \\ \hline
+      Perez Ondarts, Flavio & 96786 & perezflavio94@gmail.com \\ \hline
+      Piersantolini, Matías & 98299 & matias.piersantolini@gmail.com \\ \hline
+      Ontiveros, Juan & 98425 & ontiverosfuertes@yahoo.com.ar \\ \hline
+      Aguirre, Ariel & 100199 & ariedro@gmail.com \\ \hline
+  	\end{tabular}
+    \vfill
+    \vfill
+\end{titlepage}
+
+\tableofcontents % Índice general
+\newpage
+
+\section{Introducción}\label{sec:intro}
+El presente informe reúne la documentación de la solución del segundo trabajo práctico de la materia Algoritmos y Programación III que consiste en desarrollar una aplicación completa con interfaz gráfica de una versión simplificada del Monopoly, utilizando los conceptos del paradigma de la orientación a objetos vistos en el curso.
+
+\section{Supuestos}\label{sec:supuestos}
+% Deberá contener explicaciones de cada uno de los supuestos que el alumno haya tenido que adoptar a partir de situaciones que no estén contempladas en la especificación.
+
+Para hacer esta parte del trabajo, se asumió que el tablero en el que se desarrollará el juego es siempre el mismo, es decir que los casilleros siempre están en las mismas posiciones que están en el enunciado.
+
+\section{Modelo de dominio}\label{sec:modelo}
+% Explicación concisa del diseño general del trabajo.
+
+Ésta entrega cuenta con una implementación completa del juego con su interfaz gráfica.
+
+Además de ello, se implementaron los siguientes puntos que faltaban en el modelo:
+
+\begin{itemize}
+\item Funcionamiento de los turnos que maneja AlgoPoly con sus jugadores.
+\item Comportamiento que manejan los Encasillables en los que si un jugador enfrenta un gasto y no tiene dinero suficiente, tiene que obligatoriamente vender todas sus propiedades para pagarselo al que le debe.
+\item Mejora de Tablero, ahora también maneja la ubicación de los jugadores.
+\item Implementación de una clase nueva de Dados que se responsabiliza de los dobles.
+\item Fin del juego en todas sus variantes.
+\end{itemize}
+
+
+\vfill
+\
+\section{Diagramas de clase}\label{sec:diagramasdeclase}
+% Uno o varios diagramas de clases mostrando las relaciones estáticas entre las clases.  Puede agregarse todo el texto necesario para aclarar y explicar su diseño. Recuerden que la idea de todo el documento es que quede documentado y entendible cómo está implementada la solución.
+
+El diagrama de clases se mantiene igual que en la entrega anterior.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{clases.png}
+\caption{\label{fig:class01}Diagrama general de clases.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{Encasillables.png}
+\caption{\label{fig:class02}Diagrama de las clases que implementan la interfaz Encasillable.}
+\end{figure}
+
+\vfill
+\section{Diagramas de secuencia}\label{sec:diagramasdesecuencia}
+% Mostrar las secuencias interesantes que hayan implementado. Pueden agregar texto para explicar si algo no queda claro.
+
+Éstos son algunos diagramas de secuencia que ilustran lo que se dijo:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{secuencia_3.jpg}
+\caption{\label{fig:sec1}Funcionamiento de los turnos}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{secuencia_2.jpg}
+\caption{\label{fig:sec2}Echado de un jugador que perdió}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{secuencia_1.jpg}
+\caption{\label{fig:sec3}Funcionamiento de cuando un jugador tiene que vender sus propiedades para pagar sus deudas}
+\end{figure}
+
+\vfill
+\
+\section{Diagrama de paquetes}\label{sec:diagramadepaquetes}
+
+Ésta es una ilustración de cómo se manejaron los paquetes en el programa.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{paquetes.png}
+\caption{\label{fig:paq}Paquetes}
+\end{figure}
+\vfill
+\
+\section{Detalles de implementación}\label{sec:implementacion}
+% Explicaciones sobre la implementación interna de algunas clases que consideren que puedan llegar a resultar interesantes.
+
+\subsection{algoPoly.turnar()}
+
+El funcionamiento del método turnar es un conjunto de todo lo que ya vinimos implementando en las otras entregas, acá AlgoPoly se encarga de llamar a que el jugador tire los dados, hace que el tablero mueva esa cantidad de casilleros y que el que caiga se accione en el jugador.
+Esto se implementa en la Vista cuando el usuario apreta el botón de tirar dados.
+
+\begin{verbatim}
+public Casillero turnar(Jugador unJugador) {
+    dados = unJugador.tirarDados(dados);
+    tablero.modificarPosicion(unJugador, dados.getSuma());
+    Casillero unCasillero = tablero.getCasillero(tablero.getPosicion(unJugador));
+    this.accionarCasillero(unCasillero, unJugador);
+    return unCasillero;	
+}
+\end{verbatim}
+
+\section{Vistas}\label{sec:vistas}
+
+Tomando de base el ejemplo que dieron en la clase de JavaFX, desarrollamos un contenedor principal que contiene 4 vistas particulares de mostrar la información que está manejando el modelo y sirven al usuario, todo esto se implementa con la interfaz VistaAlgoPoly para que se pueda manejar polimorfamente.
+
+\subsection{VistaTablero}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{vis_tablero.PNG}
+\caption{\label{fig:vtab}Vista del Tablero}
+\end{figure}
+
+Ésta vista es la que se encarga de mostrar las posiciones de los jugadores en la pantalla, contiene un hashmap que maneja los vectores (x,y) de los casilleros y una lista de los juagadores para poder saber sus ubicaciones.
+
+\vfill
+\subsection{VistaInfoJugadores}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{vis_info.PNG}
+\caption{\label{fig:vinf}Vista de la información}
+\end{figure}
+
+Se encarga de mostrar la información del jugador que está juando, conoce a AlgoPoly para poder preguntar directamente los datos del jugador actual.
+
+\subsection{VistaDados}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{vis_dados.PNG}
+\caption{\label{fig:vdad}Vista de los dados}
+\end{figure}
+
+Muestra los dados que salieron después de apretar el botón de Tirar dados, sólo tiene una referencia a los dados sin conocer nada más.
+
+\vfill
+\section{Excepciones}\label{sec:excepciones}
+% Explicación de cada una de las excepciones creadas y con qué fin fueron creadas.
+
+Además de las excepciones que ya estaban, y para poder mostrarle al usuarios unas excepciones que den información, se implementaron las siguientes excepciones:
+
+\begin{description}
+\item[BarrioNecesitaVecinoParaConstruirCasaException] Se lanza cuando se quiere construir una casa en un barrio que requiere que se tenga el barrio vecino.
+\item[BarrioYaTieneTodasLasCasasConstruidasException] Se lanza cuando ese barrio ya llegó al máximo de casas permitidas.
+\item[JugadorYaTiroDadosException] Se lanza cuando un jugador que ya tiró los dados quiere tirarlos de nuevo antes de terminar el turno.
+\end{description}
+
+\end{document}
