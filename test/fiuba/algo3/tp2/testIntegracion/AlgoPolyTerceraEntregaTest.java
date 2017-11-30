@@ -176,12 +176,15 @@ public class AlgoPolyTerceraEntregaTest {
 	}
 
 	@Test
-	public void test09HayUnGanador() {
+	public void test09HayUnGanadorCuandoSeTerminaDeJugar() {
 		AlgoPoly algoPoly = new AlgoPoly(); 
 		Jugador unJugador = null;
 		while (algoPoly.sePuedeSeguirJugando()) {
 			unJugador = algoPoly.getJugadorActual();
-			algoPoly.turnar(unJugador);
+			try {
+				algoPoly.turnar(unJugador);
+			} 
+			catch (JugadorNoTieneDineroException e) { }
 			algoPoly.acabarTurno();
 		}
 		assertTrue(algoPoly.hayUnGanador());		
